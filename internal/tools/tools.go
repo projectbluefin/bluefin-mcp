@@ -11,7 +11,7 @@ import (
 	"github.com/projectbluefin/bluefin-mcp/internal/system"
 )
 
-// Register adds all 11 MCP tool handlers to the server.
+// Register adds all 12 MCP tool handlers to the server.
 func Register(s *server.MCPServer, runner cli.CommandRunner, store *system.KnowledgeStore) {
 	s.AddTool(mcp.NewTool("get_system_status",
 		mcp.WithDescription("Get atomic OCI image state: booted image, digest, staged update, variant"),
