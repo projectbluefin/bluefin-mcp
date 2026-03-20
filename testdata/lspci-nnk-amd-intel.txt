@@ -1,0 +1,14 @@
+00:00.0 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Rembrandt Root Complex [1022:14b5]
+00:08.0 PCI bridge [0604]: Advanced Micro Devices, Inc. [AMD] Rembrandt Internal PCIe GPP Bridge to Bus [1022:14b9] (rev 01)
+04:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Rembrandt [Radeon 680M] [1002:1681] (rev d4)
+	Subsystem: Advanced Micro Devices, Inc. [AMD/ATI] Rembrandt [Radeon 680M] [1002:1681]
+	Kernel driver in use: amdgpu
+	Kernel modules: amdgpu
+05:00.0 Network controller [0280]: Intel Corporation Wi-Fi 6E AX210/AX1675* 160MHz [8086:2725] (rev 1a)
+	Subsystem: Intel Corporation Wi-Fi 6E AX210/AX1675* 160MHz [8086:0024]
+	Kernel driver in use: iwlwifi
+	Kernel modules: iwlwifi
+06:00.0 Non-Volatile memory controller [0108]: Samsung Electronics Co Ltd NVMe SSD Controller PM9A1/PM9A3/980PRO [144d:a80a] (rev 00)
+	Subsystem: Samsung Electronics Co Ltd NVMe SSD Controller PM9A1/PM9A3/980PRO [144d:a80a]
+	Kernel driver in use: nvme
+	Kernel modules: nvme

@@ -1,0 +1,18 @@
+00:00.0 Host bridge [0600]: Intel Corporation 12th Gen Core Processor Host Bridge/DRAM Registers [8086:4660] (rev 02)
+00:02.0 VGA compatible controller [0300]: Intel Corporation Alder Lake-P Integrated Graphics Controller [8086:46a6] (rev 0c)
+	Subsystem: Dell Alder Lake-P Integrated Graphics Controller [1028:0b41]
+	Kernel driver in use: i915
+	Kernel modules: i915, xe
+00:04.0 Signal processing controller [1180]: Intel Corporation Alder Lake Innovation Platform Framework Processor Participant [8086:461d] (rev 02)
+00:08.0 System peripheral [0880]: Intel Corporation 12th Gen Core Processor Gaussian & Neural Accelerator [8086:464f] (rev 02)
+01:00.0 3D controller [0302]: NVIDIA Corporation GA107M [GeForce RTX 3050 Ti Mobile] [10de:25a0] (rev a1)
+	Subsystem: Dell GA107M [GeForce RTX 3050 Ti Mobile] [1028:0b41]
+	Kernel driver in use: nouveau
+	Kernel modules: nouveau
+02:00.0 Network controller [0280]: Broadcom Inc. and subsidiaries BCM4360 802.11ac Dual Band Wireless Network Adapter [14e4:43a0] (rev 03)
+	Subsystem: Dell BCM4360 802.11ac Dual Band Wireless Network Adapter [1028:0017]
+	Kernel modules: wl
+03:00.0 Non-Volatile memory controller [0108]: Samsung Electronics Co Ltd NVMe SSD Controller SM981/PM981/PM983 [144d:a808] (rev 00)
+	Subsystem: Samsung Electronics Co Ltd NVMe SSD Controller SM981/PM981/PM983 [144d:a808]
+	Kernel driver in use: nvme
+	Kernel modules: nvme

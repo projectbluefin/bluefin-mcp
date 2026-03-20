@@ -46,6 +46,20 @@ The canonical skill file with full context: `~/src/skills/bluefin-mcp/SKILL.md`
 
 ---
 
+## Project Philosophy — The Why
+
+> Don't spend your time searching the internet trying to translate someone else's commands into your system setup. The computer should know how it functions — so you can tell it what to do instead of having to remember commands. We know how to Unix. Automate the toil so we can work more efficiently.
+
+This mantra has concrete implications for every tool decision:
+
+- **The computer knows its state.** Tools read real system data — `bootc status`, `lspci -nnk`, sysfs — not heuristics or guesses.
+- **Defer to `linux-mcp-server` where possible.** That server handles generic Linux facts (CPU, memory, disk, journalctl, services). `bluefin-mcp` adds only the Bluefin-specific semantic layer on top. Never duplicate.
+- **No internet required.** Every tool works entirely from local system state. The AI reasons; the server provides data. Nothing is fetched.
+- **Honest output only.** Tool descriptions and README scenarios describe exactly what each tool reads and what it returns. No aspirational language, no implied capabilities that don't exist yet.
+- **The user should not need to know commands.** If a user has to look up a command to understand what a tool returned, the tool description is failing its job.
+
+---
+
 ## Architecture
 
 bluefin-mcp follows the **Ports & Adapters** (hexagonal) pattern.

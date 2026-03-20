@@ -1,0 +1,1 @@
+BOOT_IMAGE=/images/pxeboot/vmlinuz root=live:CDLABEL=Bluefin-42-x86_64 rd.live.image rd.luks=0 rd.md=0 rd.dm=0 rhgb quiet splash

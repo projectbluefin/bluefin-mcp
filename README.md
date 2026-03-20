@@ -6,6 +6,16 @@
 
 ---
 
+## Why This Exists
+
+Don't spend your time searching the internet trying to translate someone else's commands into your system setup.
+
+The computer should know how it functions — so you can tell it what to do instead of having to remember commands. We know how to Unix. The goal is to automate the toil so you can work more efficiently.
+
+`bluefin-mcp` gives your AI assistant the context it needs to do that: what the system is running, what the custom units do, which hardware works and which doesn't, and what automation is available. It doesn't guess. It reads the actual state of your actual machine.
+
+---
+
 ## What Is This?
 
 `bluefin-mcp` is part of the **Bluefin Lightspeed** initiative — the project that brings AI-native tooling to [Project Bluefin](https://projectbluefin.io), an atomic OCI-based Linux desktop built on Fedora Silverblue.
@@ -29,7 +39,7 @@ Install both for full coverage.
 
 ---
 
-## What You Get — 9 User Scenarios
+## What You Get — 10 User Scenarios
 
 ### 1. The Update Troubleshooter
 You ran `ujust update` and it exited with an error. `check_updates` tells the AI whether an update is actually staged or if the local image is already current. `get_system_status` surfaces the booted digest and any staged update, letting the AI distinguish between a local conflict and an upstream availability issue before it suggests anything.
@@ -58,13 +68,16 @@ You're not sure whether VS Code arrived as a Flatpak, a Homebrew package, or som
 ### 9. The Sysadmin
 You want to audit what's been customized on a machine relative to the image defaults. `list_recipes` surfaces the full ujust surface, including `ujust check-local-overrides` — the built-in recipe that diffs your system's `/etc` against the image baseline and reports what has drifted.
 
+### 10. The Laptop Evaluator
+You're booted from a Bluefin LiveCD trying to figure out why WiFi isn't working before you commit to installing. `get_hardware_report` reads `lspci -nnk` and identifies a Broadcom WiFi adapter — a chip that requires a proprietary driver not included in the Fedora stock kernel. The AI tells you plainly: this adapter will not work on a standard Bluefin install. It also tells you what PCI ID was found (`14e4:43a0`) and that no kernel module was loaded — information useful for filing a bug or looking up workarounds. No internet search required; the system reported its own hardware.
+
 ---
 
-## The 11 Tools
+## The 12 Tools
 
 ### Atomic OS State
 
-| Tool | What it does for you |
+| Tool | What it does |
 |---|---|
 | `get_system_status` | Returns the booted OCI image reference, digest, staged update (if any), and detected variant. The AI's first call when anything system-level goes wrong. |
 | `check_updates` | Non-blocking check: is a newer Bluefin image available? Distinguishes "no update available" from "update staged, reboot required." |
@@ -73,24 +86,30 @@ You want to audit what's been customized on a machine relative to the image defa
 
 ### Bluefin Automation
 
-| Tool | What it does for you |
+| Tool | What it does |
 |---|---|
 | `list_recipes` | Lists all `ujust` recipes available on the running system with descriptions. Bluefin's primary user automation surface. |
 
 ### Package Management
 
-| Tool | What it does for you |
+| Tool | What it does |
 |---|---|
 | `get_flatpak_list` | Lists every installed Flatpak application and its remote. Bluefin is Flathub-only; this confirms that's actually the case. |
 | `get_brew_packages` | Lists all Homebrew CLI packages installed under Linuxbrew. |
 | `list_distrobox` | Lists active Distrobox development containers with their images and status. |
 
+### Hardware
+
+| Tool | What it does |
+|---|---|
+| `get_hardware_report` | Runs `lspci -nnk` to get PCI devices with numeric vendor:device IDs and loaded kernel modules, reads `/sys/class/dmi/id/` for laptop model/chassis/firmware (no root required), detects LiveCD boot from `/proc/cmdline`, and cross-references the current Bluefin variant against detected GPU hardware. Flags Broadcom WiFi adapters (vendor `14e4`) and Nvidia GPUs on non-nvidia variants as known issues. The vendor list is a static embedded table — not a live database. For CPU, memory, disk, and general hardware inventory, use `linux-mcp-server`'s `get_hardware_information`, `get_cpu_information`, `get_memory_information`, and `get_disk_usage` instead. |
+
 ### Knowledge Store
 
-| Tool | What it does for you |
+| Tool | What it does |
 |---|---|
 | `get_unit_docs` | Fetches semantic documentation for a named Bluefin custom systemd unit — what it does, what variant it applies to, and what to check if it fails. |
-| `store_unit_docs` | Lets you (or your AI) add documentation for any additional custom unit. Persisted to `~/.local/share/bluefin-mcp`. |
+| `store_unit_docs` | Store documentation for any custom unit. Persisted to `~/.local/share/bluefin-mcp`. |
 | `list_unit_docs` | Lists every unit currently in the knowledge store. |
 
 > **Ships pre-populated.** The knowledge store includes documentation for all 10 Bluefin custom systemd units out of the box: `ublue-system-setup.service`, `ublue-user-setup.service`, `flatpak-preinstall.service`, `flatpak-nuke-fedora.service`, `dconf-update.service`, `bazaar.service`, `bluefin-dx-groups.service`, `incus-workaround.service`, `libvirt-workaround.service`, and `swtpm-workaround.service`.

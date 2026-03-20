@@ -1,0 +1,16 @@
+00:00.0 Host bridge [0600]: Intel Corporation 13th Gen Core Processor Host Bridge/DRAM Registers [8086:a703] (rev 01)
+00:02.0 VGA compatible controller [0300]: Intel Corporation Raptor Lake-P [Iris Xe Graphics] [8086:a7a0] (rev 04)
+	Subsystem: Framework Computer Inc Raptor Lake-P [Iris Xe Graphics] [f111:0001]
+	Kernel driver in use: i915
+	Kernel modules: i915, xe
+00:08.0 System peripheral [0880]: Intel Corporation 13th Gen Core Processor Gaussian & Neural Accelerator [8086:a74f] (rev 01)
+00:14.0 USB controller [0c03]: Intel Corporation Raptor Lake USB 3.2 Gen 2x1 xHCI Host Controller [8086:51ed] (rev 01)
+	Kernel driver in use: xhci_hcd
+03:00.0 Network controller [0280]: Intel Corporation Wi-Fi 6E AX211 160MHz [8086:51f0] (rev 1a)
+	Subsystem: Intel Corporation Wi-Fi 6E AX211 160MHz [8086:0094]
+	Kernel driver in use: iwlwifi
+	Kernel modules: iwlwifi
+04:00.0 Non-Volatile memory controller [0108]: WD Black SN850X NVMe SSD [1c5c:1327] (rev 01)
+	Subsystem: WD Black SN850X NVMe SSD [1c5c:1327]
+	Kernel driver in use: nvme
+	Kernel modules: nvme

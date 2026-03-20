@@ -1,0 +1,1 @@
+BOOT_IMAGE=/ostree/boot.0/bluefin/ab12cd34ef56/0/vmlinuz-6.13.4-200.fc41.x86_64 root=UUID=a1b2c3d4-e5f6-7890-abcd-ef1234567890 ro ostree=/ostree/boot.0/bluefin/ab12cd34ef56/0 quiet splash

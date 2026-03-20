@@ -139,6 +139,30 @@ func Register(s *server.MCPServer, runner cli.CommandRunner, store *system.Knowl
 		}
 		return jsonResult(docs)
 	})
+
+	// get_hardware_report complements linux-mcp-server, not replaces it.
+	// Use linux-mcp-server for CPU, memory, disk, and full hardware inventory.
+	// This tool adds: numeric PCI IDs + kernel modules (lspci -nnk), LiveCD
+	// detection, laptop model from sysfs, and Bluefin variant compatibility.
+	s.AddTool(mcp.NewTool("get_hardware_report",
+		mcp.WithDescription("Hardware compatibility report for this Bluefin system. "+
+			"Returns PCI devices with numeric vendor:device IDs and loaded kernel modules "+
+			"(lspci -nnk — more detail than linux-mcp-server's get_hardware_information), "+
+			"LiveCD detection, laptop model/chassis/firmware from sysfs (no root required), "+
+			"and a Bluefin variant compatibility check. "+
+			"Flags known-incompatible hardware: Broadcom WiFi (vendor 14e4, no wl driver in stock Fedora kernel) "+
+			"and Nvidia GPU on a non-nvidia variant. "+
+			"The static vendor list ships with the binary; it is not a live database. "+
+			"For CPU details, RAM, disk, or a full hardware inventory, "+
+			"use linux-mcp-server's get_cpu_information, get_memory_information, "+
+			"get_disk_usage, and get_hardware_information instead."),
+	), func(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+		report, err := system.GetHardwareReport(ctx, runner)
+		if err != nil {
+			return mcp.NewToolResultError(err.Error()), nil
+		}
+		return jsonResult(report)
+	})
 }
 
 func jsonResult(v any) (*mcp.CallToolResult, error) {
