@@ -48,7 +48,7 @@ Install both for full coverage.
 
 ---
 
-## What You Get — 10 User Scenarios
+## What You Get — 16 User Scenarios
 
 ### 1. The Update Troubleshooter
 You ran `ujust update` and it exited with an error. `check_updates` tells the AI whether an update is actually staged or if the local image is already current. `get_system_status` surfaces the booted digest and any staged update, letting the AI distinguish between a local conflict and an upstream availability issue before it suggests anything.
@@ -78,7 +78,25 @@ You're not sure whether VS Code arrived as a Flatpak, a Homebrew package, or som
 You want to audit what's been customized on a machine relative to the image defaults. `list_recipes` surfaces the full ujust surface, including `ujust check-local-overrides` — the built-in recipe that diffs your system's `/etc` against the image baseline and reports what has drifted.
 
 ### 10. The Laptop Evaluator
-You're booted from a Bluefin LiveCD trying to figure out why WiFi isn't working before you commit to installing. `get_hardware_report` reads `lspci -nnk` and identifies a Broadcom WiFi adapter — a chip that requires a proprietary driver not included in the Fedora stock kernel. The AI tells you plainly: this adapter will not work on a standard Bluefin install. It also tells you what PCI ID was found (`14e4:43a0`) and that no kernel module was loaded. No internet search required; the system reported its own hardware.
+You're booted from a Bluefin LiveCD trying to figure out why WiFi isn't working before you commit to installing. `get_hardware_report` reads `lspci -nnk` and identifies a Broadcom WiFi adapter — a chip that requires a proprietary driver not included in the Fedora stock kernel. The AI tells you plainly: this adapter will not work on a standard Bluefin install. It also tells you what PCI ID was found (`14e4:43a0`) and that no kernel module was loaded. No internet search required; the system reported its own hardware. Hardware compatibility table expansion tracked in [issue #9](https://github.com/projectbluefin/bluefin-mcp/issues/9).
+
+### 11. The DevContainers Developer
+You open a repo in VS Code and select "Reopen in Container." Nothing happens — or Docker returns a permission error. `get_variant_info` immediately confirms whether you're on the DX image (devcontainers require it). `get_unit_docs("bluefin-dx-groups.service")` explains that this service adds `wheel` members to the `docker` group on boot — if you've never rebooted since enabling DX, the group assignment hasn't taken effect yet. `list_distrobox` shows your existing container inventory so the AI can distinguish a first-run setup problem from a broken re-open. Pairs naturally with the [`mcp-devcontainer`](https://mcpservers.org/servers/Siddhant-K-code/mcp-devcontainer) server (see [issue #4](https://github.com/projectbluefin/bluefin-mcp/issues/4)) for deeper devcontainer introspection.
+
+### 12. The JetBrains Developer
+JetBrains Toolbox is installed as a Flatpak. You've configured JetBrains Gateway to use Docker as a Dev Containers backend and IntelliJ reports "Docker not found." `get_flatpak_list` confirms Toolbox arrived as a Flatpak — and the AI can immediately explain the Flatpak sandbox boundary: Flatpak apps run in a confined namespace and do not inherit the Docker socket or the `docker` group membership that `bluefin-dx-groups.service` grants to your login session. `get_unit_docs("bluefin-dx-groups.service")` surfaces this context. `list_recipes` shows whether a `ujust` recipe exists to expose the socket to Flatpak apps. No 3-year-old forum post required. Tracked in [issue #15](https://github.com/projectbluefin/bluefin-mcp/issues/15).
+
+### 13. The Rootless Podman Expert
+You want to run a PostgreSQL + Redis stack using rootless Podman with Quadlet unit files so it starts automatically at login. `get_variant_info` confirms you're on DX, which ships Podman pre-configured for rootless use. `list_recipes` surfaces available `ujust` Podman helpers. `get_brew_packages` shows whether `podman-compose` is installed via Homebrew. `get_unit_docs` explains the DX service units that configure the Podman socket. The AI has full system context — which variant, which tools, which units are active — and can generate the correct Quadlet unit file for this exact machine rather than a generic template. Community Podman skills (see below) extend this expertise further. Tracked in [issue #14](https://github.com/projectbluefin/bluefin-mcp/issues/14).
+
+### 14. The Home Lab Builder
+You're running Incus VMs alongside Distrobox containers on a DX machine. A new Incus VM fails to start with a vague SELinux denial. `list_distrobox` shows your container inventory and confirms Distrobox is working. `get_unit_docs("incus-workaround.service")` explains that this service applies a targeted SELinux policy workaround required for Incus on Fedora-based systems — and what to check if it didn't run. `get_unit_docs("libvirt-workaround.service")` surfaces the companion libvirt workaround. `get_system_status` provides the booted image digest — useful if you're filing a bug report. Knowledge store improvements tracked in [issue #16](https://github.com/projectbluefin/bluefin-mcp/issues/16).
+
+### 15. The Remote Development User
+You SSH into a Bluefin DX machine to do remote development with VS Code Remote SSH or JetBrains Remote Dev. The remote process can't find `docker`, `brew`, or any Homebrew tools in PATH. `get_brew_packages` confirms the packages are installed. `get_unit_docs("ublue-user-setup.service")` explains that PATH is extended for interactive login shells by the user setup service — remote SSH connections may not source the full login environment unless explicitly configured. `list_recipes` shows whether a `ujust` recipe handles SSH remote development setup. The AI diagnoses the environment mismatch without guessing. Tracked in [issue #17](https://github.com/projectbluefin/bluefin-mcp/issues/17).
+
+### 16. The Community Skills User
+You ask: "Set up a Podman pod with PostgreSQL and Redis that starts at login." This is complex enough that even experienced Bluefin DX users may not know the Quadlet pattern. The AI loads a community-contributed `podman-quadlet` skill that provides expert guidance on Quadlet unit files. `bluefin-mcp` supplies the system context — DX variant confirmed, no existing postgres containers in `list_distrobox`, Podman socket active. The community skill provides the expertise; `bluefin-mcp` makes it specific to your actual system. The result: a working Quadlet config for this machine, not a generic template. This is the "everyone can be a Podman expert" story — see [Community Skills](#community-skills) below. Community skills system tracked in [issue #12](https://github.com/projectbluefin/bluefin-mcp/issues/12); tutorial skills backlog in [issue #13](https://github.com/projectbluefin/bluefin-mcp/issues/13).
 
 ---
 
@@ -122,6 +140,40 @@ You're booted from a Bluefin LiveCD trying to figure out why WiFi isn't working 
 | `list_unit_docs` | Lists every unit currently in the knowledge store. |
 
 > **Ships pre-populated.** The knowledge store includes documentation for all 10 Bluefin custom systemd units out of the box: `ublue-system-setup.service`, `ublue-user-setup.service`, `flatpak-preinstall.service`, `flatpak-nuke-fedora.service`, `dconf-update.service`, `bazaar.service`, `bluefin-dx-groups.service`, `incus-workaround.service`, `libvirt-workaround.service`, and `swtpm-workaround.service`.
+
+---
+
+## Community Skills
+
+`bluefin-mcp` provides **system context** — what's running, what variant, what's installed. Community skills provide **domain expertise** — how to do complex things correctly on Bluefin. Together, they make expert-level guidance available to everyone.
+
+### How It Works
+
+A community skill is a structured `SKILL.md` file that an AI agent loads on demand. When a user asks a complex question, the agent loads the relevant skill (expertise) and calls `bluefin-mcp` (system context) at the same time:
+
+```
+User: "Set up a PostgreSQL pod that starts at login"
+AI loads: podman-quadlet skill (expertise)
+AI calls: bluefin-mcp get_variant_info, list_distrobox (system state)
+Result: Working Quadlet config tailored to this specific machine
+```
+
+The skill knows *how*. The MCP server knows *what's here*. Neither is sufficient alone.
+
+### Planned Community Skills
+
+| Skill | What It Teaches |
+|---|---|
+| `podman-quadlet` | Quadlet unit files for automatic container startup, volume management, networking |
+| `podman-networking` | Rootless Podman networking — pasta, bridge networks, DNS, port forwarding |
+| `podman-registry` | Private registry setup — `registries.conf`, mirror caching, policy |
+| `distrobox-advanced` | Host binary export, GUI app integration, shared SSH agent, nested containers |
+| `devcontainers-bluefin` | VS Code + JetBrains devcontainers on DX — docker socket, Flatpak boundary, devcontainer.json |
+| `incus-intro` | First VM, networking, snapshots with Incus on DX |
+
+Community skills will live in [`projectbluefin/community-skills`](https://github.com/projectbluefin/community-skills) (proposed). The format is identical to the existing skills in the Copilot CLI ecosystem — if you've written a skill before, you can contribute one.
+
+> 💡 **The goal:** Everyone who runs Bluefin should be able to be a Podman expert, a container expert, an Incus expert — not because they spent months learning it, but because the system knows how to guide them through it, on their actual machine, with their actual setup.
 
 ---
 
