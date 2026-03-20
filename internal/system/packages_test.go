@@ -1,0 +1,116 @@
+package system_test
+
+import (
+"context"
+"os"
+"testing"
+
+"github.com/projectbluefin/bluefin-mcp/internal/cli"
+"github.com/projectbluefin/bluefin-mcp/internal/system"
+)
+
+func TestGetFlatpakList_ParsesOutput(t *testing.T) {
+data, err := os.ReadFile("../../testdata/flatpak-list.txt")
+if err != nil {
+t.Fatalf("missing testdata: %v", err)
+}
+mock := cli.NewMockExecutor()
+mock.SetResponse("flatpak", []string{"list", "--columns=application,version"}, data, nil)
+
+apps, err := system.GetFlatpakList(context.Background(), mock)
+if err != nil {
+t.Fatalf("unexpected error: %v", err)
+}
+if len(apps) == 0 {
+t.Fatal("expected at least one app")
+}
+// Verify known app present
+found := false
+for _, a := range apps {
+if a.AppID == "com.brave.Browser" {
+found = true
+if a.Version != "1.60.110" {
+t.Errorf("expected version 1.60.110, got %q", a.Version)
+}
+}
+}
+if !found {
+t.Error("expected com.brave.Browser in flatpak list")
+}
+}
+
+func TestGetFlatpakList_AllAppsPresent(t *testing.T) {
+data, _ := os.ReadFile("../../testdata/flatpak-list.txt")
+mock := cli.NewMockExecutor()
+mock.SetResponse("flatpak", []string{"list", "--columns=application,version"}, data, nil)
+
+apps, err := system.GetFlatpakList(context.Background(), mock)
+if err != nil {
+t.Fatalf("unexpected error: %v", err)
+}
+if len(apps) != 5 {
+t.Errorf("expected 5 apps, got %d", len(apps))
+}
+}
+
+func TestGetBrewPackages_ParsesOutput(t *testing.T) {
+data, err := os.ReadFile("../../testdata/brew-list.txt")
+if err != nil {
+t.Fatalf("missing testdata: %v", err)
+}
+mock := cli.NewMockExecutor()
+mock.SetResponse("brew", []string{"list", "--versions"}, data, nil)
+mock.SetResponse("brew", []string{"outdated", "--json"}, []byte("{}"), nil)
+
+pkgs, err := system.GetBrewPackages(context.Background(), mock)
+if err != nil {
+t.Fatalf("unexpected error: %v", err)
+}
+if len(pkgs) == 0 {
+t.Fatal("expected at least one package")
+}
+}
+
+func TestGetBrewPackages_KnownPackageVersion(t *testing.T) {
+data, _ := os.ReadFile("../../testdata/brew-list.txt")
+mock := cli.NewMockExecutor()
+mock.SetResponse("brew", []string{"list", "--versions"}, data, nil)
+mock.SetResponse("brew", []string{"outdated", "--json"}, []byte("{}"), nil)
+
+pkgs, err := system.GetBrewPackages(context.Background(), mock)
+if err != nil {
+t.Fatalf("unexpected error: %v", err)
+}
+
+found := false
+for _, p := range pkgs {
+if p.Name == "ripgrep" {
+found = true
+if p.Version != "14.0.3" {
+t.Errorf("expected ripgrep version 14.0.3, got %q", p.Version)
+}
+}
+}
+if !found {
+t.Error("expected ripgrep in brew package list")
+}
+}
+
+func TestGetBrewPackages_NotInstalled_DegradeGracefully(t *testing.T) {
+mock := cli.NewMockExecutor()
+mock.SetResponse("brew", []string{"list", "--versions"}, nil, cli.ErrNotInstalled)
+
+result, err := system.GetBrewPackages(context.Background(), mock)
+if err != nil {
+t.Fatalf("expected graceful degrade, got: %v", err)
+}
+if result != nil && len(result) != 0 {
+t.Error("expected empty result when brew not installed")
+}
+}
+
+// TestNoRootPackageManager documents the design law: no dnf/rpm/apt.
+// Root FS is read-only. Only flatpak, brew, ujust are valid package managers.
+func TestNoRootPackageManager(t *testing.T) {
+t.Log("design law: no dnf/rpm/apt — root FS is read-only, use flatpak/brew/ujust")
+}

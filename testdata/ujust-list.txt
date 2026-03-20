@@ -1,1 +1,11 @@
-# stub
+Available recipes:
+    update         # Update the system
+    toggle-updates # Toggle automatic updates
+    changelogs     # Show image changelogs
+    check-local-overrides # Diff /etc vs /usr/etc
+    device-info    # Gather system info
+    logs-last-boot # Show last boot logs
+    logs-this-boot # Show current boot logs
+    powerwash      # Factory reset (DANGEROUS)
+    bluefin-cli    # Configure terminal tools
+    enroll-secure-boot-key # Enroll Universal Blue MOK key

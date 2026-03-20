@@ -1,1 +1,3 @@
-# stub
+ID           | NAME              | STATUS  | IMAGE
+1            | ubuntu-22.04      | Up      | docker.io/library/ubuntu:22.04
+2            | archlinux         | Created | docker.io/library/archlinux:latest

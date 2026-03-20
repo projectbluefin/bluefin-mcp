@@ -3,10 +3,10 @@
     "booted": {
       "image": {
         "image": {
-          "image": "ghcr.io/ublue-os/bluefin-dx:stable",
+          "image": "ghcr.io/ublue-os/bluefin-nvidia:stable",
           "transport": "registry"
         },
-        "imageDigest": "sha256:dxdigest123456"
+        "imageDigest": "sha256:nvidiadigest123"
       },
       "incompatible": false,
       "pinned": false
@@ -15,10 +15,10 @@
     "rollback": {
       "image": {
         "image": {
-          "image": "ghcr.io/ublue-os/bluefin-dx:stable",
+          "image": "ghcr.io/ublue-os/bluefin-nvidia:stable",
           "transport": "registry"
         },
-        "imageDigest": "sha256:dxolddigest789"
+        "imageDigest": "sha256:nvidiaolddigest"
       }
     }
   }

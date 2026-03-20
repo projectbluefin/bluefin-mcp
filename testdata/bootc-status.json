@@ -1,1 +1,25 @@
-{}
+{
+  "status": {
+    "booted": {
+      "image": {
+        "image": {
+          "image": "ghcr.io/ublue-os/bluefin:stable",
+          "transport": "registry"
+        },
+        "imageDigest": "sha256:abc123def456"
+      },
+      "incompatible": false,
+      "pinned": false
+    },
+    "staged": null,
+    "rollback": {
+      "image": {
+        "image": {
+          "image": "ghcr.io/ublue-os/bluefin:stable",
+          "transport": "registry"
+        },
+        "imageDigest": "sha256:olddigest789"
+      }
+    }
+  }
+}
