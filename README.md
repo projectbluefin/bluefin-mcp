@@ -1,6 +1,7 @@
 # bluefin-mcp
 
 **MCP server providing AI context for Project Bluefin systems**
+The opinionated companion to linux-mcp-server
 
 ![CI](https://github.com/projectbluefin/bluefin-mcp/actions/workflows/ci.yml/badge.svg)
 
