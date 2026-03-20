@@ -4,6 +4,29 @@ Maintenance guide for AI agents. **Read every section before touching any file.*
 
 ---
 
+## ⛔ RULE #1 — NEVER open PRs to upstream repositories
+
+Agents MUST NEVER open pull requests to repositories outside @castrojo's or projectbluefin's control.
+
+**Upstream = any org not owned by @castrojo or projectbluefin:**
+- ublue-os/* (including ublue-os/homebrew-tap) → UPSTREAM
+- rhel-lightspeed/* → UPSTREAM
+- homebrew/* → UPSTREAM
+- Any org not explicitly listed as "own" below → UPSTREAM
+
+**Own repos (agents MAY create branches + PRs):**
+- castrojo/* (copilot-config, powerlevel, dotcopilot, etc.)
+- projectbluefin/* (bluefin-mcp, etc.)
+
+**Correct workflow for upstream contributions:**
+1. Prepare the change locally (branch, commit to local clone)
+2. File a tracking ISSUE in the **project's own repo** with: what to PR, where, exact PR content
+3. Human reviews and opens the upstream PR manually — NEVER the agent
+
+This rule was established after an agent automatically opened ublue-os/homebrew-tap#308 and had to close it immediately. No exceptions, no escalations, no "just this once."
+
+---
+
 ## ⚠️ Design Law — Read Before Changing Anything
 
 Every tool, field, and default value in this codebase MUST be grounded in:
