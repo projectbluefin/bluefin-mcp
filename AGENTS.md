@@ -165,6 +165,58 @@ go test -race ./...   # always run with race detector
 
 ---
 
+## Agentic Change Tracking
+
+A weekly GitHub Actions workflow monitors upstream Bluefin source repos for changes and automatically generates detailed enhancement issues via the GitHub Models API.
+
+### How It Works
+
+1. **`scripts/track-bluefin-changes.py`** runs weekly (Sunday midnight UTC) via `.github/workflows/track-bluefin-changes.yml`
+2. It fetches current state from `projectbluefin/common`, `ublue-os/bluefin`, and `ublue-os/bluefin-lts` — ujust recipes, systemd units, and image variants
+3. Diffs against `tracking/bluefin-state.json` (committed baseline state from the previous run)
+4. For each new/removed item, calls **GitHub Models API (gpt-4o)** to generate a richly detailed issue body with implementation plan, test requirements, and TDD checklist
+5. Files the issue in `projectbluefin/bluefin-mcp` with the full label taxonomy
+6. Commits the updated `tracking/bluefin-state.json` back to `main` with `[skip ci]`
+
+This is the **self-improving loop**:
+> Bluefin ships feature → GHA detects → AI generates detailed issue → human approves → agent implements with TDD → repeat
+
+### Label Taxonomy (key labels for agents)
+
+| Label | Meaning |
+|---|---|
+| `auto-generated` | Created by the weekly tracker — do not edit manually |
+| `needs-human-review` | **DO NOT implement** — awaiting human approval |
+| `approved` | Human approved — ready for agent implementation |
+| `tdd-ready` | Issue has a full TDD checklist an agent can follow |
+| `tier:ujust` | Relates to ujust recipe tooling |
+| `tier:knowledge-store` | Relates to `internal/seed/units.json` |
+| `source:common` | Change originated in `projectbluefin/common` |
+| `source:bluefin` | Change originated in `ublue-os/bluefin` |
+| `variant:dx` / `variant:lts` / `variant:all` | Which Bluefin variant is affected |
+
+### Agent Implementation Rules
+
+When picking up an `approved` + `tdd-ready` issue:
+
+1. **Read `AGENTS.md` first** — especially the Design Law section above.
+2. **Follow the TDD checklist in the issue** exactly: write failing test → implement → verify green → refactor.
+3. Run `go test -race ./...` — all tests must pass before opening a PR.
+4. Verify design law compliance: Wayland-only, no dnf/rpm, read-only server, grounded in Bluefin source.
+5. **Never implement a `needs-human-review` issue** without the `approved` label.
+
+### Bootstrap (one-time setup)
+
+```bash
+# Create all labels in the repo
+bash scripts/setup-labels.sh
+
+# Capture baseline state (first run — no issues filed)
+GITHUB_TOKEN=$(gh auth token) python3 scripts/track-bluefin-changes.py
+```
+
+---
+
 ## Build & Deploy
 
 ```bash

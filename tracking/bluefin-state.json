@@ -1,0 +1,166 @@
+{
+  "fetched_at": "2026-03-20T00:47:50.554627+00:00",
+  "shas": {
+    "common": "4170fe6ee81bfbe80f40adac718e8c056d59a320",
+    "bluefin": "7d0fd2a57bda5e3ac9fab5d22d94463e279e51b0",
+    "bluefin-lts": "28a7701add776cc6daa872ccbe5b554ff861df85"
+  },
+  "recipes": {
+    "jetbrains-toolbox": {
+      "description": "",
+      "source_file": "system_files/shared/usr/share/ublue-os/just/apps.just",
+      "source_repo": "projectbluefin/common"
+    },
+    "install-jetbrains-toolbox": {
+      "description": "",
+      "source_file": "system_files/shared/usr/share/ublue-os/just/apps.just",
+      "source_repo": "projectbluefin/common"
+    },
+    "install-opentabletdriver": {
+      "description": "",
+      "source_file": "system_files/shared/usr/share/ublue-os/just/apps.just",
+      "source_repo": "projectbluefin/common"
+    },
+    "bbrew": {
+      "description": "Install applications from curated Brewfiles (includes full-desktop.Brewfile with GNOME Circle apps)",
+      "source_file": "system_files/shared/usr/share/ublue-os/just/apps.just",
+      "source_repo": "projectbluefin/common"
+    },
+    "cncf": {
+      "description": "",
+      "source_file": "system_files/shared/usr/share/ublue-os/just/apps.just",
+      "source_repo": "projectbluefin/common"
+    },
+    "bios": {
+      "description": "Boot into this device's BIOS/UEFI screen",
+      "source_file": "system_files/shared/usr/share/ublue-os/just/default.just",
+      "source_repo": "projectbluefin/common"
+    },
+    "bios-info": {
+      "description": "Show BIOS info",
+      "source_file": "system_files/shared/usr/share/ublue-os/just/default.just",
+      "source_repo": "projectbluefin/common"
+    },
+    "clean-system": {
+      "description": "",
+      "source_file": "system_files/shared/usr/share/ublue-os/just/default.just",
+      "source_repo": "projectbluefin/common"
+    },
+    "logs-this-boot": {
+      "description": "Show all messages from this boot",
+      "source_file": "system_files/shared/usr/share/ublue-os/just/default.just",
+      "source_repo": "projectbluefin/common"
+    },
+    "logs-last-boot": {
+      "description": "Show all messages from last boot",
+      "source_file": "system_files/shared/usr/share/ublue-os/just/default.just",
+      "source_repo": "projectbluefin/common"
+    },
+    "enroll-secure-boot-key": {
+      "description": "Enroll Nvidia driver & KMOD signing key for secure boot - Enter password \"universalblue\" if prompted",
+      "source_file": "system_files/shared/usr/share/ublue-os/just/default.just",
+      "source_repo": "projectbluefin/common"
+    },
+    "toggle-user-motd": {
+      "description": "Toggle display of the user-motd in terminal",
+      "source_file": "system_files/shared/usr/share/ublue-os/just/default.just",
+      "source_repo": "projectbluefin/common"
+    },
+    "check-local-overrides": {
+      "description": "Check for local overrides",
+      "source_file": "system_files/shared/usr/share/ublue-os/just/default.just",
+      "source_repo": "projectbluefin/common"
+    },
+    "device-info": {
+      "description": "Gather device info to a pastebin",
+      "source_file": "system_files/shared/usr/share/ublue-os/just/default.just",
+      "source_repo": "projectbluefin/common"
+    },
+    "check-idle-power-draw": {
+      "description": "Measure Idle Power Draw",
+      "source_file": "system_files/shared/usr/share/ublue-os/just/default.just",
+      "source_repo": "projectbluefin/common"
+    },
+    "benchmark": {
+      "description": "",
+      "source_file": "system_files/shared/usr/share/ublue-os/just/default.just",
+      "source_repo": "projectbluefin/common"
+    },
+    "toggle-tpm2": {
+      "description": "",
+      "source_file": "system_files/shared/usr/share/ublue-os/just/shared.just",
+      "source_repo": "projectbluefin/common"
+    },
+    "update": {
+      "description": "Update system, flatpaks and homebrew packages all at once",
+      "source_file": "system_files/shared/usr/share/ublue-os/just/update.just",
+      "source_repo": "projectbluefin/common"
+    },
+    "changelogs": {
+      "description": "Show the changelog",
+      "source_file": "system_files/bluefin/usr/share/ublue-os/just/changelog.just",
+      "source_repo": "projectbluefin/common"
+    },
+    "bluefin-cli": {
+      "description": "",
+      "source_file": "system_files/bluefin/usr/share/ublue-os/just/system.just",
+      "source_repo": "projectbluefin/common"
+    },
+    "devmode": {
+      "description": "alias for toggle-devmode",
+      "source_file": "system_files/bluefin/usr/share/ublue-os/just/system.just",
+      "source_repo": "projectbluefin/common"
+    },
+    "toggle-devmode": {
+      "description": "",
+      "source_file": "system_files/bluefin/usr/share/ublue-os/just/system.just",
+      "source_repo": "projectbluefin/common"
+    },
+    "dx-group": {
+      "description": "",
+      "source_file": "system_files/bluefin/usr/share/ublue-os/just/system.just",
+      "source_repo": "projectbluefin/common"
+    },
+    "bluefin-apps": {
+      "description": "",
+      "source_file": "system_files/bluefin/usr/share/ublue-os/just/system.just",
+      "source_repo": "projectbluefin/common"
+    },
+    "rebase-helper": {
+      "description": "",
+      "source_file": "system_files/bluefin/usr/share/ublue-os/just/system.just",
+      "source_repo": "projectbluefin/common"
+    },
+    "powerwash": {
+      "description": "",
+      "source_file": "system_files/bluefin/usr/share/ublue-os/just/system.just",
+      "source_repo": "projectbluefin/common"
+    }
+  },
+  "units": {
+    "flatpak-preinstall.service": {
+      "description": "Preinstall Flatpaks",
+      "variant": "all",
+      "source_file": "system_files/shared/usr/lib/systemd/system/flatpak-preinstall.service",
+      "source_repo": "projectbluefin/common"
+    },
+    "ublue-system-setup.service": {
+      "description": "Configure system",
+      "variant": "all",
+      "source_file": "system_files/shared/usr/lib/systemd/system/ublue-system-setup.service",
+      "source_repo": "projectbluefin/common"
+    },
+    "ublue-user-setup.service": {
+      "description": "Configure system for current user",
+      "variant": "all",
+      "source_file": "system_files/shared/usr/lib/systemd/user/ublue-user-setup.service",
+      "source_repo": "projectbluefin/common"
+    },
+    "dconf-update.service": {
+      "description": "Update the dconf database onboot",
+      "variant": "all",
+      "source_file": "system_files/bluefin/usr/lib/systemd/system/dconf-update.service",
+      "source_repo": "projectbluefin/common"
+    }
+  }
+}
