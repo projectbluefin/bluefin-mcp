@@ -18,11 +18,18 @@ The computer should know how it functions — so you can tell it what to do inst
 
 ## What Is This?
 
-`bluefin-mcp` is part of the **Bluefin Lightspeed** initiative — the project that brings AI-native tooling to [Project Bluefin](https://projectbluefin.io), an atomic OCI-based Linux desktop built on Fedora Silverblue.
+`bluefin-mcp` is part of the **Bluefin Bluespeed** initiative — the project that brings AI-native tooling to [Project Bluefin](https://projectbluefin.io). We plan to use open models to help keep our computers in tip top shape by taking Linux troubleshooting to an entirely new level. That's the hope anyway, we're about to find out. If you want a piece of this action, now is the time to start contributing!
 
-It works alongside [`linux-mcp-server`](https://github.com/redhat-et/linux-mcp-server) (from Red Hat), which handles raw system facts — journalctl output, systemd unit status, process lists, network state. `bluefin-mcp` is the **semantics layer**: it tells the AI what Bluefin-specific things actually *mean*.
+It works alongside [`linux-mcp-server`](https://github.com/redhat-et/linux-mcp-server), which handles raw system facts — journalctl output, systemd unit status, process lists, network state. `bluefin-mcp` is the **semantics layer**: it tells the AI what Bluefin-specific things actually *mean*.
 
-The root filesystem is immutable. There is no `dnf`. Custom systemd units run opinionated automation on every boot. Without `bluefin-mcp`, an AI assistant staring at a failed `flatpak-nuke-fedora.service` has no idea what it does or why it exists. With it, that knowledge is immediately available.
+For example, on Bluefin there is no `dnf`. Custom systemd units run opinionated automation on every boot. The desktop is not stock GNOME. Developer mode brings in tons of options, this context helps the agents give you better answers. Without `bluefin-mcp`, an AI assistant staring at a failed `flatpak-nuke-fedora.service` has no idea what it does or why it exists. With it, that knowledge is immediately available — this context keeps you safe!
+
+The product is a "Troubleshooting" app that uses these two MCP servers with Goose as the UX, with local-first capabilities as well as the flexibility of using commercial LLMs. See the [Bluefin Documentation](https://docs.projectbluefin.io/troubleshooting)
+
+Tired: Don't use those weird distros, you won't find help on the internet like you will with Ubuntu.
+Wired: We have local LLMs that can respect our privacy and the source code to everything shipping on that image and the official docs. And that's it. It's clippy but real.
+
+This is part of the reason Bluefin's cloud-native approach via `bootc` makes shipping this relatively straightforward. The MCP server will always be built to reflect what is actually on everyone's computer, making troubleshooting much more data driven instead of reddit driven.
 
 ---
 
@@ -30,8 +37,8 @@ The root filesystem is immutable. There is no `dnf`. Custom systemd units run op
 
 | Layer | Server | Covers |
 |---|---|---|
-| **Facts** (what is happening) | `linux-mcp-server` | systemd status, journalctl, processes, logs, network |
-| **Semantics** (what Bluefin things mean) | `bluefin-mcp` | Custom unit docs, atomic OS state, ujust, Flatpak, Homebrew, Distrobox |
+| **Facts** (what is happening) | `linux-mcp-server` | systemd status, journalctl, processes, logs, network, CPU, memory, disk, hardware inventory |
+| **Semantics** (what Bluefin things mean) | `bluefin-mcp` | Custom unit docs, atomic OS state, ujust, Flatpak, Homebrew, Distrobox, hardware compatibility |
 
 **Concrete example:** `linux-mcp-server` reports that `flatpak-nuke-fedora.service` failed. `bluefin-mcp` explains: that service removes Fedora's Flatpak remotes on every boot — Bluefin is Flathub-only. If it failed, the Fedora remote may still be active and producing duplicate app entries.
 
@@ -102,7 +109,7 @@ You're booted from a Bluefin LiveCD trying to figure out why WiFi isn't working 
 
 | Tool | What it does |
 |---|---|
-| `get_hardware_report` | Runs `lspci -nnk` to get PCI devices with numeric vendor:device IDs and loaded kernel modules, reads `/sys/class/dmi/id/` for laptop model/chassis/firmware (no root required), detects LiveCD boot from `/proc/cmdline`, and cross-references the current Bluefin variant against detected GPU hardware. Flags Broadcom WiFi adapters (vendor `14e4`) and Nvidia GPUs on non-nvidia variants as known issues. The vendor list is a static embedded table — not a live database. For CPU, memory, disk, and general hardware inventory, use `linux-mcp-server`'s `get_hardware_information`, `get_cpu_information`, `get_memory_information`, and `get_disk_usage` instead. |
+| `get_hardware_report` | Runs `lspci -nnk` to get PCI devices with numeric vendor:device IDs and loaded kernel modules, reads `/sys/class/dmi/id/` for laptop model/chassis/firmware (no root required), detects LiveCD boot from `/proc/cmdline`, and checks whether the running Bluefin variant matches the detected GPU. Flags Broadcom WiFi (vendor `14e4`) and Nvidia GPUs on non-nvidia variants. The vendor list is a static embedded table — not a live database. For CPU, memory, disk, and full hardware inventory use `linux-mcp-server` instead. |
 
 ### Knowledge Store
 
@@ -153,7 +160,7 @@ which bluefin-mcp
 ## Works With
 
 - **`linux-mcp-server`** (rhel-lightspeed) — the facts layer. Install both for full AI coverage of your Bluefin system: raw diagnostics from `linux-mcp-server`, Bluefin-specific semantics from `bluefin-mcp`.
-- **Any MCP-compatible client** — Claude Desktop, [goose](https://github.com/block/goose), or any other client that speaks the Model Context Protocol.
+- **Any MCP-compatible client** — [Goose](https://github.com/block/goose), Claude Desktop, or any other client that speaks the Model Context Protocol.
 
 ---
 
