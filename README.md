@@ -52,31 +52,31 @@ Install both for full coverage.
 ## What You Get — 16 User Scenarios
 
 ### 1. The Update Troubleshooter
-You ran `ujust update` and it exited with an error. `check_updates` tells the AI whether an update is actually staged or if the local image is already current. `get_system_status` surfaces the booted digest and any staged update, letting the AI distinguish between a local conflict and an upstream availability issue before it suggests anything.
+You ran `ujust update` and it exited with an error. `check_updates` tells the AI whether an update is actually staged or if the local image is already current. `get_system_status` surfaces the booted digest and any staged update, letting the AI distinguish between a local conflict and an upstream availability issue before it suggests anything. Tracked in [issue #18](https://github.com/projectbluefin/bluefin-mcp/issues/18).
 
 ### 2. The Nvidia User
-GPU performance degraded after an update. `get_variant_info` immediately confirms whether you're on the nvidia variant — a fact that determines which kernel parameters, drivers, and workaround services are in play. `get_system_status` shows the booted digest versus the staged image, so the AI can tell whether the regression came in with a recent update and whether rolling back is an option.
+GPU performance degraded after an update. `get_variant_info` immediately confirms whether you're on the nvidia variant — a fact that determines which kernel parameters, drivers, and workaround services are in play. `get_system_status` shows the booted digest versus the staged image, so the AI can tell whether the regression came in with a recent update and whether rolling back is an option. Tracked in [issue #19](https://github.com/projectbluefin/bluefin-mcp/issues/19).
 
 ### 3. The Developer Setup
-You switched to the DX image but `docker` commands still require `sudo`. `get_variant_info` confirms the DX variant is active. `get_unit_docs("bluefin-dx-groups.service")` explains that this service automatically adds every member of the `wheel` group to the `docker` and `incus-admin` groups on boot — so if it failed or you're not in `wheel`, sudo is still required until the next boot.
+You switched to the DX image but `docker` commands still require `sudo`. `get_variant_info` confirms the DX variant is active. `get_unit_docs("bluefin-dx-groups.service")` explains that this service automatically adds every member of the `wheel` group to the `docker` and `incus-admin` groups on boot — so if it failed or you're not in `wheel`, sudo is still required until the next boot. Tracked in [issue #20](https://github.com/projectbluefin/bluefin-mcp/issues/20).
 
 ### 4. The Flatpak User
-Expected apps are missing after a reinstall. `get_flatpak_list` shows what's actually installed and from which remote. The knowledge base explains that `flatpak-preinstall.service` — which installs the declarative Flatpak manifest — requires network connectivity on boot and silently does nothing if the network isn't up yet.
+Expected apps are missing after a reinstall. `get_flatpak_list` shows what's actually installed and from which remote. The knowledge base explains that `flatpak-preinstall.service` — which installs the declarative Flatpak manifest — requires network connectivity on boot and silently does nothing if the network isn't up yet. Tracked in [issue #21](https://github.com/projectbluefin/bluefin-mcp/issues/21).
 
 ### 5. The Container Builder
-Distrobox is failing to create or start containers. `list_distrobox` shows the current container inventory. `get_variant_info` confirms whether you're on a DX image, which ships the full container stack including Incus and libvirt alongside Distrobox — and whether the SELinux workaround services (`incus-workaround.service`, `libvirt-workaround.service`) are relevant.
+Distrobox is failing to create or start containers. `list_distrobox` shows the current container inventory. `get_variant_info` confirms whether you're on a DX image, which ships the full container stack including Incus and libvirt alongside Distrobox — and whether the SELinux workaround services (`incus-workaround.service`, `libvirt-workaround.service`) are relevant. Tracked in [issue #22](https://github.com/projectbluefin/bluefin-mcp/issues/22).
 
 ### 6. The Recipe Hunter
-You know Bluefin has a `ujust` command for something but can't remember the exact name. `list_recipes` returns the full current list of ujust recipes with their descriptions — including system maintenance tasks, developer tooling shortcuts, and hardware-specific utilities — exactly as they exist on your running system.
+You know Bluefin has a `ujust` command for something but can't remember the exact name. `list_recipes` returns the full current list of ujust recipes with their descriptions — including system maintenance tasks, developer tooling shortcuts, and hardware-specific utilities — exactly as they exist on your running system. Tracked in [issue #23](https://github.com/projectbluefin/bluefin-mcp/issues/23).
 
 ### 7. The New User
-You're browsing `journalctl` and see `flatpak-nuke-fedora.service` complete on every boot and wonder if something is broken. `get_unit_docs("flatpak-nuke-fedora.service")` immediately returns a plain-English explanation: this service intentionally removes non-Flathub Flatpak remotes — it's working correctly, Bluefin enforces Flathub as the sole app source.
+You're browsing `journalctl` and see `flatpak-nuke-fedora.service` complete on every boot and wonder if something is broken. `get_unit_docs("flatpak-nuke-fedora.service")` immediately returns a plain-English explanation: this service intentionally removes non-Flathub Flatpak remotes — it's working correctly, Bluefin enforces Flathub as the sole app source. Tracked in [issue #24](https://github.com/projectbluefin/bluefin-mcp/issues/24).
 
 ### 8. The VS Code User
-You're not sure whether VS Code arrived as a Flatpak, a Homebrew package, or something baked into the image. `get_brew_packages` lists every Homebrew CLI package, and `get_flatpak_list` lists every installed Flatpak with its remote. Together they give the AI a definitive answer rather than a guess.
+You're not sure whether VS Code arrived as a Flatpak, a Homebrew package, or something baked into the image. `get_brew_packages` lists every Homebrew CLI package, and `get_flatpak_list` lists every installed Flatpak with its remote. Together they give the AI a definitive answer rather than a guess. Tracked in [issue #25](https://github.com/projectbluefin/bluefin-mcp/issues/25).
 
 ### 9. The Sysadmin
-You want to audit what's been customized on a machine relative to the image defaults. `list_recipes` surfaces the full ujust surface, including `ujust check-local-overrides` — the built-in recipe that diffs your system's `/etc` against the image baseline and reports what has drifted.
+You want to audit what's been customized on a machine relative to the image defaults. `list_recipes` surfaces the full ujust surface, including `ujust check-local-overrides` — the built-in recipe that diffs your system's `/etc` against the image baseline and reports what has drifted. Tracked in [issue #26](https://github.com/projectbluefin/bluefin-mcp/issues/26).
 
 ### 10. The Laptop Evaluator
 You're booted from a Bluefin LiveCD trying to figure out why WiFi isn't working before you commit to installing. `get_hardware_report` reads `lspci -nnk` and identifies a Broadcom WiFi adapter — a chip that requires a proprietary driver not included in the Fedora stock kernel. The AI tells you plainly: this adapter will not work on a standard Bluefin install. It also tells you what PCI ID was found (`14e4:43a0`) and that no kernel module was loaded. No internet search required; the system reported its own hardware. Instead we'll recommend you use Ubuntu, because this system is distribution agnostic, you just need someone to make an ubuntu-mcp server. It's only a matter of time. 
