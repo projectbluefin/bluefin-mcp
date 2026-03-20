@@ -8,7 +8,7 @@
 
 ## What Is This?
 
-`bluefin-mcp` is part of the **Bluefin Bluespeed** initiative — the project that brings AI-native tooling to [Project Bluefin](https://projectbluefin.io).
+`bluefin-mcp` is part of the **Bluefin Bluespeed** initiative — the project that brings AI-native tooling to [Project Bluefin](https://projectbluefin.io). We plan to use open models to help keep our computers in tip top shape by taking Linux troubleshooting to an entirely new level. That's the hope anyway, we're about to find out. If you want a piece of this action, now is the time to start contributing!
 
 It works alongside [`linux-mcp-server`](https://github.com/redhat-et/linux-mcp-server), which handles raw system facts — journalctl output, systemd unit status, process lists, network state. `bluefin-mcp` is the **semantics layer**: it tells the AI what Bluefin-specific things actually *mean*.
 
