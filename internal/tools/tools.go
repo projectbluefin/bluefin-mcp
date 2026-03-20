@@ -153,6 +153,7 @@ func Register(s *server.MCPServer, runner cli.CommandRunner, store *system.Knowl
 			"Flags known-incompatible hardware: Broadcom WiFi (vendor 14e4, no wl driver in stock Fedora kernel) "+
 			"and Nvidia GPU on a non-nvidia variant. "+
 			"The static vendor list ships with the binary; it is not a live database. "+
+			"This tool does not send data anywhere — it is read-only and local-only. "+
 			"For CPU details, RAM, disk, or a full hardware inventory, "+
 			"use linux-mcp-server's get_cpu_information, get_memory_information, "+
 			"get_disk_usage, and get_hardware_information instead."),

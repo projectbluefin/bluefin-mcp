@@ -100,7 +100,8 @@ func GetHardwareReport(ctx context.Context, runner cli.CommandRunner) (*Hardware
 
 	// PCI devices with numeric vendor:device IDs and loaded kernel modules.
 	// linux-mcp-server runs bare lspci — no numeric IDs, no driver info.
-	// -nnk adds exactly what upstream kernel developers need in a bug report.
+	// -nnk adds numeric vendor:device IDs and loaded kernel modules — more
+	// useful for diagnosis than linux-mcp-server's bare lspci output.
 	lspciOut, err := runner.Run(ctx, "lspci", []string{"-nnk"})
 	if err != nil && !errors.Is(err, cli.ErrNotInstalled) {
 		return nil, err

@@ -60,6 +60,18 @@ This mantra has concrete implications for every tool decision:
 
 ---
 
+## ⛔ No Automated Upstream Reporting — Ever
+
+This project is an **experiment**. We are testing whether this approach works. Hard constraints:
+
+- **Never add a tool that sends data anywhere** — no bug reports, no telemetry, no pings, no HTTP calls, no issue filing. The server is read-only and local-only. Period.
+- **Never frame a tool as a data pipeline to upstream projects.** Tools surface information to the user and their AI. The human decides what to do with that information.
+- **The only write operation permitted is `store_unit_docs`** — writing to the local knowledge store on the user's own machine. Nothing leaves the machine.
+
+If you are an agent and you are considering adding a tool that contacts an external service, stop. That is not this project.
+
+---
+
 ## Architecture
 
 bluefin-mcp follows the **Ports & Adapters** (hexagonal) pattern.

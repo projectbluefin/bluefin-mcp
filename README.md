@@ -14,6 +14,8 @@ The computer should know how it functions — so you can tell it what to do inst
 
 `bluefin-mcp` gives your AI assistant the context it needs to do that: what the system is running, what the custom units do, which hardware works and which doesn't, and what automation is available. It doesn't guess. It reads the actual state of your actual machine.
 
+> ⚠️ **This is an experiment.** We are figuring out whether this approach works. Under no circumstances should any tool in this server send automated reports, telemetry, or data to any upstream project, bug tracker, or external service. The server is read-only and local-only. If something is useful, a human decides what to do with it.
+
 ---
 
 ## What Is This?
@@ -76,7 +78,7 @@ You're not sure whether VS Code arrived as a Flatpak, a Homebrew package, or som
 You want to audit what's been customized on a machine relative to the image defaults. `list_recipes` surfaces the full ujust surface, including `ujust check-local-overrides` — the built-in recipe that diffs your system's `/etc` against the image baseline and reports what has drifted.
 
 ### 10. The Laptop Evaluator
-You're booted from a Bluefin LiveCD trying to figure out why WiFi isn't working before you commit to installing. `get_hardware_report` reads `lspci -nnk` and identifies a Broadcom WiFi adapter — a chip that requires a proprietary driver not included in the Fedora stock kernel. The AI tells you plainly: this adapter will not work on a standard Bluefin install. It also tells you what PCI ID was found (`14e4:43a0`) and that no kernel module was loaded — information useful for filing a bug or looking up workarounds. No internet search required; the system reported its own hardware.
+You're booted from a Bluefin LiveCD trying to figure out why WiFi isn't working before you commit to installing. `get_hardware_report` reads `lspci -nnk` and identifies a Broadcom WiFi adapter — a chip that requires a proprietary driver not included in the Fedora stock kernel. The AI tells you plainly: this adapter will not work on a standard Bluefin install. It also tells you what PCI ID was found (`14e4:43a0`) and that no kernel module was loaded. No internet search required; the system reported its own hardware.
 
 ---
 
