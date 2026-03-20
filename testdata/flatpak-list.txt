@@ -1,5 +1,5 @@
-com.brave.Browser1.60.110
-org.gnome.Fractal5.0.0
-com.visualstudio.code1.85.1
-org.signal.Signal6.35.0
-io.github.ungoogled_software.ungoogled_chromium120.0.6099.129
+com.brave.Browser	1.60.110
+org.gnome.Fractal	5.0.0
+com.visualstudio.code	1.85.1
+org.signal.Signal	6.35.0
+io.github.ungoogled_software.ungoogled_chromium	120.0.6099.129
