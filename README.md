@@ -8,11 +8,11 @@
 
 ## What Is This?
 
-`bluefin-mcp` is part of the **Bluefin Lightspeed** initiative — the project that brings AI-native tooling to [Project Bluefin](https://projectbluefin.io), an atomic OCI-based Linux desktop built on Fedora Silverblue.
+`bluefin-mcp` is part of the **Bluefin Bluespeed** initiative — the project that brings AI-native tooling to [Project Bluefin](https://projectbluefin.io).
 
-It works alongside [`linux-mcp-server`](https://github.com/redhat-et/linux-mcp-server) (from Red Hat), which handles raw system facts — journalctl output, systemd unit status, process lists, network state. `bluefin-mcp` is the **semantics layer**: it tells the AI what Bluefin-specific things actually *mean*.
+It works alongside [`linux-mcp-server`](https://github.com/redhat-et/linux-mcp-server), which handles raw system facts — journalctl output, systemd unit status, process lists, network state. `bluefin-mcp` is the **semantics layer**: it tells the AI what Bluefin-specific things actually *mean*.
 
-The root filesystem is immutable. There is no `dnf`. Custom systemd units run opinionated automation on every boot. Without `bluefin-mcp`, an AI assistant staring at a failed `flatpak-nuke-fedora.service` has no idea what it does or why it exists. With it, that knowledge is immediately available.
+For example, on Bluefin there is no `dnf`. Custom systemd units run opinionated automation on every boot. The desktop is not stock GNOME. Developer mode brings in tons of options, this context helps the agents give you better answers. Without `bluefin-mcp`, an AI assistant staring at a failed `flatpak-nuke-fedora.service` has no idea what it does or why it exists. With it, that knowledge is immediately available - this context keeps you safe! 
 
 ---
 
@@ -29,7 +29,7 @@ Install both for full coverage.
 
 ---
 
-## What You Get — 9 User Scenarios
+## What You Get — What is this good for? 9 User Scenarios
 
 ### 1. The Update Troubleshooter
 You ran `ujust update` and it exited with an error. `check_updates` tells the AI whether an update is actually staged or if the local image is already current. `get_system_status` surfaces the booted digest and any staged update, letting the AI distinguish between a local conflict and an upstream availability issue before it suggests anything.
