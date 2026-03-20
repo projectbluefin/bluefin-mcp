@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"path/filepath"
 
@@ -14,9 +15,10 @@ import (
 var version = "dev"
 
 func main() {
-	// CRITICAL: redirect stdout to stderr BEFORE any other output.
-	// Any write to stdout corrupts the JSON-RPC MCP protocol.
-	os.Stdout = os.Stderr
+	// All logging must go to stderr — stdout is reserved for the JSON-RPC
+	// protocol stream. Every fmt.Fprintf call here already uses os.Stderr
+	// explicitly; this ensures the default logger also never writes to stdout.
+	log.SetOutput(os.Stderr)
 
 	if len(os.Args) > 1 && os.Args[1] == "--version" {
 		fmt.Fprintf(os.Stderr, "bluefin-mcp %s\n", version)
