@@ -14,6 +14,8 @@ It works alongside [`linux-mcp-server`](https://github.com/redhat-et/linux-mcp-s
 
 For example, on Bluefin there is no `dnf`. Custom systemd units run opinionated automation on every boot. The desktop is not stock GNOME. Developer mode brings in tons of options, this context helps the agents give you better answers. Without `bluefin-mcp`, an AI assistant staring at a failed `flatpak-nuke-fedora.service` has no idea what it does or why it exists. With it, that knowledge is immediately available - this context keeps you safe! 
 
+The product is a "Troubleshooting" app that are these two MCP servers using Goose as the UX, with local-first capabilities as well as the flexibility of using commercial LLMs. See the [Bluefin Documentation](https://docs.projectbluefin.io/troubleshooting)
+
 ---
 
 ## Division of Responsibility
