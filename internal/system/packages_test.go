@@ -104,7 +104,7 @@ result, err := system.GetBrewPackages(context.Background(), mock)
 if err != nil {
 t.Fatalf("expected graceful degrade, got: %v", err)
 }
-if result != nil && len(result) != 0 {
+if len(result) != 0 {
 t.Error("expected empty result when brew not installed")
 }
 }

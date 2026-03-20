@@ -69,7 +69,7 @@ result, err := system.ListDistrobox(context.Background(), mock)
 if err != nil {
 t.Fatalf("expected graceful degrade, got error: %v", err)
 }
-if result != nil && len(result) != 0 {
+if len(result) != 0 {
 t.Error("expected empty result when distrobox not installed")
 }
 }
