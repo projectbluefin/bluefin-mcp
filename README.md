@@ -17,7 +17,9 @@ For example, on Bluefin there is no `dnf`. Custom systemd units run opinionated 
 The product is a "Troubleshooting" app that are these two MCP servers using Goose as the UX, with local-first capabilities as well as the flexibility of using commercial LLMs. See the [Bluefin Documentation](https://docs.projectbluefin.io/troubleshooting)
 
 Tired: Don't use those weird distros, you won't find help on the internet like you will with Ubuntu.
-Wired: We have local LLMs that can respect our privacy and the source code to everything shipping on that image and the official docs. And that's it. It's clippy but real. 
+Wired: We have local LLMs that can respect our privacy and the source code to everything shipping on that image and the official docs. And that's it. It's clippy but real.
+
+This is part of the reason Bluefin's cloud-native approach via `bootc` makes shipping this relatively straightforward. The MCP server will always be built to reflect of what is actually on everyone's computer, making troubleshooting much more data driven instead of reddit driven. 
 
 ---
 
