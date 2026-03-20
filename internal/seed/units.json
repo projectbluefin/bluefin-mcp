@@ -1,55 +1,56 @@
 {
   "version": "1",
+  "source_sha": "4170fe6ee81bfbe80f40adac718e8c056d59a320",
   "units": {
+    "flatpak-preinstall.service": {
+      "name": "flatpak-preinstall.service",
+      "variant": "all",
+      "description": "Preinstall Flatpaks Source: projectbluefin/common@4170fe6"
+    },
     "ublue-system-setup.service": {
       "name": "ublue-system-setup.service",
       "variant": "all",
-      "description": "Runs /usr/bin/ublue-system-setup as root on every boot. Applies system-wide immutable configuration — udev rules, signing keys, and other settings that must persist across reboots. If global system settings fail to apply, check: journalctl -u ublue-system-setup"
+      "description": "Configure system Source: projectbluefin/common@4170fe6"
     },
     "ublue-user-setup.service": {
       "name": "ublue-user-setup.service",
       "variant": "all",
-      "description": "Runs /usr/bin/ublue-user-setup as the logged-in user on session start. Sets up user-specific environments: Homebrew shell integration, PATH configuration, theming overrides. Failures here cause missing brew in PATH or broken user configs. Check: systemctl --user status ublue-user-setup"
-    },
-    "flatpak-preinstall.service": {
-      "name": "flatpak-preinstall.service",
-      "variant": "all",
-      "description": "Executes 'flatpak preinstall -y' on boot after network comes online. Ensures declarative Flatpaks defined in the Bluefin image manifest are installed on the user's system. Fails if network is unavailable. If default apps are missing after fresh install, this service is the first place to check."
-    },
-    "flatpak-nuke-fedora.service": {
-      "name": "flatpak-nuke-fedora.service",
-      "variant": "all",
-      "description": "Removes the 'fedora' and 'fedora-testing' Flatpak remotes on every boot. Bluefin enforces Flathub as the only Flatpak source to prevent app duplication and fragmentation. WARNING: If a user manually adds the Fedora remote, this service will silently delete it on the next boot. This is intentional — Bluefin is Flathub-only."
+      "description": "Configure system for current user Source: projectbluefin/common@4170fe6"
     },
     "dconf-update.service": {
       "name": "dconf-update.service",
       "variant": "all",
-      "description": "Runs /usr/bin/dconf update on boot. Compiles dconf database text files in /etc/dconf/db/ into the binary database. Essential for applying GNOME defaults in an atomic image where /usr is read-only but /etc is mutable. If default GNOME settings (wallpaper, fonts, extensions) are missing or reverted, this service likely failed."
+      "description": "Update the dconf database onboot Source: projectbluefin/common@4170fe6"
     },
     "bazaar.service": {
       "name": "bazaar.service",
       "variant": "all",
-      "description": "Runs the Bazaar software center backend via Flatpak as a user service. Started at graphical session login. If the Bazaar UI is unresponsive or fails to load, check: systemctl --user status bazaar"
+      "description": "Bazaar background service Source: projectbluefin/common@4170fe6"
+    },
+    "flatpak-nuke-fedora.service": {
+      "name": "flatpak-nuke-fedora.service",
+      "variant": "all",
+      "description": "Remove Fedora flatpak repositories Source: ublue-os/bluefin@7d0fd2a"
     },
     "bluefin-dx-groups.service": {
       "name": "bluefin-dx-groups.service",
       "variant": "dx",
-      "description": "DEVELOPER EXPERIENCE (DX) IMAGES ONLY. Automatically adds all members of the wheel group to the docker and incus-admin groups on boot. Eliminates the need for manual usermod commands. If docker commands require sudo on a DX image, either this service failed or the user is not in the wheel group."
+      "description": "Add wheel members to docker,and incus-admin groups Source: ublue-os/bluefin@7d0fd2a"
     },
     "incus-workaround.service": {
       "name": "incus-workaround.service",
       "variant": "dx",
-      "description": "DEVELOPER EXPERIENCE (DX) IMAGES ONLY. Applies SELinux bind-mount fixes for Incus container manager binaries. Necessary because Bluefin's immutable /usr conflicts with how Incus expects to write/label files. If Incus containers fail to start with 'Permission Denied' or SELinux AVC denials, this service is the primary suspect."
+      "description": "Workaround swtpm not having the correct label Source: ublue-os/bluefin@7d0fd2a"
     },
     "libvirt-workaround.service": {
       "name": "libvirt-workaround.service",
       "variant": "dx",
-      "description": "DEVELOPER EXPERIENCE (DX) IMAGES ONLY. Runs restorecon -R on libvirt directories to fix SELinux labels. Required because the atomic image's read-only /usr means libvirt cannot label its own files normally. If QEMU/KVM VMs fail with SELinux errors, check this service first."
+      "description": "Workaround to relabel libvirt files and directories Source: ublue-os/bluefin@7d0fd2a"
     },
     "swtpm-workaround.service": {
       "name": "swtpm-workaround.service",
       "variant": "dx",
-      "description": "DEVELOPER EXPERIENCE (DX) IMAGES ONLY. Applies SELinux bind-mount fix for the swtpm TPM emulator used by QEMU/KVM virtual machines. Enables virtual machines to use emulated TPM 2.0 chips for guest OS secure boot. If VMs requiring vTPM fail to start, check this service."
+      "description": "Workaround swtpm not having the correct label Source: ublue-os/bluefin@7d0fd2a"
     }
   }
 }

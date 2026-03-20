@@ -1,0 +1,44 @@
+name: Refresh Testdata
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'  # Weekly, Sunday midnight UTC
+  workflow_dispatch:      # Allow manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - name: Refresh testdata from Bluefin source repos
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bash scripts/refresh-testdata.sh
+
+      - name: Verify tests still pass
+        run: go test -race ./...
+
+      - name: Commit updated testdata
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add testdata/ internal/seed/units.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit — testdata is already up to date."
+          else
+            git commit -m "chore: refresh testdata from Bluefin source repos [skip ci]
+
+$(cat testdata/refresh-manifest.json)"
+            git push
+          fi

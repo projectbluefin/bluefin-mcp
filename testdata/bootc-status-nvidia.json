@@ -6,7 +6,7 @@
           "image": "ghcr.io/ublue-os/bluefin-nvidia:stable",
           "transport": "registry"
         },
-        "imageDigest": "sha256:nvidiadigest123"
+        "imageDigest": "sha256:86feec4f995dee51b9c3d788426e0c9101acce1d92e08531c1a2b38a5ed7fb40"
       },
       "incompatible": false,
       "pinned": false
@@ -18,7 +18,7 @@
           "image": "ghcr.io/ublue-os/bluefin-nvidia:stable",
           "transport": "registry"
         },
-        "imageDigest": "sha256:nvidiaolddigest"
+        "imageDigest": "sha256:68bfaf1764797c5257e1591e42a7434f6701f48008cf5eef5826e1be77fe3ee1"
       }
     }
   }

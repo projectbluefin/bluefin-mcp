@@ -24,18 +24,20 @@ t.Fatalf("unexpected error: %v", err)
 if len(apps) == 0 {
 t.Fatal("expected at least one app")
 }
-// Verify known app present
+// Verify a well-known Bluefin flatpak is present (sourced from system-flatpaks.Brewfile).
+// Version is "1.0.0" — a placeholder because the Brewfile does not pin versions;
+// the refresh script sets this explicitly so tests remain deterministic.
 found := false
 for _, a := range apps {
-if a.AppID == "com.brave.Browser" {
+if a.AppID == "org.mozilla.firefox" {
 found = true
-if a.Version != "1.60.110" {
-t.Errorf("expected version 1.60.110, got %q", a.Version)
+if a.Version != "1.0.0" {
+t.Errorf("expected version 1.0.0 (placeholder from source Brewfile), got %q", a.Version)
 }
 }
 }
 if !found {
-t.Error("expected com.brave.Browser in flatpak list")
+t.Error("expected org.mozilla.firefox in flatpak list")
 }
 }
 
@@ -48,8 +50,11 @@ apps, err := system.GetFlatpakList(context.Background(), mock)
 if err != nil {
 t.Fatalf("unexpected error: %v", err)
 }
-if len(apps) != 5 {
-t.Errorf("expected 5 apps, got %d", len(apps))
+// Testdata is auto-generated from system-flatpaks.Brewfile in projectbluefin/common.
+// Require at least the historical minimum; the exact count varies as upstream adds/removes apps.
+const minExpectedApps = 10
+if len(apps) < minExpectedApps {
+t.Errorf("expected at least %d apps from system-flatpaks.Brewfile, got %d", minExpectedApps, len(apps))
 }
 }
 

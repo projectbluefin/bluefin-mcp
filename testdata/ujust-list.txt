@@ -1,11 +1,32 @@
 Available recipes:
-    update         # Update the system
-    toggle-updates # Toggle automatic updates
-    changelogs     # Show image changelogs
-    check-local-overrides # Diff /etc vs /usr/etc
-    device-info    # Gather system info
-    logs-last-boot # Show last boot logs
-    logs-this-boot # Show current boot logs
-    powerwash      # Factory reset (DANGEROUS)
-    bluefin-cli    # Configure terminal tools
-    enroll-secure-boot-key # Enroll Universal Blue MOK key
+    alias
+    bbrew                                    # Install applications from curated Brewfiles (includes full-desktop.Brewfile with GNOME Circle apps)
+    benchmark                                # Run a one minute system benchmark
+    bios                                     # Boot into this device's BIOS/UEFI screen
+    bios-info                                # Show BIOS info
+    bluefin-apps                             # For additional applications, use: ujust bbrew
+    bluefin-cli                              # Configure Bluefin-CLI Terminal Experience with Brew
+    changelogs                               # Show the changelog
+    check-idle-power-draw                    # Measure Idle Power Draw
+    check-local-overrides                    # Check for local overrides
+    clean-system
+    cncf
+    device-info                              # Gather device info to a pastebin
+    devmode                                  # alias for toggle-devmode
+    dx-group                                 # Configure docker,incus-admin,libvirt, container manager, serial permissions
+    enroll-secure-boot-key                   # Enroll Nvidia driver & KMOD signing key for secure boot - Enter password "universalblue" if prompted
+    install-jetbrains-toolbox                # Install JetBrains Toolbox | https://www.jetbrains.com/toolbox-app/
+    install-opentabletdriver                 # Install OpenTabletDriver, an open source, cross-platform, user-mode tablet driver
+    install-system-flatpaks                  # Install system flatpaks for rebasers
+    jetbrains-toolbox                        # alias for install-jetbrains-toolbox
+    logs-last-boot                           # Show all messages from last boot
+    logs-this-boot                           # Show all messages from this boot
+    powerwash                                # Factory reset this device (experimental)
+    rebase-helper                            # Rebase assistant
+    shell
+    toggle-devmode                           # Toggle between Bluefin and the Developer Experience
+    toggle-tpm2                              # TPM2 auto-unlock toggle
+    toggle-updates                           # Turn automatic updates on or off
+    toggle-user-motd                         # Toggle display of the user-motd in terminal
+    uid
+    update                                   # Update system, flatpaks and homebrew packages all at once
