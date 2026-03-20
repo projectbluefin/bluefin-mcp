@@ -44,9 +44,10 @@ type bootcStatusJSON struct {
 
 type rpmOstreeJSON struct {
 	Deployments []struct {
-		Booted   bool   `json:"booted"`
-		Checksum string `json:"checksum"`
-		Origin   string `json:"origin"`
+		Booted            bool   `json:"booted"`
+		Checksum          string `json:"checksum"`
+		Origin            string `json:"origin"`
+		ContainerImageRef string `json:"container-image-reference"`
 	} `json:"deployments"`
 }
 
@@ -57,11 +58,7 @@ func GetSystemStatus(ctx context.Context, runner cli.CommandRunner) (*SystemStat
 	if err == nil {
 		return parseBootcJSON(out)
 	}
-	if !errors.Is(err, cli.ErrNotInstalled) {
-		return nil, err
-	}
-
-	// Fallback to rpm-ostree
+	// Fall back to rpm-ostree on any bootc failure (e.g. bootc requires root on some systems)
 	out, err = runner.Run(ctx, "rpm-ostree", []string{"status", "--json"})
 	if err != nil {
 		return nil, err
@@ -95,7 +92,15 @@ func parseRpmOstreeJSON(data []byte) (*SystemStatus, error) {
 	st := &SystemStatus{Source: "rpm-ostree"}
 	for _, d := range r.Deployments {
 		if d.Booted {
-			st.ImageRef = d.Origin
+			// Prefer container-image-reference (bootc-style); fall back to origin (legacy)
+			ref := d.ContainerImageRef
+			if ref == "" {
+				ref = d.Origin
+			}
+			// Strip ostree transport prefixes
+			ref = strings.TrimPrefix(ref, "ostree-unverified-registry:")
+			ref = strings.TrimPrefix(ref, "ostree-image-signed:docker://")
+			st.ImageRef = ref
 			st.Booted = d.Checksum
 			break
 		}
@@ -129,7 +134,8 @@ func CheckUpdates(ctx context.Context, runner cli.CommandRunner) (bool, string, 
 		if errors.Is(err, cli.ErrNotInstalled) {
 			return false, "", nil
 		}
-		return false, "", err
+		// bootc upgrade --check requires elevated privileges on some systems
+		return false, "bootc requires elevated privileges to check for updates; run: sudo bootc upgrade --check", nil
 	}
 	text := string(out)
 	available := strings.Contains(text, "Update available") || strings.Contains(text, "available")

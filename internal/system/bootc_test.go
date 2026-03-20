@@ -2,6 +2,7 @@ package system_test
 
 import (
 "context"
+"errors"
 "os"
 "testing"
 
@@ -64,16 +65,54 @@ t.Errorf("expected variant 'nvidia', got %q", status.Variant)
 }
 
 func TestGetSystemStatus_FallsBackToRpmOstree(t *testing.T) {
+rpmJSON := []byte(`{"deployments":[{"booted":true,"checksum":"abc123","origin":"","container-image-reference":"ostree-unverified-registry:ghcr.io/ublue-os/bluefin:stable"}]}`)
+
+t.Run("bootc_not_installed", func(t *testing.T) {
 mock := cli.NewMockExecutor()
 mock.SetResponse("bootc", []string{"status", "--json"}, nil, cli.ErrNotInstalled)
-mock.SetResponse("rpm-ostree", []string{"status", "--json"}, []byte(`{"deployments":[{"booted":true,"checksum":"abc","origin":"ghcr.io/ublue-os/bluefin:stable"}]}`), nil)
-
+mock.SetResponse("rpm-ostree", []string{"status", "--json"}, rpmJSON, nil)
 status, err := system.GetSystemStatus(context.Background(), mock)
 if err != nil {
 t.Fatalf("unexpected error: %v", err)
 }
-if status.ImageRef == "" {
-t.Error("should parse image ref from rpm-ostree fallback")
+if status.ImageRef != "ghcr.io/ublue-os/bluefin:stable" {
+t.Errorf("unexpected image ref: %q", status.ImageRef)
+}
+})
+
+t.Run("bootc_permission_error", func(t *testing.T) {
+mock := cli.NewMockExecutor()
+mock.SetResponse("bootc", []string{"status", "--json"}, nil, errors.New("exit status 1"))
+mock.SetResponse("rpm-ostree", []string{"status", "--json"}, rpmJSON, nil)
+status, err := system.GetSystemStatus(context.Background(), mock)
+if err != nil {
+t.Fatalf("unexpected error: %v", err)
+}
+if status.ImageRef != "ghcr.io/ublue-os/bluefin:stable" {
+t.Errorf("want ghcr.io/ublue-os/bluefin:stable, got %q", status.ImageRef)
+}
+if status.Source != "rpm-ostree" {
+t.Errorf("expected source rpm-ostree, got %q", status.Source)
+}
+})
+}
+
+func TestParseRpmOstreeJSON_ContainerImageRef(t *testing.T) {
+// Verify the container-image-reference field is used and prefix is stripped.
+// Live systems show origin="" and container-image-reference="ostree-unverified-registry:ghcr.io/..."
+rpmJSON := []byte(`{"deployments":[{"booted":true,"checksum":"xyz","origin":"","container-image-reference":"ostree-unverified-registry:ghcr.io/ublue-os/bluefin-dx:lts"}]}`)
+mock := cli.NewMockExecutor()
+mock.SetResponse("bootc", []string{"status", "--json"}, nil, errors.New("exit status 1"))
+mock.SetResponse("rpm-ostree", []string{"status", "--json"}, rpmJSON, nil)
+status, err := system.GetSystemStatus(context.Background(), mock)
+if err != nil {
+t.Fatalf("unexpected error: %v", err)
+}
+if status.ImageRef != "ghcr.io/ublue-os/bluefin-dx:lts" {
+t.Errorf("prefix not stripped, got %q", status.ImageRef)
+}
+if status.Variant != "dx" {
+t.Errorf("variant detection failed on rpm-ostree path, got %q", status.Variant)
 }
 }
 
