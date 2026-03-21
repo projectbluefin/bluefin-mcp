@@ -111,6 +111,41 @@ def parse_unit_description(content):
     return ""
 
 
+def fetch_discussions():
+    """Fetch current answered discussions from ublue-os/bluefin."""
+    discussions = {}
+
+    query = """{
+      repository(owner: "ublue-os", name: "bluefin") {
+        discussions(first: 100, orderBy: {field: UPDATED_AT, direction: DESC}) {
+          nodes {
+            title url upvoteCount createdAt
+            answer { body }
+            category { name }
+          }
+        }
+      }
+    }"""
+
+    cmd = ["gh", "api", "graphql", "-f", f"query={query}"]
+    try:
+        result = subprocess.run(cmd, capture_output=True, text=True, check=True)
+        data = json.loads(result.stdout)
+        nodes = data["data"]["repository"]["discussions"]["nodes"]
+        for n in nodes:
+            if n["answer"] is not None:  # only track answered ones
+                discussions[n["url"]] = {
+                    "title": n["title"],
+                    "answered": True,
+                    "upvotes": n["upvoteCount"],
+                    "category": n["category"]["name"],
+                }
+    except Exception as e:
+        print(f"  Warning: could not fetch discussions: {e}")
+
+    return discussions
+
+
 def fetch_current_state():
     """Fetch current recipes and units from all source repos."""
     state = {
@@ -118,6 +153,7 @@ def fetch_current_state():
         "shas": {},
         "recipes": {},
         "units": {},
+        "discussions": {},
     }
 
     # Get SHAs
@@ -170,6 +206,7 @@ def fetch_current_state():
                     except Exception as e:
                         print(f"  Warning: could not fetch {f['path']}: {e}")
 
+    state["discussions"] = fetch_discussions()
     return state
 
 
@@ -204,6 +241,17 @@ def diff_states(old, new):
                 "name": name,
                 "info": info,
                 "source_repo": info["source_repo"],
+            })
+
+    # Newly answered discussions
+    old_discs = old.get("discussions", {})
+    new_discs = new.get("discussions", {})
+    for url, info in new_discs.items():
+        if url not in old_discs:
+            changes.append({
+                "type": "newly_answered_discussion",
+                "name": url,
+                "info": info,
             })
 
     return changes
@@ -306,6 +354,18 @@ Generate a brief GitHub issue noting this removal and asking:
 
 Format as a concise GitHub issue body."""
 
+    elif change["type"] == "newly_answered_discussion":
+        prompt = f"""A GitHub Discussion in ublue-os/bluefin was just answered:
+
+Title: {change['info']['title']}
+URL: {change['name']}
+Category: {change['info']['category']}
+Upvotes: {change['info']['upvotes']}
+
+Generate a brief GitHub issue for bluefin-mcp asking: should this discussion's answer
+be distilled into a knowledge store entry (store_unit_docs)? If yes, provide the
+exact UnitDoc JSON to add. Keep it concise — 1-2 paragraphs max."""
+
     else:
         return None
 
@@ -320,6 +380,9 @@ def determine_labels(change):
         labels.append("tier:ujust")
     elif change["type"] == "new_unit":
         labels.append("tier:knowledge-store")
+    elif change["type"] == "newly_answered_discussion":
+        labels.append("tier:knowledge-store")
+        labels.append("source:discussions")
 
     info = change.get("info", {})
     variant = info.get("variant", "all")
@@ -370,8 +433,9 @@ def main():
 
     print("==> Fetching current Bluefin source state...")
     new_state = fetch_current_state()
-    print(f"    Recipes found: {len(new_state['recipes'])}")
-    print(f"    Units found:   {len(new_state['units'])}")
+    print(f"    Recipes found:     {len(new_state['recipes'])}")
+    print(f"    Units found:       {len(new_state['units'])}")
+    print(f"    Discussions found: {len(new_state['discussions'])}")
 
     # First run: just save state, don't file issues for everything
     if not old_state:
@@ -398,6 +462,8 @@ def main():
             title = f"feat: add `{change['name']}` to pre-populated knowledge store"
         elif change["type"] == "removed_recipe":
             title = f"chore: ujust recipe `{change['name']}` removed from Bluefin"
+        elif change["type"] == "newly_answered_discussion":
+            title = f"knowledge: new answered discussion — {change['info']['title'][:60]}"
         else:
             continue
 

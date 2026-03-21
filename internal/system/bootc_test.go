@@ -124,8 +124,12 @@ want     string
 {"ghcr.io/ublue-os/bluefin:stable", "base"},
 {"ghcr.io/ublue-os/bluefin-dx:stable", "dx"},
 {"ghcr.io/ublue-os/bluefin-nvidia:stable", "nvidia"},
+{"ghcr.io/ublue-os/bluefin-nvidia-open:stable", "nvidia"},
+{"ghcr.io/ublue-os/bluefin-dx-nvidia-open:stable", "dx-nvidia"},
 {"ghcr.io/ublue-os/aurora:stable", "aurora"},
 {"ghcr.io/ublue-os/aurora-dx:stable", "aurora-dx"},
+{"ghcr.io/ublue-os/aurora-nvidia-open:stable", "aurora-nvidia"},
+{"ghcr.io/ublue-os/aurora-dx-nvidia-open:stable", "aurora-dx-nvidia"},
 }
 for _, tc := range cases {
 t.Run(tc.want, func(t *testing.T) {

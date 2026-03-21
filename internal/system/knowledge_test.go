@@ -223,3 +223,36 @@ t.Fatalf("read store file: %v", err)
 }
 _ = data // file content verified implicitly by GetUnitDoc above
 }
+
+// TestKnowledge_ListUnitDocs_Sorted verifies ListUnitDocs returns units in
+// deterministic alphabetical order regardless of map iteration order.
+func TestKnowledge_ListUnitDocs_Sorted(t *testing.T) {
+dir := t.TempDir()
+store, err := system.NewKnowledgeStore(dir)
+if err != nil {
+t.Fatalf("NewKnowledgeStore: %v", err)
+}
+// Add units in non-alphabetical order
+for _, name := range []string{"z-last.service", "a-first.service", "m-middle.service"} {
+if err := store.StoreUnitDoc(name, system.UnitDoc{Name: name, Description: "test", Variant: "all"}); err != nil {
+t.Fatalf("StoreUnitDoc(%q): %v", name, err)
+}
+}
+docs, err := store.ListUnitDocs()
+if err != nil {
+t.Fatalf("ListUnitDocs: %v", err)
+}
+// Verify alphabetical order
+for i := 1; i < len(docs); i++ {
+if docs[i-1].Name >= docs[i].Name {
+t.Errorf("out of order at [%d]: %q >= %q", i, docs[i-1].Name, docs[i].Name)
+}
+}
+// Verify two calls return same order
+docs2, _ := store.ListUnitDocs()
+for i := range docs {
+if i >= len(docs2) || docs[i].Name != docs2[i].Name {
+t.Errorf("call 1 and call 2 returned different order at index %d", i)
+}
+}
+}
