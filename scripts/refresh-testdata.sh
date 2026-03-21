@@ -337,12 +337,22 @@ jq -n \
 
 echo "    Wrote testdata/refresh-manifest.json"
 
+# ── Section 6: GitHub Discussions → internal/seed/discussions.json ──────────
+
+echo ""
+echo "==> Fetching ublue-os/bluefin Discussions..."
+CORPUS_DATE=$(date -u +%Y-%m-%d)
+python3 "$REPO_ROOT/scripts/fetch-discussions.py" --output "$SEED/discussions.json" --corpus-date "$CORPUS_DATE"
+DISCUSSION_COUNT=$(python3 -c "import json; d=json.load(open('$SEED/discussions.json')); print(len(d['discussions']))")
+echo "    Wrote $DISCUSSION_COUNT discussions to internal/seed/discussions.json"
+
 # ── Done ─────────────────────────────────────────────────────────────────────
 
 echo ""
 echo "==> Done."
-echo "    Recipes:  $RECIPE_COUNT  (testdata/ujust-list.txt)"
-echo "    Units:    $UNIT_COUNT    (internal/seed/units.json)"
-echo "    Flatpaks: $FLATPAK_COUNT (testdata/flatpak-list.txt)"
+echo "    Recipes:     $RECIPE_COUNT  (testdata/ujust-list.txt)"
+echo "    Units:       $UNIT_COUNT    (internal/seed/units.json)"
+echo "    Flatpaks:    $FLATPAK_COUNT (testdata/flatpak-list.txt)"
+echo "    Discussions: $DISCUSSION_COUNT (internal/seed/discussions.json)"
 echo ""
 echo "Run 'go test -race ./...' to verify."
