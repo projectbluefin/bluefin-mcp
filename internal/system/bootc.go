@@ -11,12 +11,12 @@ import (
 
 // SystemStatus holds the current atomic OCI image state.
 type SystemStatus struct {
-	ImageRef          string
-	Booted            string // digest
-	Staged            string // digest if staged update present
-	RollbackAvailable bool
-	Variant           string
-	Source            string // "bootc" or "rpm-ostree"
+	ImageRef          string `json:"image_ref"`
+	Booted            string `json:"booted"` // digest
+	Staged            string `json:"staged"` // digest if staged update present
+	RollbackAvailable bool   `json:"rollback_available"`
+	Variant           string `json:"variant"`
+	Source            string `json:"source"` // "bootc" or "rpm-ostree"
 }
 
 // bootcStatusJSON matches `bootc status --json` output structure.
@@ -140,9 +140,4 @@ func CheckUpdates(ctx context.Context, runner cli.CommandRunner) (bool, string, 
 	text := string(out)
 	available := strings.Contains(text, "Update available") || strings.Contains(text, "available")
 	return available, text, nil
-}
-
-// GetBootHealth returns boot health and rollback availability.
-func GetBootHealth(ctx context.Context, runner cli.CommandRunner) (*SystemStatus, error) {
-	return GetSystemStatus(ctx, runner)
 }

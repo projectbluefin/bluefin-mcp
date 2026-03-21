@@ -10,14 +10,14 @@ import (
 
 // FlatpakApp represents an installed Flatpak application.
 type FlatpakApp struct {
-	AppID   string
-	Version string
+	AppID   string `json:"app_id"`
+	Version string `json:"version"`
 }
 
 // BrewPackage represents an installed Homebrew package.
 type BrewPackage struct {
-	Name    string
-	Version string
+	Name    string `json:"name"`
+	Version string `json:"version"`
 }
 
 // GetFlatpakList returns all installed Flatpak applications.

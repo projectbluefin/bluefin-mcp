@@ -96,13 +96,13 @@ func TestGetSystemStatus(t *testing.T) {
 		t.Fatalf("result not valid JSON: %v\nraw: %s", err, text)
 	}
 
-	if out["Variant"] != "base" {
-		t.Errorf("expected variant 'base', got %v", out["Variant"])
+	if out["variant"] != "base" {
+		t.Errorf("expected variant 'base', got %v", out["variant"])
 	}
-	if out["ImageRef"] != "ghcr.io/ublue-os/bluefin:stable" {
-		t.Errorf("unexpected image_ref: %v", out["ImageRef"])
+	if out["image_ref"] != "ghcr.io/ublue-os/bluefin:stable" {
+		t.Errorf("unexpected image_ref: %v", out["image_ref"])
 	}
-	if out["Booted"] == "" || out["Booted"] == nil {
+	if out["booted"] == "" || out["booted"] == nil {
 		t.Error("booted digest should not be empty")
 	}
 }
@@ -160,11 +160,11 @@ func TestGetFlatpakList(t *testing.T) {
 		t.Fatal("expected at least one flatpak app")
 	}
 	first := apps[0]
-	if first["AppID"] == "" || first["AppID"] == nil {
-		t.Error("expected non-empty AppID in first app")
+	if first["app_id"] == "" || first["app_id"] == nil {
+		t.Error("expected non-empty app_id in first app")
 	}
-	if first["Version"] == "" || first["Version"] == nil {
-		t.Error("expected non-empty Version in first app")
+	if first["version"] == "" || first["version"] == nil {
+		t.Error("expected non-empty version in first app")
 	}
 }
 

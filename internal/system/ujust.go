@@ -9,8 +9,8 @@ import (
 
 // Recipe represents a ujust recipe with its name and optional description.
 type Recipe struct {
-	Name        string
-	Description string
+	Name        string `json:"name"`
+	Description string `json:"description"`
 }
 
 // ListRecipes returns all available ujust recipes.

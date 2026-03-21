@@ -10,10 +10,10 @@ import (
 
 // DistroboxEntry represents a single Distrobox container.
 type DistroboxEntry struct {
-	ID     string
-	Name   string
-	Status string
-	Image  string
+	ID     string `json:"id"`
+	Name   string `json:"name"`
+	Status string `json:"status"`
+	Image  string `json:"image"`
 }
 
 // ListDistrobox returns all Distrobox containers. Returns nil, nil if distrobox is not installed.

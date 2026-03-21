@@ -11,10 +11,10 @@ import (
 	"github.com/projectbluefin/bluefin-mcp/internal/system"
 )
 
-// Register adds all 12 MCP tool handlers to the server.
+// Register adds all 11 MCP tool handlers to the server.
 func Register(s *server.MCPServer, runner cli.CommandRunner, store *system.KnowledgeStore) {
 	s.AddTool(mcp.NewTool("get_system_status",
-		mcp.WithDescription("Get atomic OCI image state: booted image, digest, staged update, variant"),
+		mcp.WithDescription("Get atomic OCI image state: booted image, digest, staged update, variant, rollback availability"),
 	), func(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 		st, err := system.GetSystemStatus(ctx, runner)
 		if err != nil {
@@ -31,30 +31,6 @@ func Register(s *server.MCPServer, runner cli.CommandRunner, store *system.Knowl
 			return mcp.NewToolResultError(err.Error()), nil
 		}
 		return jsonResult(map[string]any{"available": available, "message": msg})
-	})
-
-	s.AddTool(mcp.NewTool("get_boot_health",
-		mcp.WithDescription("Get last boot health and rollback availability"),
-	), func(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
-		st, err := system.GetBootHealth(ctx, runner)
-		if err != nil {
-			return mcp.NewToolResultError(err.Error()), nil
-		}
-		return jsonResult(map[string]any{
-			"rollback_available": st.RollbackAvailable,
-			"image_ref":          st.ImageRef,
-			"variant":            st.Variant,
-		})
-	})
-
-	s.AddTool(mcp.NewTool("get_variant_info",
-		mcp.WithDescription("Detect the Bluefin variant (base, dx, nvidia, aurora, aurora-dx)"),
-	), func(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
-		st, err := system.GetSystemStatus(ctx, runner)
-		if err != nil {
-			return mcp.NewToolResultError(err.Error()), nil
-		}
-		return jsonResult(map[string]string{"variant": st.Variant, "image_ref": st.ImageRef})
 	})
 
 	s.AddTool(mcp.NewTool("list_recipes",
