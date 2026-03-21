@@ -1,0 +1,928 @@
+{
+  "version": "1",
+  "fetched_at": "2026-03-21T00:04:13.679162+00:00",
+  "source": "ublue-os/bluefin",
+  "corpus_date": "2026-03-21",
+  "discussions": [
+    {
+      "title": "Modernizing custom images based on Bluefin",
+      "url": "https://github.com/ublue-os/bluefin/discussions/3960",
+      "category": "Discussions",
+      "upvotes": 16,
+      "answered": false,
+      "answer_body": "",
+      "body": "https://docs.projectbluefin.io/blog/modernizing-custom-images",
+      "created_at": "2026-01-02T21:41:12Z"
+    },
+    {
+      "title": "Streamlining Bluefin Releases",
+      "url": "https://github.com/ublue-os/bluefin/discussions/3654",
+      "category": "Discussions",
+      "upvotes": 11,
+      "answered": false,
+      "answer_body": "",
+      "body": "https://docs.projectbluefin.io/blog/unifying-bluefin/\r\n\r\nMcPhail we did it!",
+      "created_at": "2025-11-17T00:37:13Z"
+    },
+    {
+      "title": "Bold Brew v2.2.0 - Update & New Features",
+      "url": "https://github.com/ublue-os/bluefin/discussions/3934",
+      "category": "Discussions",
+      "upvotes": 7,
+      "answered": false,
+      "answer_body": "",
+      "body": "Hi Bluefin Team! \ud83d\udc4b\r\nThis is not a bug report, just a quick update on Bold Brew developments that might interest you.\r\nI've just released version [2.2.0](https://github.com/Valkyrie00/bold-brew/releases/tag/v2.2.0) with some features that could be useful for the Bluefin community:\r\n\r\n--- \r\n\r\n**Remote Brewfile Support**\r\nYou can now load Brewfiles directly from remote:\r\n```\r\n# Local file (as before)\r\nbbrew -f ~/my-tools.Brewfile\r\n\r\n# Remote URL (new!)\r\nbbrew -f https://raw.githubusercontent.com/your-org/configs/main/dev-tools.Brewfile\r\n```\r\nThis means you could create and share versioned, curated Brewfile collections for different use cases (IDE tools, AI/ML packages, DevOps tools, etc.) that users can load directly without downloading anything.\r\nExamples:\r\n```\r\nbbrew -f https://raw.githubusercontent.com/ublue-os/homebrew-tap/refs/heads/main/ublue-os-artwork.Brewfile\r\nbbrew -f https://raw.githubusercontent.com/ublue-os/homebrew-tap/refs/heads/main/ublue-os-ide.Brewfile\r\n```\r\n\r\n--- \r\n\r\n**Flatpak Support**\r\nI've noted the interest in Flatpak support, it's on my roadmap and I'll be working on it in the coming period.\r\n\r\n--- \r\n\r\n**One-liner Install Script (Beta)**\r\nI've also created an all-in-one install script that installs Homebrew + Bold Brew in a single command:\r\n```\r\n/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Valkyrie00/bold-brew/main/install.sh)\"\r\n```\r\nIt's still in beta and needs more testing, but it's a step toward making the initial setup faster for users.\r\n\r\nI'll keep you updated on future developments. If there's anything specific you need or any feedback, please let me know!\r\nThanks for the continued support!  \ud83d\ude03 \r\n",
+      "created_at": "2025-12-29T23:38:48Z"
+    },
+    {
+      "title": "Bluefin LTS testing branches now available",
+      "url": "https://github.com/ublue-os/bluefin/discussions/4193",
+      "category": "Discussions",
+      "upvotes": 6,
+      "answered": false,
+      "answer_body": "",
+      "body": "Alright, as some of you have noticed Achillobator has been sick for the past two weeks. This was due to trying to deploy the testing branch in the LTS repo, which we tested and deployed back then but it never worked right despite working as intended during testing.  \r\n\r\nAfter much gnashing of teeth by multiple people, ends up it was a misconfigured branch protection rule inside the github settings, our setup was right the entire time! Computers suck. \r\n\r\n(Thanks to @ahmedadan and @hanthor for bringing this one home!)\r\n\r\nRun a bootc status to figure out what image you're on and tack a `-testing` at the end of the tag: \r\n\r\n    bootc switch --enforce-container-sigpolicy ghcr.io/ublue-os/bluefin-dx:lts-hwe-testing\r\n\r\n... and so on. Note that the rebase helper has not implemented this yet. Ideally it'd just be one command to switch without figuring these out. But we wanted to get these fixes out asap. Things are running great on my machines, and the GNOME logout bug thing is fixed. We'll let these bake over the weekend (reports and issues always appreciated!) and likely push to prod on monday. \r\n\r\nWe're using the [wei pull app](https://github.com/wei/pull) to manage this. You can [check the config here](https://github.com/ublue-os/bluefin-lts/blob/main/.github/pull.yml). This lets us merge things into the testing branch, which produces builds right away, then we can land them in the `lts` production branch. \r\n\r\nIf you're on a custom image you may want to consider copying this config, it's really nice to rev in a testing branch. I've PRed it to the template so at some point everyone can just have this. \r\n\r\nThanks for your patience! ",
+      "created_at": "2026-02-13T21:46:30Z"
+    },
+    {
+      "title": "Bluefin 2025 Wrap-up: State of the Raptor",
+      "url": "https://github.com/ublue-os/bluefin/discussions/3942",
+      "category": "Discussions",
+      "upvotes": 6,
+      "answered": false,
+      "answer_body": "",
+      "body": "https://docs.projectbluefin.io/blog/bluefin-2025",
+      "created_at": "2025-12-30T20:15:51Z"
+    },
+    {
+      "title": "No MP3 Player",
+      "url": "https://github.com/ublue-os/bluefin/discussions/4217",
+      "category": "Discussions",
+      "upvotes": 5,
+      "answered": false,
+      "answer_body": "",
+      "body": "Bluefin should include some sort of MP3/other-audio-file player, be it GNOME Music or Decibels or something else. Audio files aren't the *most* common type of file for people but they're certainly not uncommon, and there should be some basic handling of common audio files (MP3, WAV, FLAC, etc) in Bluefin.\r\n\r\n(Sorry if this isn't the right place for feature requests/suggestions! I'm very new to the community.)",
+      "created_at": "2026-02-20T04:50:28Z"
+    },
+    {
+      "title": "Volunteers wanted, ISO testing",
+      "url": "https://github.com/ublue-os/bluefin/discussions/4073",
+      "category": "Discussions",
+      "upvotes": 5,
+      "answered": false,
+      "answer_body": "",
+      "body": "Ok everyone, we've got a fancy new [ISO builder](https://github.com/projectbluefin/iso) making ISOs for us now. \r\n\r\n### Bluefin\r\n\r\nWe're starting off with `bluefin:stable`. \r\n\r\nLTS/GDX ISOs are currently BROKEN but James is working on it. In the meantime we can freshen these up. Grab the ISOs:\r\n\r\nhttps://docs.projectbluefin.io/downloads-testing\r\n\r\nThen fire them up in a VM, bare metal is even better. And then report back in this thread. When enough people say these work I'll promote them to the production bucket. Then once we have working LTS/GDX ISOs we'll do the same thing for those, push to this testing page and then promote once we get feedback.\r\n\r\n### Issues around first run, setup, polish are highly sought after! \r\n\r\nThen we'll set the testing ISOs to publish monthly or so, or if there's some reason we can also do them on demand. Then we can look at automation, @ahmedadan is working on integrating some openqa goodness so we'll be able to actually automate testing. In the meantime, help wanted, thanks!",
+      "created_at": "2026-01-19T03:04:31Z"
+    },
+    {
+      "title": "Bluefin LTS is close to release candidate",
+      "url": "https://github.com/ublue-os/bluefin/discussions/2793",
+      "category": "Discussions",
+      "upvotes": 5,
+      "answered": false,
+      "answer_body": "",
+      "body": "Ok now that we've figured out the kernel cadence we're pretty good to go with `bluefin:lts`. To catch everyone up we've revisited our kernel policy: https://github.com/ublue-os/bluefin-lts/issues/576\r\n\r\nThat means that the vanilla `:lts` will just have a stock kernel and GNOME, and that wasn't a problem. James also freshened the ISOs up so you should be good to go: https://docs.projectbluefin.io/downloads/#anaconda-installer-downloads\r\n\r\nWe're still waiting to implement secure boot so that remains the biggest release blocker. But other than that it's basically finished. Give it a whirl and let us know! We still need to add ZFS and bazaar too. \r\n\r\nIf you use an Nvidia card the GDX variant is still waiting on us to move over to the official Nvidia drivers with CUDA. \r\n\r\nThat leaves the `bluefin-lts:testing` branch, which we will call `bluefin-lts:hwe`. This will have a full GNOME 48 backport, and will follow the same kernel cadence as the rest of Bluefin. We're going to move to a \"latest version of the last minor kernel\" approach as we're almost always running on a pinned kernel anyway these days. \r\n\r\nIf this was live today we'd stay on `6.14.11` until the `6.16.0` kernel is released then we'll move to whatever the last `6.15.x` was. We can adjust this at any time.\r\n\r\n",
+      "created_at": "2025-07-19T19:17:01Z"
+    },
+    {
+      "title": "Agent to help with supporting OS operation?",
+      "url": "https://github.com/ublue-os/bluefin/discussions/3595",
+      "category": "Discussions",
+      "upvotes": 4,
+      "answered": false,
+      "answer_body": "",
+      "body": "I wondered if there is a plan to add a specialized LLM-based agent that can help with collecting issue information and suggest solutions. Obviously that would create many headaches in terms of permissions, but given the heterogeneity of hardware, it would be helpful to have such an agent on each desktop, at least an agent based on open-source models with a small footprint. I assume the ublue-os teams already use similar tools. Given the immutability of the system, the tasks that it could accomplish could be\r\n- Receive a query for a specific issue with a system service/unit (why is DNS not working?).\r\n- Receive general query (please collect issues that occurred on the latest boot).\r\n- Query journalctl to collect helpful messages.\r\n- Read system configuration under `/etc`.\r\n- Search online forums such as Bugzilla or the ublue-os/bluefin GitHub discussion board and issues.\r\n- Recommend edits to configuration files and configuration commands.\r\n- In case the issue cannot be solved due to lack of permissions or complexity, it could ask permission to escalate by generating an issue on GitHub automatically with all the relevant information. These issues could have an #agent-generated tag to filter them out (or in) easily.\r\n\r\nI noticed that certain log messages already provide such suggestions with a degree of certainty attached to them. Is this generated by similar tools? A more visible interface would be appreciated. It could potentially alleviate developer burden as well, as issues could be picked up automatically. It does have a lot of potential for unsafe behavior, though.",
+      "created_at": "2025-11-04T09:49:04Z"
+    },
+    {
+      "title": "What is this?",
+      "url": "https://github.com/ublue-os/bluefin/discussions/2254",
+      "category": "Dosu Help Section",
+      "upvotes": 4,
+      "answered": false,
+      "answer_body": "",
+      "body": "This forum is a place for users to ask our [dosu.dev](https://dosu.dev) bot questions. She's trained on the official documentation for Bluefin, as well as the documentation of the software included in Bluefin such as homebrew, flatpak, systemd, podman, docker, vscode, and devcontainers. \r\n\r\nDon't try to train it or anything like that, try to ask real actual questions you have when you are using Bluefin. \r\n\r\n- [Bluefin: Community Support After StackExchange](https://dosu.dev/blog/bluefin-community-support-after-stackexchange)\r\n\r\nTry it out and leave some feedback!",
+      "created_at": "2025-03-16T04:27:56Z"
+    },
+    {
+      "title": "How to turn off the laptop screen?",
+      "url": "https://github.com/ublue-os/bluefin/discussions/3634",
+      "category": "Discussions",
+      "upvotes": 4,
+      "answered": false,
+      "answer_body": "",
+      "body": "Hello everyone!\r\n\r\nI understand my question might seem strange to most people, so let me quickly explain the context.\r\n\r\nI am a completely blind Linux user, relying on the Orca screen reader with various speech synthesizers, such as RHVoice. I have been using Linux for over ten years now. Everything suggests that I will be installing Bluefin on my laptop soon, once the Stable F43 stream is released. My motivation is partly due to my beloved wife, who is also blind. Following the end of Windows 10 support on October 14th, she is considering switching to Linux, and she likes the concept of Fedora Silverblue. Since official Fedora Silverblue lacks a proper Live environment, Bluefin is our current choice.\r\n\r\nIn this regard, I have a question:\r\n\r\nCould someone please advise on **how to reliably turn the laptop screen on and off**?\r\n\r\nSometimes, I need to reliably disable the display for privacy reasons.\r\n\r\nI would be extremely grateful for an answer. AI tools like Gemini and ChatGPT suggest various options, but since I am completely blind, I cannot visually verify the result. I need a solution that is known to work 100% reliably on Bluefin.\r\n\r\nThank you very much.",
+      "created_at": "2025-11-10T18:12:21Z"
+    },
+    {
+      "title": "More changelog/release automation",
+      "url": "https://github.com/ublue-os/bluefin/discussions/4181",
+      "category": "Discussions",
+      "upvotes": 4,
+      "answered": false,
+      "answer_body": "",
+      "body": "Ok I have some fresh stuff. I've made a \"freshmeat.net for Bluefin\" that tracks everything, all of our default packages, OS releases, and things in the homebrew tap. \r\n\r\nIt's still not ready but I've been pretty happy with it so far. Feedback appreciated!\r\n\r\nhttps://castrojo.github.io/bluefin-releases/",
+      "created_at": "2026-02-09T03:43:31Z"
+    },
+    {
+      "title": "Critique my backup strategy",
+      "url": "https://github.com/ublue-os/bluefin/discussions/4077",
+      "category": "Discussions",
+      "upvotes": 4,
+      "answered": false,
+      "answer_body": "",
+      "body": "Hello, I'm a long-time Linux user, first time Bluefin user. I back up my computers with [borg](https://borgbackup.readthedocs.io/).\r\n\r\nI want to do a complete backup of a laptop with Bluefin, in the sense that I can fully restore the state of the OS/user data if the laptop gets lost etc.\r\n\r\nMy thinking is that full system backups of immutable distros are probably pointless and counterproductive, so I came up with the following.\r\n\r\n**Backup**\r\n\r\n* Make btrfs snapshots of `/var` and `/var/home` (and any other manually-created btrfs subvolumes).\r\n* Backup these snapshots and `/etc` (which is not a subvolume and cannot be snapshotted(?))\r\n\r\n**Full restore**\r\n\r\n* Install Bluefin\r\n* Boot into the new installation\r\n* Overwrite `/var`, `/var/home`, and `/etc` with the backup\r\n* Reboot\r\n\r\n**Questions**\r\n\r\n* Does my backup contain _all_ mutable state?\r\n* Will my restore work?\r\n\r\nThanks for any hints and tips.",
+      "created_at": "2026-01-19T19:23:01Z"
+    },
+    {
+      "title": "Any recommendations for a clipboard manager",
+      "url": "https://github.com/ublue-os/bluefin/discussions/2944",
+      "category": "Discussions",
+      "upvotes": 4,
+      "answered": false,
+      "answer_body": "",
+      "body": "I'm wondering what people are using as a clipboard manager. In the past I was daily driving a window manager, and used `cliphist`. I tried finding something similar for Gnome, but no luck so far.\r\n\r\nThe closest thing that comes to my mind is [ulauncher](https://ulauncher.io/), but I read in a previous discussion that v5 won't be compatible with bluefin.\r\n\r\nmy workflow with cliphist was setting up a global shortcut (super+c), this renders cliphist in a floating terminal where I can navigate clipboard history, it also used to save images.",
+      "created_at": "2025-08-06T21:54:33Z"
+    },
+    {
+      "title": "August Update: Long necks and LTS",
+      "url": "https://github.com/ublue-os/bluefin/discussions/2901",
+      "category": "Discussions",
+      "upvotes": 4,
+      "answered": false,
+      "answer_body": "",
+      "body": "https://docs.projectbluefin.io/blog/2025-08-01-august-wallpapers",
+      "created_at": "2025-08-01T14:31:13Z"
+    },
+    {
+      "title": "One post-install gotcha: unprepared for Secure Boot enrollment password prompt",
+      "url": "https://github.com/ublue-os/bluefin/discussions/2997",
+      "category": "Discussions",
+      "upvotes": 4,
+      "answered": false,
+      "answer_body": "",
+      "body": "I installed Bluefin tonight on a shiny new Framework 12. It was overall an easy process. It was my first installation of a RH/Fedora product since 2008!\r\n\r\nI'm looking forward to experiencing this cool distro that @castrojo and co. have cooked up. I'm especially stoked that Homebrew is a first-class citizen on Bluefin.\r\n\r\nOne thing that caught me off guard during setup was a prompt for a password for Secure Boot enrollment during the first reboot after installation. I didn't see a screen during installation that warned about it, but was easily able to pull up the [secure boot section of the Installation Guide](https://docs.projectbluefin.io/installation/#secure-boot) to find the password.\r\n\r\nIt would be nice if the last screen before reboot provided some nudge for that password.\r\n\r\n> After reboot, you'll be prompted for a password for Secure Boot enrollment. That password is `universalblue`. Write this down so that you don't forget it. If you do, you can find it in the installation guide.\r\n\r\nThat type of message would help. It would have saved me ~30-60 seconds but a good bit of friction in an otherwise smooth, polished installation process.",
+      "created_at": "2025-08-15T02:46:25Z"
+    },
+    {
+      "title": "Facilitating donating to developers",
+      "url": "https://github.com/ublue-os/bluefin/discussions/3074",
+      "category": "Discussions",
+      "upvotes": 4,
+      "answered": false,
+      "answer_body": "",
+      "body": "#### tl;dr:\r\nThe future of the Linux desktop depends on app developers having a monetary interest to build for and support Linux. I would like to give X amount of money every month to Linux apps I use and want to support. Right now this process is time consuming; a streamlined process could vastly increase the revenue for Linux app developers.\r\n\r\n#### The Problem\r\nThis morning I was thinking that I want to stop free-loading and actually give back to some of the people that make my digital life a whole lot easier. \r\n\r\nThis turned out to be  a lot more of a chore when I started to dig for donation links for the projects I want to support. While Bazaar makes this easier, there was still a looot of clicks. The annoyance of this would compound since I would like to donate regularly without going through this process every time.\r\n\r\n#### The Dream\r\nI assume I have some kindred spirits in this community when I say that I like to **automate everything**. My ideal process for donating to open source projects would be:\r\n\r\n1. Input my payment information\r\n2. Choose from a list of installed software what I want to donate to (brew packages, flatpaks, maybe custom paypal links for other stuff)\r\n3. Choose how much I want to donate, either to individual apps or make a pool that distributes the donation evenly.\r\n\r\n_Bonus_: option to have apps removed from the donation list if I haven't used them for some amount of time (or add apps that aren't on the list but I use frequently)\r\n\r\n#### Obstacles\r\n\r\nDisclaimer: I'm an engineer with a lot of experience programming, but I haven't dealt extensively with payment systems. \r\n\r\nFrom what I can tell, these are the main obstacles before one could even start to fix this problem through an app or some kind of system integration:\r\n\r\n- **Non-standardized payment methods**. Flathub has the best donation support and does the best job in facilitating money going from users to Linux app developers. This is very unfortunate since their solution is so la...",
+      "created_at": "2025-08-27T12:37:36Z"
+    },
+    {
+      "title": "Bluefin Merch - shirts and whatnot!",
+      "url": "https://github.com/ublue-os/bluefin/discussions/3109",
+      "category": "Discussions",
+      "upvotes": 4,
+      "answered": false,
+      "answer_body": "",
+      "body": "https://projectbluefin.printful.me/\r\n\r\nOk ya'll, I've been playing around with a store to sell merch with. Here's the first set. I am waiting for samples to come in but I like Bella + Canvas so these should feel smooth. Feedback appreciated. I picked as many colors for the kid's shirt as I could.\r\n\r\nProceeds would go to more paleoart.\r\n\r\n- I'm not setup for EU yet, just US. ",
+      "created_at": "2025-08-31T00:07:34Z"
+    },
+    {
+      "title": "Bluefin CLI for Mac and Windows",
+      "url": "https://github.com/ublue-os/bluefin/discussions/4283",
+      "category": "Discussions",
+      "upvotes": 3,
+      "answered": false,
+      "answer_body": "",
+      "body": "https://docs.projectbluefin.io/blog/bluefin-cli-mac-wsl/",
+      "created_at": "2026-03-13T03:11:43Z"
+    },
+    {
+      "title": "Audio Selection Broken on 43.20260203 bluefin-dx:stable image",
+      "url": "https://github.com/ublue-os/bluefin/discussions/4234",
+      "category": "Dosu Help Section",
+      "upvotes": 3,
+      "answered": false,
+      "answer_body": "",
+      "body": "I recently noticed after rebooting my system and moving from the 43.20260106 to the 43.20260203 stable images, device audio selection was no longer working as expected.\r\n\r\nI have several audio devices on the machine:\r\n- Internal Realtek audio\r\n- Audio-enabled HDMI output on my GPU\r\n- USB microphone\r\n\r\nWhen booting from 43.20260203, the only audio output selectable was the HDMI audio output - using the built-in line out was no longer working, as if it had been disabled. For input devices, I tried connecting my microphone to get Bluefin to recognise the device and present it as a device in the Settings, to no avail.\r\n\r\nIn the end I was able to rollback to 43.20260106, and now all devices are available for selection and are working. So I'm looking to understand what the material changes are between these two images that would have such an effect on the audio stack, to the point where devices are not selectable despite being present in alsamixer...",
+      "created_at": "2026-02-24T04:41:53Z"
+    },
+    {
+      "title": "Torrent downloads",
+      "url": "https://github.com/ublue-os/bluefin/discussions/4243",
+      "category": "Discussions",
+      "upvotes": 3,
+      "answered": false,
+      "answer_body": "",
+      "body": "I've been working on automating generating our own torrent files, but it's slow going without seeders. \ud83d\ude04 \r\n\r\nAny seeding here would be appreciated, and also some verifications on the ISOs themselves would also help out, thanks!\r\n\r\nhttps://github.com/projectbluefin/iso/releases/tag/26.02.1",
+      "created_at": "2026-02-28T00:55:50Z"
+    },
+    {
+      "title": "Fresh Bluefin install in degraded mode: btrfs compress parameters not applied",
+      "url": "https://github.com/ublue-os/bluefin/discussions/3938",
+      "category": "Discussions",
+      "upvotes": 3,
+      "answered": false,
+      "answer_body": "",
+      "body": "I noticed that a fresh Bluefin install is in `degraded` mode. \r\n\r\n```\r\n\u276f systemctl is-system-running \r\ndegraded\r\n```\r\n\r\n```\r\n\u276f systemctl --failed\r\n  UNIT                       LOAD   ACTIVE SUB    DESCRIPTION                         \r\n\u25cf systemd-remount-fs.service loaded failed failed Remount Root and Kernel File Systems\r\n\r\nLegend: LOAD   \u2192 Reflects whether the unit definition was properly loaded.\r\n        ACTIVE \u2192 The high-level unit activation state, i.e. generalization of SUB.\r\n        SUB    \u2192 The low-level unit activation state, values depend on unit type.\r\n\r\n1 loaded units listed.\r\n```\r\n\r\nLooks like `/etc/fstab` parameters are ignored, and the btrfs filesystem is not mounted **without** compress parameters. Notice `compress=zstd:1` is present in fstab but not present in the output of the `mount` command.\r\n\r\nI think this is an ostree upstream issue, but I couldn't find this referenced in the bug tracker. Is this known? There is a workaround discussed in the linked tickets and I wonder what is bluefin's stance on implementing it. \r\n\r\nhttps://discussion.fedoraproject.org/t/talk-mount-options-are-ignored-in-fedora-atomic-desktops-42/148874\r\n\r\nhttps://gitlab.com/fedora/ostree/sig/-/issues/72\r\n\r\n```\r\n\u276f cat /etc/fstab \r\n\r\n#\r\n# /etc/fstab\r\n# Created by anaconda on Sun Dec 28 13:10:16 2025\r\n#\r\n# Accessible filesystems, by reference, are maintained under '/dev/disk/'.\r\n# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info.\r\n#\r\n# After editing this file, run 'systemctl daemon-reload' to update systemd\r\n# units generated from this file.\r\n#\r\n# Updated by bootc-fstab-edit.service\r\nUUID=fe088622-bc6f-418b-ad73-9ae1b02268f1 / btrfs subvol=root,compress=zstd:1,ro 0 0\r\nUUID=ac5591fb-fa14-4c5e-965f-cb53e183b6d4 /boot ext4 defaults 1 2\r\nUUID=AE69-D9B7 /boot/efi vfat umask=0077,shortname=winnt 0 2\r\nUUID=fe088622-bc6f-418b-ad73-9ae1b02268f1 /home btrfs subvol=home,compress=zstd:1 0 0\r\nUUID=fe088622-bc6f-418b-ad73-9ae1b02268f1 /var btrfs subvol=var,compress=zstd...",
+      "created_at": "2025-12-30T10:18:20Z"
+    },
+    {
+      "title": "Thoughts on a support tier system?",
+      "url": "https://github.com/ublue-os/bluefin/discussions/4207",
+      "category": "Discussions",
+      "upvotes": 3,
+      "answered": false,
+      "answer_body": "",
+      "body": "One of the bummers of the current Bluefin design is that it's very binary. We optimize for the best experience but not edge cases outside of the model. Worst case you use Ubuntu or something but at least the computer is functioning!\r\n\r\nHowever this leads to friction, and a recent talk at FOSDEM from Mike McQuaid (can someone find a link) talked about how they solved this in homebrew.\r\n\r\nThey have a tier system where the top tier is the intended and tested experience, and then this helps expectations. Something like:\r\n\r\n- Tier 0 - The intended experience, linux friendly hardware, no layering, etc.\r\n- Tier 1 - You have to layer a thing or two because VPNs. We'd include other things that aren't dealbreakers but are on the way out. \r\n- Tier 3 - you need something janky. This is more of a \"Look I got it working\" flex. We all had that one laptop ... \r\n\r\nThat way it becomes more clear where you are in the chain, when you're on Tier 1 you should understand that upgrades are liable to break and that you should pay attention, things like that. ",
+      "created_at": "2026-02-18T23:11:01Z"
+    },
+    {
+      "title": "Feature request: Include nix in Bluefin-DX",
+      "url": "https://github.com/ublue-os/bluefin/discussions/3606",
+      "category": "Discussions",
+      "upvotes": 3,
+      "answered": false,
+      "answer_body": "",
+      "body": "Hello,\r\n\r\nOpening this as a discussion though it is more of a feature request.\r\n\r\nI know that Bluefin has a special relationship with Homebrew, and I do use homebrew a lot, but there is a steady growing following of Nix as a package manager for developer environments. A lot of people (including myself) build [custom images to include nix](https://github.com/karypid/bluenix)\r\n\r\nAs a testament to this growing popularity, FESCo recently approved the use of the root folder - [media article here](https://www.phoronix.com/news/Fedora-Nix-Dir-Approved) - and already [a package is prepared and approved](https://bugzilla.redhat.com/show_bug.cgi?id=2388768#c76).\r\n\r\nI don't consider Nix and Homebrew as competing solutions. If Bluefin-DX included this new Nix package by default a lot of developers using it would stop building custom images.\r\n\r\nCould you just add this new RPM to DX by default and help make the lives of Bluefin users that work on projects with nix-packaged development environments easy?",
+      "created_at": "2025-11-06T10:19:40Z"
+    },
+    {
+      "title": "Emacs homebrew cask testing request",
+      "url": "https://github.com/ublue-os/bluefin/discussions/4220",
+      "category": "Discussions",
+      "upvotes": 3,
+      "answered": false,
+      "answer_body": "",
+      "body": "Hello folks, I've created a pull request in the experimental tap that should fix emacs. If others could test as well to see if it's good to be merged it would be appreciated.",
+      "created_at": "2026-02-21T04:09:55Z"
+    },
+    {
+      "title": "Homebrew survey",
+      "url": "https://github.com/ublue-os/bluefin/discussions/4191",
+      "category": "Discussions",
+      "upvotes": 3,
+      "answered": false,
+      "answer_body": "",
+      "body": "The homebrew folks are running a survey, it only took me a few minutes to fill out. \r\n\r\nhttps://x.com/MacHomebrew/status/2022242752491315406\r\nhttps://docs.google.com/forms/d/e/1FAIpQLSeeNd7T0Zj9zOl8Y2MP1YITPk_qNUIP5knfCqSmOH2oB2O_UQ/viewform",
+      "created_at": "2026-02-13T15:46:06Z"
+    },
+    {
+      "title": "How to disable starship?",
+      "url": "https://github.com/ublue-os/bluefin/discussions/4163",
+      "category": "Dosu Help Section",
+      "upvotes": 3,
+      "answered": true,
+      "answer_body": "> Looks like this did the trick:\r\n> \r\n> ```\r\n> sudo rm /etc/profile.d/90-bluefin-starship.sh\r\n> ```\r\n> \r\n> I'm just not sure if it's going to come back on a future update.\r\n\r\n@agriffis Revert back to 20260127 is also another way, for a few days to wait for this to be fixed.\r\n\r\nIt worked for me on the standard version pinned it to 20260127 just before that 20260203 that have the issue. And disable auto update for the moment, and check next week if it's fixed.",
+      "body": "I recently updated bluefin and suddenly starship has taken over my prompt. What's the right way, in the context of bluefin, to disable it?",
+      "created_at": "2026-02-04T15:57:36Z"
+    },
+    {
+      "title": "Automated reports and changelogs",
+      "url": "https://github.com/ublue-os/bluefin/discussions/4146",
+      "category": "Discussions",
+      "upvotes": 3,
+      "answered": false,
+      "answer_body": "",
+      "body": "https://docs.projectbluefin.io/blog/automated-reports-changelogs/",
+      "created_at": "2026-02-01T18:44:48Z"
+    },
+    {
+      "title": "GNOME instability on Bluefin",
+      "url": "https://github.com/ublue-os/bluefin/discussions/3893",
+      "category": "Discussions",
+      "upvotes": 3,
+      "answered": false,
+      "answer_body": "",
+      "body": "GNOME has been crashing on me a fair bit lately; it seems to have something to do with Chrome, but not exactly sure. Based on the logs, the cause of the GNOME crash was a graphics driver failure\r\n  (AMD GPU hang):\r\n\r\n   1. Root Cause: The amdgpu kernel driver experienced a hardware timeout (ring\r\n      gfx_0.0.0 timeout). It attempted to reset the GPU to recover, but this reset\r\n      failed.\r\n   2. Chain Reaction:\r\n       * Chrome Crashed (`10:06:00`): Google Chrome, which was using the GPU,\r\n         crashed immediately after the driver failure.\r\n       * GNOME Shell Crashed (`10:06:00`): The desktop environment (gnome-shell)\r\n         lost its connection to the graphics card context and crashed with a\r\n         SIGABRT signal, forcing the session to close and the system to restart.\r\n         \r\nAnyone else seen this? I'm using the kernel released on Dec 16.\r\n      ",
+      "created_at": "2025-12-22T16:37:54Z"
+    },
+    {
+      "title": "How to enable nvidia-container-runtime on bluefin-dx-nvidia",
+      "url": "https://github.com/ublue-os/bluefin/discussions/2268",
+      "category": "Dosu Help Section",
+      "upvotes": 3,
+      "answered": true,
+      "answer_body": "Looks like we had a big with how Nvidia Container Took it was getting installed. Fedora repos were providing a similar package that was getting used instead of the one from Nvidia.\r\n\r\nWe've merged a fixed. Please let me know if you are still seeing the issue after updating today.",
+      "body": "Currently trying out Bluefin, a part of our workflow is using devcontainers with nvidia gpu capabilities. However this error keeps occuring:\r\n```\r\n[2025-03-19T12:33:55.979Z] Error response from daemon: could not select device driver \"nvidia\" with capabilities: [[gpu]]\r\n```\r\nNormally this works for us: https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html\r\n\r\nHow to get it going for bluefin?\r\n",
+      "created_at": "2025-03-19T12:35:28Z"
+    },
+    {
+      "title": "Bluefin AI Assistant",
+      "url": "https://github.com/ublue-os/bluefin/discussions/2844",
+      "category": "Discussions",
+      "upvotes": 3,
+      "answered": false,
+      "answer_body": "",
+      "body": "We want to make a MCP and/or RAG for Bluefin docs and maybe other sources to make a helpful assistant for people trying to learn how to use Bluefin. I think our target audience is non-devs and maybe devs that aren't focused on building Bluefin per-se but just using the OS. Maybe a GNOME MCP would be needed for that too\r\n\r\n\r\n- https://github.com/bilelmoussaoui/gnome-mcp-server - for GNOME knowledge\r\n- https://github.com/Axle-Bucamp/MCP-Docusaurus - for Bluefin docs",
+      "created_at": "2025-07-27T15:41:27Z"
+    },
+    {
+      "title": "Keep running when lid closed",
+      "url": "https://github.com/ublue-os/bluefin/discussions/2969",
+      "category": "Discussions",
+      "upvotes": 3,
+      "answered": false,
+      "answer_body": "",
+      "body": "How do I get bluefin to ignore that I have closed my laptop lid? Running a Framework 13 (AMD).",
+      "created_at": "2025-08-10T19:11:31Z"
+    },
+    {
+      "title": "[FYI] Update your `mandb` with homebrew manpages!",
+      "url": "https://github.com/ublue-os/bluefin/discussions/3010",
+      "category": "Discussions",
+      "upvotes": 3,
+      "answered": false,
+      "answer_body": "",
+      "body": "I didn't realize that `/usr/sbin/mandb` doesn't add any of the manpages installed by homebrew to the `whatis`/`apropos` database until today, when I started wondering why the man pages for tools like `shellcheck` that I have installed via brew aren't offered as completions in the Emacs `man` command.\r\n\r\nYou can check if this is the case on your system like this:\r\n```\r\n$ apropos brew\r\nbrew: nothing appropriate.\r\n```\r\n\r\nIf you see \"nothing appropriate\" instead of this:\r\n```\r\n$ apropos brew\r\nbrew (1)             - The Missing Package Manager for macOS (or Linux)\r\n```\r\n\r\nthen your whatis database is outdated and you probably have thousands of manpages that aren't part of the index. This command will add all of the missing manpages to the database:\r\n\r\n```bash\r\n$ mandb \"$(brew --prefix)/share/man\"\r\n```\r\n\r\nThis added 17300 man pages to the DB on my system!\r\n\r\nNow, rather than remembering to do this manually, we can let `systemd` do it for us:\r\n\r\n`~/.config/systemd/user/homebrew-mandb.service`:\r\n```ini\r\n[Unit]\r\nDescription=Update Homebrew mandb database\r\n\r\n[Service]\r\nType=oneshot\r\nExecStart=/bin/sh -c 'mandb \"$(brew --prefix)/share/man\"'\r\n```\r\n`~/.config/systemd/user/homebrew-mandb.timer`:\r\n```ini\r\n[Unit]\r\nDescription=Run Homebrew mandb weekly\r\n\r\n[Timer]\r\nOnCalendar=weekly\r\nPersistent=true\r\n\r\n[Install]\r\nWantedBy=default.target\r\n```\r\n\r\nand then in the shell:\r\n```\r\n$ systemctl --user daemon-reload\r\n$ systemctl --user enable homebrew-mandb.timer\r\n$ systemctl --user start homebrew-mandb.timer\r\n```\r\n\r\nand Bob's your uncle.",
+      "created_at": "2025-08-16T13:20:13Z"
+    },
+    {
+      "title": "Ramalama moving to brew",
+      "url": "https://github.com/ublue-os/bluefin/discussions/3017",
+      "category": "Discussions",
+      "upvotes": 3,
+      "answered": false,
+      "answer_body": "",
+      "body": "Heads up, the ramalama versions in distro packaging is too slow, we're moving that to brew. We're rearranging some things so if it's missing for you: \r\n\r\n`brew install ramalama` - Note that we alias this as `rl` on Bluefin systems for sanity, heh. Once the transition is complete I'll update here. ",
+      "created_at": "2025-08-17T13:11:16Z"
+    },
+    {
+      "title": "Recent battery life improvements?",
+      "url": "https://github.com/ublue-os/bluefin/discussions/3097",
+      "category": "Discussions",
+      "upvotes": 3,
+      "answered": false,
+      "answer_body": "",
+      "body": "Is anyone else seeing significant battery life improvements recently? I think this bug fix might explain why:\r\n\r\nhttps://github.com/kolunmi/bazaar/issues/237\r\n\r\nRecently, I came to the conclusion that my battery was failing so I ordered a replacement.\r\n\r\nEarlier this week the battery arrived and I did a before and after test. First, I ran a full discharge test on the old battery. Then I repeated the same test with the new one:\r\n\r\n| Battery      | Capacity (Wh) | Runtime (hh:mm) |\r\n| ------------ | ------------- | --------------- |\r\n| Old battery  | 55 Wh         | 9h 28m          |\r\n| New battery  | 61 Wh         | 11h 50m         |\r\n\r\nFor each test the computer was completely idle. It was just sitting at an empty desktop. The screen was on, Wi-Fi was on, and keyboard back-light off.\r\n\r\nThese results are far better than expected!\r\n\r\nPreviously, I thought my battery was failing because when I upgraded my Framework from the Intel 1280P mainboard to the AMD HX 370, I was pretty disappointed with battery life. After the upgrade, I was only getting 1\u20134 hours, and there was one time when the laptop died after just 1\u20132 hours while merely displaying PDFs and basic web pages full of text.\r\n",
+      "created_at": "2025-08-29T15:57:48Z"
+    },
+    {
+      "title": "Adding an emoji picker",
+      "url": "https://github.com/ublue-os/bluefin/discussions/3105",
+      "category": "Discussions",
+      "upvotes": 3,
+      "answered": false,
+      "answer_body": "",
+      "body": "### Proposal: Add a dedicated emoji picker to improve UX\r\n\r\nI use emojis a lot, both when writing messages (Slack, chat apps, etc.) and when developing websites. Right now on Bluefin, the way GNOME handles emojis through the **Characters** app feels pretty lackluster and inconvenient.  \r\n\r\nI think it would add some nice polish to the overall UX\u2014especially for users new to Linux\u2014if Bluefin shipped with a **dedicated emoji picker**, bound to a shortcut like `Super + .` (matching Windows/KDE Plasma)\r\n\r\nTwo good options that are already **Flatpak-first** and integrate well with GNOME are:  \r\n- [**Smile**](https://mijorus.it/projects/smile/)  \r\n- [**Emote**](https://github.com/tom-james-watson/Emote)  \r\n\r\nBoth are lightweight, work seamlessly with GTK apps, and would provide a more intuitive experience than Characters.\r\n\r\nI realize this would add another default app, but I think the usability benefits outweigh the cost. Having a consistent emoji shortcut would make Bluefin feel more polished and welcoming, especially for new users migrating from other platforms.\r\n\r\n**Open question:** Would the team be open to including one of these tools by default, or do you see a different approach to solving emoji input UX on Bluefin?\r\n",
+      "created_at": "2025-08-30T01:09:14Z"
+    },
+    {
+      "title": "How to follow announcements?",
+      "url": "https://github.com/ublue-os/bluefin/discussions/3046",
+      "category": "Discussions",
+      "upvotes": 3,
+      "answered": false,
+      "answer_body": "",
+      "body": "How do I make sure I don't miss important announcements regarding Bluefin? I mean news about new releases, channels/tags being rearranged or deprecated, incidents that require manual action on my part.\n\nI'm a big fan of Bluefin but don't diligently follow the discussions on GitHub. On Discourse I could subscribe to the \"announcements\" tag and that would result in an email for any new post with that tag. What is recommended now that Bluefin discussions have moved to GitHub?",
+      "created_at": "2025-08-23T08:38:15Z"
+    },
+    {
+      "title": "Passing usb through to a distrobox",
+      "url": "https://github.com/ublue-os/bluefin/discussions/2832",
+      "category": "Dosu Help Section",
+      "upvotes": 2,
+      "answered": false,
+      "answer_body": "",
+      "body": "Is it possible to pass a usb device through to a distrobox (for e.g. programming an FPGA), or should I use a VM or even a separate machine. \nPlease give configuration examples for any solution.",
+      "created_at": "2025-07-24T11:34:44Z"
+    },
+    {
+      "title": "Some links in https://docs.projectbluefin.io/downloads/ are unavaillable",
+      "url": "https://github.com/ublue-os/bluefin/discussions/4262",
+      "category": "Discussions",
+      "upvotes": 2,
+      "answered": false,
+      "answer_body": "",
+      "body": "Hello, just to let you know that some the links on the page \u201chttps://docs.projectbluefin.io/downloads/\u201d are inaccessible. For example:\r\nhttps://download.projectbluefin.io/bluefin-stable-x86_64.iso.torrent and https://projectbluefin.dev/bluefin-stable.iso\r\n\r\nI have this error:\r\n\r\n> Error 404\r\n> Object not found\r\n> \r\n> This object does not exist or is not publicly accessible at this URL. Check the URL of the object that you're looking for or contact the owner to enable Public access.\r\n> \r\n> Is this your bucket?\r\n> \r\n> Learn how to enable [Public Access](https://developers.cloudflare.com/r2/data-access/public-buckets/)\r\n",
+      "created_at": "2026-03-07T11:17:50Z"
+    },
+    {
+      "title": "Bluefin-dx remove vscode",
+      "url": "https://github.com/ublue-os/bluefin/discussions/3847",
+      "category": "Discussions",
+      "upvotes": 2,
+      "answered": false,
+      "answer_body": "",
+      "body": "I'm still newish to Bluefin, but am trying out things to see if my dev team can make use of it. However I do not want to change the way we do everything _just yet_ and go all in on devcontainers. What I think I'd prefer doing is installing VSCode inside a distrobox which has all the sdks and everything installed. We still then get the solid Bluefin host, but can mess around inside the container and export vscode. \r\n\r\nInstead of VSCode layered on the host. Is it possible to remove the VSCode that comes with dx?",
+      "created_at": "2025-12-14T20:34:51Z"
+    },
+    {
+      "title": "Disaster recovery Drill with Bluefin",
+      "url": "https://github.com/ublue-os/bluefin/discussions/4210",
+      "category": "Discussions",
+      "upvotes": 2,
+      "answered": false,
+      "answer_body": "",
+      "body": "Today I ran a full disaster recovery drill to see whether I could restore my laptop from backups without access to the original machine.\r\n\r\nI'm impressed by how well it went.\r\n\r\nIt took me ~60-90 min to recover in a VM. In that time I was able to re-install Bluefin, enable dev mode, restore my home directory with Pika Backup, reinstall all my applications (via `brew bundle --file ~/.Brewfile`), and layer 1Password.\r\n\r\nAt that point, I was productive again. I could open my work projects, build the dev containers, and run the software.\r\n\r\nBeyond that I found some minor gotchas\r\n\r\n- In gnome, all my previous extensions were installed, but I needed to re-enable them by clicking the toggle. (I use the Caffeine extension, and Copyous extension).\r\n- Most apps worked flawlessly. But I needed to restart 1password using a peculiar procedure in order to get the main GUI to appear.\r\n- Machine-specific items (Tailscale login, Bluetooth pairing) naturally required reconfiguration.\r\n\r\nNone of these blocked productivity.\r\n\r\nMy advice to other Bluefin users is to: \r\n- dump your `.Brewfile` automatically. I wrote a tiny systemd service + timer that runs `brew bundle dump --global --force --describe` everyday at 1AM. This updates my `~/.Brewfile` so I can recover my applications quickly.\r\n- backup automatically :smile:. I use Deja Dup for cloud backups and Pika Backup for local backups. I highly recommend either or both.\r\n\r\n**Conclusion**\r\nBluefin is something special. I\u2019ve been using Bluefin since March 2025, and this drill helped me assess my backup and recovery story.\r\n\r\n- The procedure was pretty easy.\r\n- The replacement system felt \u201clived in\u201d immediately. \r\n- Every time I opened any applications, it picked up right where I left off.\r\n- All my files were exactly where they were supposed to be (including dotfiles)\r\n- all my systemd user services came back automatically.\r\n\r\nReally impressive experience overall. \ud83d\udc4d\r\n\r\nSo if you're using Bluefin, you can probably get by with a backup o...",
+      "created_at": "2026-02-19T06:52:28Z"
+    },
+    {
+      "title": "Devpod gone from Bluefin LTS ARM64 (developer mode enabled)",
+      "url": "https://github.com/ublue-os/bluefin/discussions/4082",
+      "category": "Dosu Help Section",
+      "upvotes": 2,
+      "answered": false,
+      "answer_body": "",
+      "body": "Hello! I just tried to install the latest bluefin-lts-arm64 and enabling developer mode (dx) all well, BUT it seems that DevPod is not installed nor can i find it in the flatpaks any longer. Anyone else have ran into this issue, makes me wonder if there are other developer apps that didn't get installed. I tried rebooting several times, i see Podman installed for example? Thanks in advance!",
+      "created_at": "2026-01-20T13:41:26Z"
+    },
+    {
+      "title": "A week without updates, is this normal?",
+      "url": "https://github.com/ublue-os/bluefin/discussions/4182",
+      "category": "Discussions",
+      "upvotes": 2,
+      "answered": false,
+      "answer_body": "",
+      "body": "Hi,\r\n\r\nMy system has not received any update in the last week:\r\n\r\n```\r\n\u25cf ostree-image-signed:docker://ghcr.io/ublue-os/bluefin-dx:latest\r\n                   Digest: sha256:35226c1592c7d30d5504604e619cb26b72546df5b4e12096b963e4b46ab9abbb\r\n                  Version: latest-43.20260203.1 (2026-02-03T21:01:12Z)\r\n```\r\n\r\nIs this expected?",
+      "created_at": "2026-02-10T16:15:46Z"
+    },
+    {
+      "title": "How minimal is your Bluefin install?",
+      "url": "https://github.com/ublue-os/bluefin/discussions/4155",
+      "category": "Discussions",
+      "upvotes": 2,
+      "answered": false,
+      "answer_body": "",
+      "body": "Mine with only 20 flatpacks installed.\r\n\r\n<img width=\"1186\" height=\"1146\" alt=\"image\" src=\"https://github.com/user-attachments/assets/e1f4b6d4-eaaa-4005-afec-c25f39a6eaee\" />\r\n\r\nThank you so much, team, for creating this very stable Linux desktop.\r\n\r\nSome wish list items I would like to see in the future updates:\r\n\r\n- Replace htop with **btop**\r\n- **Celluloid** as default video player\r\n",
+      "created_at": "2026-02-03T08:41:05Z"
+    },
+    {
+      "title": "Why have both GNOME Tweaks and Refine installed?",
+      "url": "https://github.com/ublue-os/bluefin/discussions/4169",
+      "category": "Discussions",
+      "upvotes": 2,
+      "answered": false,
+      "answer_body": "",
+      "body": "Hi, I was wondering why both GNOME Tweaks and Refine are installed when they seem to perform similar functions. Also, GNOME Tweaks is installed in the base image, which I don't think is optimal. It seems like bazzite uses Tuner directly, maybe that could be an option also. \u00bfDoes GNOME Tweaks offer some functionality that Refine lacks?\r\n",
+      "created_at": "2026-02-05T20:56:24Z"
+    },
+    {
+      "title": "GNOME shell crashes when Bluetooth headset connects while Zoom Flatpak is running (Bluefin DX Stable 43.20260127)",
+      "url": "https://github.com/ublue-os/bluefin/discussions/4128",
+      "category": "Discussions",
+      "upvotes": 2,
+      "answered": false,
+      "answer_body": "",
+      "body": "This morning I tried to join a Zoom call with my Bluetooth headset connected, GNOME Shell crashed and took me back to the GDM login. After trying this several times with the same outcome, I tried joining the call without my Bluetooth headset. I was able to join the call and the speakers and microphone were working correctly. I turned on my Bluetooth headset and as soon as it connected to the system the Shell crashed as I was back to GDM.\r\n\r\nI rebooted the system and went back to the previous build (43.20260120) and was able to join the Zoom call with my headset without issue. So this appears to be a regression in 43.20260127.\r\n\r\nAfter my call I dug a little further whilst running the 43.20260127 build, I started monitoring the logs with:\r\n\r\n```\r\njournalctl -f | tee ~/zoom-crash-$(date +%Y%m%d-%H%M).log\r\n```\r\n\r\nand then started up Zoom, and connected my Bluetooth headset. As soon as Zoom switched over audio my system crashed and I was back at the GDM login prompt. After logging back in I looked through the logs and found the following:\r\n\r\n```\r\nJan 28 11:04:42 totec bluetoothd[1864]: /org/bluez/hci0/dev_C0_86_B3_F8_0E_D6/sep1/fd0: fd(30) ready\r\nJan 28 11:04:42 totec kernel: input: OpenComm2 by Shokz (AVRCP) as /devices/virtual/input/input40\r\nJan 28 11:04:42 totec gsd-media-keys[20328]: **\r\nJan 28 11:04:42 totec gsd-media-keys[20328]: Gvc:ERROR:../subprojects/gvc/gvc-mixer-stream.c:535:gvc_mixer_stream_get_port: code should not be reached\r\nJan 28 11:04:42 totec audit[20328]: ANOM_ABEND auid=1000 uid=1000 gid=1000 ses=6 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 pid=20328 comm=\"gsd-media-keys\" exe=\"/usr/libexec/gsd-media-keys\" sig=6 res=1\r\nJan 28 11:04:42 totec audit[20071]: ANOM_ABEND auid=1000 uid=1000 gid=1000 ses=6 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 pid=20071 comm=\"gnome-shell\" exe=\"/usr/bin/gnome-shell\" sig=6 res=1\r\nJan 28 11:04:42 totec gnome-shell[20071]: **\r\nJan 28 11:04:42 totec gnome-shell[20071]: Gvc:ERROR:../subproject...",
+      "created_at": "2026-01-28T18:34:10Z"
+    },
+    {
+      "title": "Difficulties Due to Invisible System Changes",
+      "url": "https://github.com/ublue-os/bluefin/discussions/4118",
+      "category": "Discussions",
+      "upvotes": 2,
+      "answered": false,
+      "answer_body": "",
+      "body": "I need to get this off my chest.\r\n\r\nI\u2019m a huge fan of Universal Blue and generally very happy with it. But what really frustrates me is how hard it can be to understand what\u2019s happening under the hood. For example, Atuin recently stopped working, simply because an entry in my .bashrc had vanished.\r\n\r\nSo here\u2019s the problem: Did the devs clean up the .bashrc? Why was it removed?\r\n\r\nFiguring this out is a nightmare. The only way is to actively dig into what changes the OS is making \u2013 I literally have to search for it myself.\r\n\r\nAnd it was just as annoying with the ujust cleanup. I get why it exists, but if I wasn\u2019t paying close attention, I would have completely missed the changes and ended up thinking: \u201cWait, what happened? Where did this go?\u201d\r\n\r\nI would really, really appreciate a simple system update history. It doesn\u2019t need to track everything, just the changes that affect important configurations. Even a small popup like \u201cujust cleaned up, entries moved\u201d would be enough.\r\n\r\nIt would make it so much easier to figure out whether the problem is on my end or if the system has simply changed.",
+      "created_at": "2026-01-26T09:56:19Z"
+    },
+    {
+      "title": "I still don't understand how auto update is expected to work in real life",
+      "url": "https://github.com/ublue-os/bluefin/discussions/3715",
+      "category": "Discussions",
+      "upvotes": 2,
+      "answered": false,
+      "answer_body": "",
+      "body": "By now, it's probably clear that I represent those users that only hibernate laptops.. have done so since 2010 probably.\r\nI know I have to reboot once in a while, so I did, to trigger auto update. 30min later I rebooted again. I am trying to represent a normal user, for whom the update process is completely hidden and unattended. So I don't run `ujust update`. \r\n\r\nThat also means I have no clue when to reboot again, when the new version is downloaded etc. I just waited 30min (I am on a 100mbit fiber connection). \r\n\r\nBut I see I am still on stable 42:\r\n\r\n```\r\nState: idle\r\nAutomaticUpdates: stage; rpm-ostreed-automatic.timer: inactive\r\nDeployments:\r\n\u25cf ostree-image-signed:docker://ghcr.io/ublue-os/bluefin:stable\r\n                   Digest: sha256:280dfacb4f85353bf74c038c32f54b6ee49d66195231681381689be44dd1ec85\r\n                  Version: 42.20251111 (2025-11-11T01:39:12Z)\r\n \r\n  ostree-image-signed:docker://ghcr.io/ublue-os/bluefin:gts\r\n                   Digest: sha256:2158efa01f595ebbe4813ab4928f35658bfb5d26f9c46d447979bbe53ecc6414\r\n                  Version: gts-42.20251029.1 (2025-10-29T04:36:09Z)\r\n```\r\n\r\n(I went from gts to stable via `ujust rebase-helper`)\r\n\r\nSo, does auto-update still work with a fixed timer, meaning I just need to be lucky to be active behind my laptop when it triggers?\r\nOr should I simply wait longer than 30min (which is totally fine... the real issue is I am not informed by the system and therefore clueless).",
+      "created_at": "2025-11-25T17:21:31Z"
+    },
+    {
+      "title": "Cannot uninstall GUI apps without internet",
+      "url": "https://github.com/ublue-os/bluefin/discussions/4102",
+      "category": "Discussions",
+      "upvotes": 2,
+      "answered": false,
+      "answer_body": "",
+      "body": "I can't uninstall any app without internet. Bazaar opens but the Installed list is empty.. not sure if this a Bazaar bug or Bluefin related. Surely no internet should be required to simply uninstall an app?",
+      "created_at": "2026-01-24T16:18:39Z"
+    },
+    {
+      "title": "Got my local Libvirt/ansible automation working on Bluefin!",
+      "url": "https://github.com/ublue-os/bluefin/discussions/4092",
+      "category": "Discussions",
+      "upvotes": 2,
+      "answered": false,
+      "answer_body": "",
+      "body": "Made a guide for anyone interested: [guide](https://www.davidwrites.xyz/articles/build-an-ansible-lab-with-ansible/) ",
+      "created_at": "2026-01-22T17:23:01Z"
+    },
+    {
+      "title": "Audio group configuration issue",
+      "url": "https://github.com/ublue-os/bluefin/discussions/4041",
+      "category": "Dosu Help Section",
+      "upvotes": 2,
+      "answered": false,
+      "answer_body": "",
+      "body": "Hello everybody,\r\nI am trying to configure my system for use with a DAW like REAPER and to use windows plugins with wine and yabridge.\r\nI managed to configure the plugins but I am having issues with the configuration of user limits, specifically the following:\r\n\r\nhttps://wiki.linuxaudio.org/wiki/system_configuration#audio_group\r\nhttps://wiki.linuxaudio.org/wiki/system_configuration#limitsconfaudioconf\r\n\r\nI added myself to the audio group, logged out and logged but my user is still not added. When I run `groups` I get the following:\r\n`edoardo wheel`\r\n\r\nThanks",
+      "created_at": "2026-01-12T18:08:24Z"
+    },
+    {
+      "title": "Bluefin's future, from Silverblue to GNOME OS?",
+      "url": "https://github.com/ublue-os/bluefin/discussions/4066",
+      "category": "Discussions",
+      "upvotes": 2,
+      "answered": false,
+      "answer_body": "",
+      "body": "I've seen Jorge Castro talking about the project of moving Bluefin's base to GNOME OS in an interview. Since I'm not a technical Linux user, I may have misunderstood what he said and its implications. Which is why I'm starting this discussion. \r\n\r\n1. Will Bluefin move away from its Silverblue base?\r\n2. If that's the case what does it mean for SE Linux and other Fedora security implementations?\r\n3. What does it mean for RPM software (mainly browsers or VPN) that can currently be easlily layered?\r\n4. How will current Bluefin's users be impacted by that change?\r\n\r\nThanks a lot in advance for the clarifications. I will soon be a new user of Bluefin. What really made this distro stand out from all the others for me is its solid Silverblue base in terms of security and the fact you optimized its usability for newcomers and people who just want a system that works with auto updates and without any hassle. The ability to layer RPM browsers and VPN is also a great plus.\r\n",
+      "created_at": "2026-01-17T09:49:27Z"
+    },
+    {
+      "title": "Why does Bluefin use homebrew?",
+      "url": "https://github.com/ublue-os/bluefin/discussions/2249",
+      "category": "Dosu Help Section",
+      "upvotes": 2,
+      "answered": false,
+      "answer_body": "",
+      "body": "I don't understand the reasoning. ",
+      "created_at": "2025-03-15T05:35:54Z"
+    },
+    {
+      "title": "How can I convert a simple nginx docker-compose to systemd quadlet on bluefin-dx?",
+      "url": "https://github.com/ublue-os/bluefin/discussions/2264",
+      "category": "Dosu Help Section",
+      "upvotes": 2,
+      "answered": false,
+      "answer_body": "",
+      "body": "@dosu I've read that systemd-quadlets are natively supported on linux systems with podman. How can I convert the following docker-compose to a quadlet? \r\n\r\n```yaml\r\nservices:\r\n  nginx:\r\n    image: docker.io/nginx:latest\r\n    ports:\r\n      - 8080:80\r\n    volumes:\r\n      - nginx-static-site:/usr/share/nginx/html\r\n```",
+      "created_at": "2025-03-17T03:14:11Z"
+    },
+    {
+      "title": "How do I delete my broken thumbnail files?",
+      "url": "https://github.com/ublue-os/bluefin/discussions/2259",
+      "category": "Dosu Help Section",
+      "upvotes": 2,
+      "answered": false,
+      "answer_body": "",
+      "body": "I would like to regenerate all my thumbnails. ",
+      "created_at": "2025-03-16T04:49:04Z"
+    },
+    {
+      "title": "How often does Bluefin release?",
+      "url": "https://github.com/ublue-os/bluefin/discussions/2709",
+      "category": "Dosu Help Section",
+      "upvotes": 2,
+      "answered": false,
+      "answer_body": "",
+      "body": "And how often does Bluefin LTS release?",
+      "created_at": "2025-06-28T13:44:36Z"
+    },
+    {
+      "title": "Pinned runtime is EOL",
+      "url": "https://github.com/ublue-os/bluefin/discussions/2322",
+      "category": "Dosu Help Section",
+      "upvotes": 2,
+      "answered": false,
+      "answer_body": "",
+      "body": "When I manually run `just update`, the command updates my installed flatpaks (as it should) but\r\nthrows the following warning:\r\n```\r\nInfo: (pinned) runtime org.gnome.Platform branch 45 is end-of-life, with reason:\r\n   The GNOME 45 runtime is no longer supported as of September 18, 2024. Please ask your application developer to migrate to a supported platform.\r\n```\r\n\r\nI don't remember manually pinning the runtime and no installed application depends on this runtime.\r\n\r\nMy question: Is this runtime pinned in \"vanilla bluefin\" and do I break something if I manually unpin it? If this is the default behaviour: Shouldn't an update unpin it after it isn't needed anymore? I also haven't rebased the OS yet because I only installed it after Christmas 2024 with the current version.",
+      "created_at": "2025-04-08T22:59:29Z"
+    },
+    {
+      "title": "How do I run Bluefin on an external drive?",
+      "url": "https://github.com/ublue-os/bluefin/discussions/2271",
+      "category": "Dosu Help Section",
+      "upvotes": 2,
+      "answered": true,
+      "answer_body": "<!-- Answer -->\nTo run Bluefin on an external drive, you can follow the specific guide provided in the Bluefin documentation. This guide details how to install Bluefin on an external drive, allowing you to create a portable installation. It's recommended to select full disk encryption during the installation process for security. You can find the detailed instructions in the \"Bluefin to Go: Using an external drive\" section of the documentation at [https://docs.projectbluefin.io/tips](https://docs.projectbluefin.io/tips).\n\n\n<!-- Dosu Comment Footer -->\n*To continue talking to [Dosu](https://dosu.dev), mention @dosu.*\n\n---\n<sup>Help Dosu learn! Give it feedback: [Great Response](https://app.dosu.dev/response-feedback/ec0b7572-a2be-450f-abc8-1617e51b2536?feedback_type=great_response) | [Irrelevant Answer](https://app.dosu.dev/response-feedback/ec0b7572-a2be-450f-abc8-1617e51b2536?feedback_type=irrelevant_answer) | [Incorrect Sources](https://app.dosu.dev/response-feedback/ec0b7572-a2be-450f-abc8-1617e51b2536?feedback_type=incorrect_sources) | [Too Verbose](https://app.dosu.dev/response-feedback/ec0b7572-a2be-450f-abc8-1617e51b2536?feedback_type=too_verbose) | [Hallucination](https://app.dosu.dev/response-feedback/ec0b7572-a2be-450f-abc8-1617e51b2536?feedback_type=hallucination) | [Bug Report](https://app.dosu.dev/response-feedback/ec0b7572-a2be-450f-abc8-1617e51b2536?feedback_type=bug_report) | [Other](https://app.dosu.dev/response-feedback/ec0b7572-a2be-450f-abc8-1617e51b2536?feedback_type=other)</sup>\n",
+      "body": "I run Windows on my computer however I want to give Bluefin a try before committing it to my main storage.  How would I do this?",
+      "created_at": "2025-03-19T18:45:05Z"
+    },
+    {
+      "title": "New uvextras tool ... and new location for discourse articles",
+      "url": "https://github.com/ublue-os/bluefin/discussions/2890",
+      "category": "Discussions",
+      "upvotes": 2,
+      "answered": false,
+      "answer_body": "",
+      "body": "Well, I finally bit the bullet and carved out some time to begin to adopt `uv` and `ruff`.\r\n\r\nBut uv is missing a couple of features (that I have encountered so far) and so I wrote a `uv tool` to implement them myself.\r\n\r\nYou can try it yourself by just installing the tool directly from github. No clone step needed.\r\n\r\n_See the [uvextras](https://github.com/klmcwhirter/uvextras) repo for details._\r\n\r\n\r\nAlso, I have copied the articles I published on discourse to https://github.com/klmcwhirter/stuff/wiki for those who might be interested.\r\n\r\n_Note I still need to do some fix ups on the links, etc. But the content should be there._\r\n\r\nEnjoy!",
+      "created_at": "2025-07-31T15:06:01Z"
+    },
+    {
+      "title": "Why does my bluefin server queries all available dns servers for its own hostname every 30 seconds?",
+      "url": "https://github.com/ublue-os/bluefin/discussions/2931",
+      "category": "Dosu Help Section",
+      "upvotes": 2,
+      "answered": false,
+      "answer_body": "",
+      "body": "Every 30 seconds, my Bluefin  server queries all available dns servers for its own hostname, \"bluefin\". The number of queries all sent at once varies (usually 1 to 8 queries per server), but the repetition is roughly every 30 seconds. The response is always NXDOMAIN (unless I add a redirect ; see below).\r\n\r\nOn my Bluefin server, I have an AdGuard Home dns server running in Docker with an upstream Unbound server, also in Docker. I also have an AdGuard Home dns server running running as an add-on in Home Assistant on a separate machine. Both accept queries from LAN and over Tailscale.\r\n\r\nThe queries continue :\r\n-  if I change the upstream server from Unbound to 1.1.1.1\r\n- if I stop AdGuard Home on my Bluefin server (the queries keep coming to  AdGuard Home  in Home Assistant)\r\n- if I stop all docker containers on my Bluefin server\r\n- if I disable Tailscale\r\n- if I add the IP of bluefin to /etc/hosts\r\n- if I add a redirect to the IP of bluefin in one or both AdGuard servers\r\n- if I disable avahi-daemon\r\n\r\nI can live with those queries, but I have gone down tis rabbit hole and now I *really* want to know where they come from, what their purpose is, if they are the symptom of an actual issue, etc. \r\n\r\nAnd it would be nice if they were not flooding my AdGuard Home servers, of course!\r\n",
+      "created_at": "2025-08-05T01:14:48Z"
+    },
+    {
+      "title": "Frequent hangs, where are kernel panic logs?",
+      "url": "https://github.com/ublue-os/bluefin/discussions/2951",
+      "category": "Discussions",
+      "upvotes": 2,
+      "answered": false,
+      "answer_body": "",
+      "body": "I've got a new framework 12 laptop, unfortunately it's freezing every couple of days, I'd like to find crash logs, but I can't find anything using journalctl. How can I get kernel panic logs, or at least have them flash on-screen?",
+      "created_at": "2025-08-07T16:39:33Z"
+    },
+    {
+      "title": "Remount Root and Kernel File Systems",
+      "url": "https://github.com/ublue-os/bluefin/discussions/2991",
+      "category": "Discussions",
+      "upvotes": 2,
+      "answered": false,
+      "answer_body": "",
+      "body": "<h3>Question:</h3>\r\n<p>Is <code>systemd-remount-fs.service</code> needed in an immutable/overlay root setup (like Bluefin), or should it be masked/disabled to avoid the error?</p>\r\n\r\n<h3>Title:</h3>\r\n<p><code>systemd-remount-fs.service</code> fails on boot \u2014 <code>overlay: No changes allowed in reconfigure</code></p>\r\n\r\n<h3>Description:</h3>\r\n<p>On every boot, Cockpit reports a failure for the service <code>systemd-remount-fs.service</code> (Remount Root and Kernel File Systems).</p>\r\n\r\n<h3>Service details:</h3>\r\n<ul>\r\n  <li><strong>Unit:</strong> <code>/usr/lib/systemd/system/systemd-remount-fs.service</code></li>\r\n  <li><strong>Status:</strong> Static \u2014 Required by <code>local-fs.target</code></li>\r\n  <li><strong>Result:</strong> Failed with exit code <code>status=1/FAILURE</code></li>\r\n  <li><strong>Impact:</strong> The system continues to boot and run normally, but Cockpit flags the service as failed.</li>\r\n</ul>\r\n\r\n<h3>Logs:</h3>\r\n<pre>\r\nsystemd-remount-fs.service: Main process exited, code=exited, status=1/FAILURE\r\n/usr/bin/mount for / exited with exit status 32.\r\nmount: /: fsconfig system call failed: overlay: No changes allowed in reconfigure.\r\ndmesg(1) may have more information after failed mount system call.\r\n</pre>\r\n\r\n\r\n<h3>Notes:</h3>\r\n<p>This appears to happen because <code>systemd-remount-fs.service</code> tries to remount <code>/</code> with new options, but on an <code>overlayfs</code> root the kernel refuses with <code>overlay: No changes allowed in reconfigure</code>. The failure is cosmetic but triggers a persistent error in Cockpit.</p>\r\n\r\n<h3>Additional System Info:</h3>\r\n<pre>\r\nsudo bootc status\r\n\u25cf Booted image: ghcr.io/ublue-os/bluefin-dx:stable\r\n        Digest: sha256:a61a5f6bfb672088d1603a233945eb27563be4af5bc34a73547f6b1dc6ea639c (amd64)\r\n       Version: 42.20250810.1 (2025-08-10T06:05:54Z)\r\n\r\n  Rollback image: ghcr.io/ublue-os/bluefin-dx:latest\r\n          Digest: sha256:276dd3fbe9d66d2185029ccbb311b901812ae78d506923cfdd341acf7995b641 (amd6...",
+      "created_at": "2025-08-14T01:40:03Z"
+    },
+    {
+      "title": "\"Questions and Feedback\" link still points to UBlue Discourse",
+      "url": "https://github.com/ublue-os/bluefin/discussions/2998",
+      "category": "Discussions",
+      "upvotes": 2,
+      "answered": false,
+      "answer_body": "",
+      "body": "While finding the right place to bring up [this topic that would become a Discussion](https://github.com/ublue-os/bluefin/discussions/2997), I first started to create a new issue. The \"Questions and Feedback\" link at the bottom of the New Issue prompt still points to the Universal Blue Discourse forum, which is now read-only.",
+      "created_at": "2025-08-15T02:49:49Z"
+    },
+    {
+      "title": "A moment of glee wrt ramalama",
+      "url": "https://github.com/ublue-os/bluefin/discussions/3020",
+      "category": "Discussions",
+      "upvotes": 2,
+      "answered": false,
+      "answer_body": "",
+      "body": "I just realized you could enrich the context of an AI question by feeding it to stdin in the pipeline using ramalama as follows.\r\n\r\nIf you would like rl to analyze a source code file you can feed into its stdin as follows.\r\n\r\n\r\n```\r\ncat my_incredibly_insightful_file.txt | rl run my_myllm -\r\n```\r\nor\r\n\r\n```\r\ncat ./src/file_to_analyze.py | rl run my_llm \"describe what this does\"\r\n```\r\n\r\nEnjoy!",
+      "created_at": "2025-08-18T10:08:36Z"
+    },
+    {
+      "title": "Add Librepods to bluefin",
+      "url": "https://github.com/ublue-os/bluefin/discussions/3066",
+      "category": "Discussions",
+      "upvotes": 2,
+      "answered": false,
+      "answer_body": "",
+      "body": "What do you think of the idea to add librepods to bluefin.\r\nhttps://github.com/kavishdevar/librepods/tree/main/linux\r\n\r\nIt would be nice to have this available as a ujust setup. As far as i understand you have to add an env variable with an individual MAC address.\r\n\r\nSo it could be like:\r\n1. `ujust librepods`\r\n2. input MAC address\r\n3. Boom, you've unlocked some great AirPods 2 features",
+      "created_at": "2025-08-25T08:12:23Z"
+    },
+    {
+      "title": "Joining LFX Insights",
+      "url": "https://github.com/ublue-os/bluefin/discussions/2960",
+      "category": "Discussions",
+      "upvotes": 2,
+      "answered": false,
+      "answer_body": "",
+      "body": "https://docs.projectbluefin.io/blog/2025/08/08/bluefin-on-lfx/",
+      "created_at": "2025-08-08T14:33:35Z"
+    },
+    {
+      "title": "Distroshelf/Distrobox does not create container with custom home",
+      "url": "https://github.com/ublue-os/bluefin/discussions/3102",
+      "category": "Discussions",
+      "upvotes": 2,
+      "answered": false,
+      "answer_body": "",
+      "body": "### Describe the bug\n\nTested initially to set a custom home from Distroshelf. Afterwards, tried the following command directly in the terminal.\n```\ndistrobox create --name mega-service --image docker.io/library/debian:stable-backports --home /var/home/victoitor/.distrobox/home/mega-service\n```\nNone of them worked and I just had access to my normal home directory.\n\n### What did you expect to happen?\n\nThe custom provided home directory should have been used.\n\n### Output of `bootc status`\n\n```shell\n\u25cf Booted image: ghcr.io/ublue-os/bluefin-dx:gts\n        Digest: sha256:dc5645b2888a56aecca443849a740d588c05005e946744d7770a8df4666bbcf7 (amd64)\n       Version: gts-41.20250824 (2025-08-24T06:02:28Z)\n\n  Rollback image: ghcr.io/ublue-os/bluefin:gts\n          Digest: sha256:94a56971d9cd7dab3aa22a468fe47e212d9dcc7acb206a1e69f04c96518dbb34 (amd64)\n         Version: gts-41.20250706 (2025-07-06T05:58:14Z)\n```\n\n### Output of `groups`\n\n```shell\nvictoitor wheel dialout docker incus-admin libvirt\n```\n\n### Extra information or context\n\n_No response_",
+      "created_at": "2025-08-29T17:40:06Z"
+    },
+    {
+      "title": "The naming scheme for releases is quite unintuitive",
+      "url": "https://github.com/ublue-os/bluefin/discussions/2821",
+      "category": "Discussions",
+      "upvotes": 2,
+      "answered": false,
+      "answer_body": "",
+      "body": "I know it is not thta much of a big deal, as they can be rebased, but the current release naming scheme is pretty confusing.\r\n\r\nBluefin LTS - that's fair enough. LTS is widely understood, I think?\r\nBluefin GTS - this is a nightmare. In Europe at least, GTS badges were placed on cars which were released with \"sports\" trim. The implication is that Bluefin GTS is a souped up version of Bluefin for those who like to show off, drive fast and are not afraid of accidents. This seems to be the opposite of what you're trying to present on the GTS stream?\r\nBluefin (aka Bluefin Stable) - there's too much baggage in the Linux world around the word \"stable\". Debian has the mindshare with that. It implies something which has been in testing for years before release, rather than something which is factory fresh. (I know you present this as `Bluefin` rather than `Bluefin Stable` on the download page but that's not much better as the single word moniker also implies it should be the default.)\r\n\r\nI'd propose:\r\nBluefin LTS - as is\r\nBluefin - to replace Bluefin GTS\r\nBluefin Weekly - to replace Bluefin (Stable)\r\nBluefine Daily - to replace stable-daily\r\n\r\nThoughts?",
+      "created_at": "2025-07-23T09:18:27Z"
+    },
+    {
+      "title": "Turn off typing suggestions feature",
+      "url": "https://github.com/ublue-os/bluefin/discussions/3114",
+      "category": "Discussions",
+      "upvotes": 2,
+      "answered": false,
+      "answer_body": "",
+      "body": "<img width=\"384\" height=\"468\" alt=\"Screenshot From 2025-08-31 13-07-10\" src=\"https://github.com/user-attachments/assets/783c6317-53b0-49b6-aba4-b5e5b3171f3b\" />\r\nThis feature keeps turning itself on how do I disable it",
+      "created_at": "2025-08-31T20:14:53Z"
+    },
+    {
+      "title": "Did I do something wrong? (GTS merge)",
+      "url": "https://github.com/ublue-os/bluefin/discussions/4260",
+      "category": "Dosu Help Section",
+      "upvotes": 1,
+      "answered": true,
+      "answer_body": "Still in progress: https://github.com/ublue-os/bluefin/pull/4251",
+      "body": "I saw that GTS was merging into Bluefin on March 1st.\r\nGot the update today and it is still GTS on Fedora 42 and Gnome 48.\r\nWas I supposed to do something to get the merge?",
+      "created_at": "2026-03-04T18:16:30Z"
+    },
+    {
+      "title": "Where in the Bluefin code on Github is the list of RPM packages added to the image?",
+      "url": "https://github.com/ublue-os/bluefin/discussions/4258",
+      "category": "Dosu Help Section",
+      "upvotes": 1,
+      "answered": true,
+      "answer_body": "https://github.com/ublue-os/bluefin/blob/main/build_files/base/04-packages.sh\r\n\r\nThere's a similar list in ublue-os/main that we inherit from",
+      "body": "Where in the Bluefin code on Github is the list of RPM packages added to the image? I'm looking for the file where things like vim and htop have been added.",
+      "created_at": "2026-03-03T00:11:29Z"
+    },
+    {
+      "title": "Error Attempting to Update Bluefin",
+      "url": "https://github.com/ublue-os/bluefin/discussions/4236",
+      "category": "Dosu Help Section",
+      "upvotes": 1,
+      "answered": true,
+      "answer_body": "<!-- Greeting -->\nHi @therealknewman! I'm [Dosu](https://go.dosu.dev/dosubot) and I\u2019m helping the bluefin team.\n\n<!-- Answer -->\nThis is a [known issue](https://github.com/ublue-os/bluefin/issues/4197) caused by a previous signing key rotation fix that modified your `/etc/containers/policy.json` to point to a path that no longer exists. The signing keys have since been relocated.\n\n**To fix it**, restore the correct policy file from the image:\n\n```bash\nsudo cp /usr/etc/containers/policy.json /etc/containers/policy.json\n```\n\nAfter that, run `ujust update` again and you should be good to go.\n\n**Why this happened:** Back in July 2024, a fix script modified your policy.json to point to `/etc/pki/containers/ublue-os.pub`. Later, the keys were moved to `/usr/lib/pki/containers/`, but ostree doesn't auto-merge changes to locally modified files\u2014leaving your system pointing to a non-existent location.\n\nFor more info, see the [Bluefin documentation](https://docs.projectbluefin.io).\n\n\n<!-- Dosu Comment Footer -->\n*To reply, just mention [@dosu](https://go.dosu.dev/dosubot).*\n\n---\n<sup>How did I do? [Good](https://app.dosu.dev/response-feedback/19057b54-588b-42de-be3f-ba864de84f29?feedback_type=great_response) | [Irrelevant](https://app.dosu.dev/response-feedback/19057b54-588b-42de-be3f-ba864de84f29?feedback_type=irrelevant_answer) | [Incorrect](https://app.dosu.dev/response-feedback/19057b54-588b-42de-be3f-ba864de84f29?feedback_type=incorrect_sources) | [Verbose](https://app.dosu.dev/response-feedback/19057b54-588b-42de-be3f-ba864de84f29?feedback_type=too_verbose) | [Hallucination](https://app.dosu.dev/response-feedback/19057b54-588b-42de-be3f-ba864de84f29?feedback_type=hallucination) | [Report \ud83d\udc1b](https://app.dosu.dev/response-feedback/19057b54-588b-42de-be3f-ba864de84f29?feedback_type=bug_report) | [Other](https://app.dosu.dev/response-feedback/19057b54-588b-42de-be3f-ba864de84f29?feedback_type=other)</sup>\n\n[![Chat with Dosu](https://dosu.dev/dosu-chat-badge.svg)](https://app...",
+      "body": "Hi everyone! I've been encountering an error for the past week or so when running the ujust update command - \"error: Preparing import: Fetching manifest: failed to invoke method OpenImage: open /etc/pki/containers/ublue-os.pub: no such file or directory\"\r\n\r\nI'm on bluefin:stable, here is the output of rpm-ostree status: \r\n\r\n\udb80\udc84 3% at 21:43 \u27eb rpm-ostree status\r\nState: idle\r\nAutomaticUpdates: stage; rpm-ostreed-automatic.timer: inactive\r\nDeployments:\r\n\u25cf ostree-image-signed:docker://ghcr.io/ublue-os/bluefin:stable\r\n                   Digest: sha256:e3f6c78f9121b83633460ee7b224ea9d604b336ac5c462c4fcd73a3e9a696d21\r\n                  Version: 43.20260217.1 (2026-02-17T16:18:55Z)\r\n\r\n  ostree-image-signed:docker://ghcr.io/ublue-os/bluefin:stable\r\n                   Digest: sha256:d1cf26114d65026b563b04da04b343905147124aae6acba36a3916a4ae2a80cb\r\n                  Version: 43.20260203 (2026-02-03T01:43:55Z)\r\n\r\nAny idea where I should start troubleshooting this?\r\n\r\nThanks",
+      "created_at": "2026-02-25T02:54:27Z"
+    },
+    {
+      "title": "Revert to dynamic wallpaper",
+      "url": "https://github.com/ublue-os/bluefin/discussions/4216",
+      "category": "Dosu Help Section",
+      "upvotes": 1,
+      "answered": true,
+      "answer_body": "this should do the trick:\r\n\r\n```\r\ngsettings reset org.gnome.desktop.background picture-uri\r\ngsettings reset org.gnome.desktop.background picture-uri-dark\r\n```",
+      "body": "How can I re-enable dynamic wallpaper after selecting a custom wallpaper?",
+      "created_at": "2026-02-20T03:52:28Z"
+    },
+    {
+      "title": "Am I not getting updates? I'm on a 10 days old bluefin-lts build.",
+      "url": "https://github.com/ublue-os/bluefin/discussions/4192",
+      "category": "Dosu Help Section",
+      "upvotes": 1,
+      "answered": true,
+      "answer_body": "Builds have been broken but we got them fixed in the testing branch today, we'll push images out to prod as soon as we finish some testing. ",
+      "body": "Hi, I'm confused, that my build is 10 days old, was expecting weekly builds, is that not correct?\r\n\r\nEspecially since I am affected by a gnome bug, that I thought was fixed upstream a while ago: https://github.com/ublue-os/bluefin-lts/issues/946\r\n\r\nI don't want to stress anyone, I'm just wondering if something is off with my machine.\r\n\r\n```\r\n \u276f sudo bootc status\r\n\u25cf Booted image: ghcr.io/ublue-os/bluefin-dx:lts-hwe\r\n        Digest: sha256:00bfdb366cd835fbd87bc909bd964e145cbfbc3f7572b53ef880e1c03ccf60e2 (amd64)\r\n       Version: stream10.1 (2026-02-03T01:54:08Z)\r\n\r\n  Rollback image: ghcr.io/ublue-os/bluefin-dx:lts-hwe\r\n          Digest: sha256:1279fc3226d3b90d5eae1418d0b244b6a453bebd5622b54f08be7bcad74d6c65 (amd64)\r\n         Version: stream10.1 (2026-01-15T01:39:32Z)\r\n```",
+      "created_at": "2026-02-13T16:20:03Z"
+    },
+    {
+      "title": "dekstop background options",
+      "url": "https://github.com/ublue-os/bluefin/discussions/4137",
+      "category": "Dosu Help Section",
+      "upvotes": 1,
+      "answered": true,
+      "answer_body": "You can use Tweaks to change that setting under Appearance > Background > Adjustment. Tweaks comes pre-installed with Bluefin, IIRC; otherwise, it's an easy Flatpak install.",
+      "body": "Most desktop environments since the 90's give options for the background picture such as fill screen, stretch, original size, etc. Why does Gnome on Bluefin have no options and forces the picture to fill the screen and warp the picture?",
+      "created_at": "2026-01-31T02:07:53Z"
+    },
+    {
+      "title": "High Sleep Battery Drain",
+      "url": "https://github.com/ublue-os/bluefin/discussions/4098",
+      "category": "Dosu Help Section",
+      "upvotes": 1,
+      "answered": true,
+      "answer_body": "https://www.phoronix.com/news/AMDGPU-SI-Power-Management\r\n\r\nhttps://www.phoronix.com/news/AMDGPU-Linux-7.0-More-Fixes\r\n\r\nhttps://www.phoronix.com/news/AMDGPU-Linux-6.19-Regressions",
+      "body": "I have a Framework 16\" laptop with an AMD Ryzen AI 300 Series CPU.  My battery drain during sleep seems high: 1.6%/hour or about 20% \"overnight\" with no applications running. Suspend to ram seems to be disabled and I couldn't find anything in the BIOS to configure this.  Is this a Framework, Fedora, or Bluefin issue?\r\n\r\nI'm struggling to run `amd_s2idle.py` because of the whole immutability thing.  I installed gcc12 manually using brew but then installing `amd-debug-tools` with pipx failed:\r\n\r\n```\r\npipx install amd-debug-tools\r\nFatal error from pip prevented installation. Full pip output in file:\r\n    /var/home/indo/.local/state/pipx/log/cmd_2026-01-23_12.23.13_pip_errors.log\r\n\r\npip failed to build package:\r\n    cysystemd\r\n\r\nSome possibly relevant errors from pip install:\r\n    error: subprocess-exited-with-error\r\n    cysystemd/_daemon.c:1237:10: fatal error: systemd/sd-daemon.h: No such file or directory\r\n    error: command '/home/linuxbrew/.linuxbrew/bin/gcc-12' failed with exit code 1\r\n    error: failed-wheel-build-for-install\r\n\r\nError installing amd-debug-tools.\r\n```\r\n\r\nSystem info:\r\n\r\n```\r\n# System Details Report\r\n---\r\n\r\n## Report details\r\n- **Date generated:**                              2026-01-23 12:36:11\r\n\r\n## Hardware Information:\r\n- **Hardware Model:**                              Framework Laptop 16 _AMD Ryzen AI 300 Series_\r\n- **Memory:**                                      96.0\u00a0GiB\r\n- **Processor:**                                   AMD Ryzen\u2122 AI 9 HX 370 w/ Radeon\u2122 890M \u00d7 24\r\n- **Graphics:**                                    AMD Radeon\u2122 RX 7700S\r\n- **Graphics 1:**                                  AMD Radeon\u2122 890M Graphics\r\n- **Disk Capacity:**                               2.0\u00a0TB\r\n\r\n## Software Information:\r\n- **Firmware Version:**                            03.04\r\n- **OS Name:**                                     Bluefin (Version: 43.20260120)\r\n- **OS Build:**                                    43.20260120\r\n- **OS Type:**                          ...",
+      "created_at": "2026-01-23T20:50:03Z"
+    },
+    {
+      "title": "Custom Root CA Not Trusted by CLI Apps on Bluefin Linux",
+      "url": "https://github.com/ublue-os/bluefin/discussions/4099",
+      "category": "Dosu Help Section",
+      "upvotes": 1,
+      "answered": true,
+      "answer_body": "Figured it out, not sure if this is the best way, but it worked.  Here is what i did:\r\n\r\ncopied cert to /etc/pki/ca-trust/source/anchors/\r\nrun sudo update-ca-trust extract\r\nrun brew reinstall ca-certificates openssl@3\r\n\r\nNow no ssl errors",
+      "body": "I\u2019m trying to get a custom Root CA trusted system-wide on Bluefin, but CLI apps like `curl` and `openssl` won\u2019t validate my internal server, even though browsers work when I manually add the cert.\r\n\r\n1. Placed root CA in `/etc/pki/ca-trust/source/anchors/` and ran `sudo update-ca-trust extract`.\r\n2. Verified root CA is in `/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem`.\r\n3. `openssl verify -CApath /etc/ssl/certs root_ca.pem` \u2192 OK.\r\n4. `curl https://local.url` \u2192 fails with `unable to get local issuer certificate`.\r\n5. Using `curl --cacert /etc/pki/ca-trust/source/anchors/root_ca.pem` works.\r\n6. Checked the server chain with `openssl s_client -connect local.url:443 -showcerts`. Leaf \u2192 Intermediate \u2192 Root.\r\n\r\nBluefin seems stricter than other servers I\u2019ve used \u2014 installing just the root CA doesn\u2019t make CLI apps trust the server.\r\n\r\nWhat\u2019s the recommended way to install a custom root CA on Bluefin so that CLI apps like `curl` and `openssl` trust internal servers? Are there any Bluefin-specific steps I\u2019m missing?\r\n\r\nThanks\r\n\r\n",
+      "created_at": "2026-01-24T01:40:50Z"
+    },
+    {
+      "title": "To get access to developer tools like devpod, should we use `ujust devmode` or rebase to bluefin-dx?",
+      "url": "https://github.com/ublue-os/bluefin/discussions/4045",
+      "category": "Dosu Help Section",
+      "upvotes": 1,
+      "answered": true,
+      "answer_body": "https://flathub.org/en/apps/sh.loft.devpod\r\n\r\nStill available but no longer maintained that's why it was removed",
+      "body": "I have been running bluefin-dx:latest on my laptop for quite a while.  I just got a new laptop and installed bluefin.  When I looked at the [developer mode docs](https://docs.projectbluefin.io/bluefin-dx/), it says to enable it by running `ujust devmode`, however after doing that I don't have devpod available.  Before installing devpod manually, should I rebase to `bluefin-dx` instead?",
+      "created_at": "2026-01-13T20:11:10Z"
+    },
+    {
+      "title": "How to automatically update Brew packages",
+      "url": "https://github.com/ublue-os/bluefin/discussions/2277",
+      "category": "Dosu Help Section",
+      "upvotes": 1,
+      "answered": true,
+      "answer_body": "<!-- Greeting -->\nHey @jamesericdavidson! \ud83d\udc4b I'm here to help you with bugs, questions, and more while you wait for a human maintainer.\n\n<!-- Answer -->\nYes, Bluefin provides a method to automatically update Brew packages through a systemd service. The `brew-update.service` is designed for this purpose. It sets specific environment variables necessary for Homebrew and runs as the user with UID 1000 by default. The service is triggered by a systemd timer, which starts 10 minutes after the system boots and then every 6 hours thereafter <sup>[[1]](https://github.com/ublue-os/bluefin/blob/main/CHANGELOG.md)</sup><sup>[[2]](https://github.com/ublue-os/bluefin/blob/main/system_files/shared/usr/lib/systemd/system/brew-update.service)</sup><sup>[[3]](https://github.com/ublue-os/bluefin/blob/main/system_files/shared/usr/lib/systemd/system/brew-update.timer)</sup>.\n\nFor more details, you can refer to the official documentation at [https://docs.projectbluefin.io](https://docs.projectbluefin.io).\n\n\n<!-- Dosu Comment Footer -->\n*To continue talking to [Dosu](https://dosu.dev), mention @dosu.*\n\n---\n<sup>Help Dosu learn! Give it feedback: [Great Response](https://app.dosu.dev/response-feedback/3e1f8677-6f47-4f6a-9319-1d131b7f2236?feedback_type=great_response) | [Irrelevant Answer](https://app.dosu.dev/response-feedback/3e1f8677-6f47-4f6a-9319-1d131b7f2236?feedback_type=irrelevant_answer) | [Incorrect Sources](https://app.dosu.dev/response-feedback/3e1f8677-6f47-4f6a-9319-1d131b7f2236?feedback_type=incorrect_sources) | [Too Verbose](https://app.dosu.dev/response-feedback/3e1f8677-6f47-4f6a-9319-1d131b7f2236?feedback_type=too_verbose) | [Hallucination](https://app.dosu.dev/response-feedback/3e1f8677-6f47-4f6a-9319-1d131b7f2236?feedback_type=hallucination) | [Bug Report](https://app.dosu.dev/response-feedback/3e1f8677-6f47-4f6a-9319-1d131b7f2236?feedback_type=bug_report) | [Other](https://app.dosu.dev/response-feedback/3e1f8677-6f47-4f6a-9319-1d131b7f2236?feedback_type=other)</sup>\n",
+      "body": "Does Bluefin ship with a method to automatically update Brew packages, e.g. a systemd service?",
+      "created_at": "2025-03-21T06:35:23Z"
+    },
+    {
+      "title": "Is there a bluefin-dx iso ?",
+      "url": "https://github.com/ublue-os/bluefin/discussions/2547",
+      "category": "Dosu Help Section",
+      "upvotes": 1,
+      "answered": true,
+      "answer_body": "No we used to but we're not publishing them anymore, `ujust devmode` will do the trick, https://docs.projectbluefin.io/bluefin-dx\r\n\r\nWe've been working on moving things over to flatpak so it shouldn't be as heavy to do a post-install step. ",
+      "body": "Sorry for the dumb question, I know that mode can be switched with ujust later, thanks!",
+      "created_at": "2025-05-18T18:19:56Z"
+    },
+    {
+      "title": "How do stable images iherit flavors (main, nvidia, nvidia-open)?",
+      "url": "https://github.com/ublue-os/bluefin/discussions/2740",
+      "category": "Dosu Help Section",
+      "upvotes": 1,
+      "answered": true,
+      "answer_body": "<!-- Answer -->\nStable images inherit all flavors (main, nvidia, nvidia-open) because the stable workflow calls the reusable-build.yml workflow, which sets a default for image_flavors as ['main', 'nvidia', 'nvidia-open'] if not explicitly provided. So, unless overridden, all three flavors are always built for stable by default. The explicit declaration in the latest workflow is only needed if you want a different set of flavors; otherwise, it's just repeating the default. The generate-release.yml workflow only handles release tagging and doesn't affect flavor iteration. You can see this default in the reusable-build.yml file [here](https://github.com/ublue-os/bluefin/blob/6c15552141c912b17ea6dcab11d75512a1ac49a4/.github/workflows/reusable-build.yml).\n\nFor more details, check the [official documentation](https://docs.projectbluefin.io).\n\nTip: You can use tldr pages (e.g., `tldr jq`) to quickly learn about CLI tools used in these workflows!\n\n\n<!-- Dosu Comment Footer -->\n*To reply, just mention [@dosu](https://go.dosu.dev/dosubot).*\n\n---\n<sup>How did I do? [Good](https://app.dosu.dev/response-feedback/8252da9a-4dbf-4006-b1fc-d1ff856e58b0?feedback_type=great_response) | [Irrelevant](https://app.dosu.dev/response-feedback/8252da9a-4dbf-4006-b1fc-d1ff856e58b0?feedback_type=irrelevant_answer) | [Incorrect](https://app.dosu.dev/response-feedback/8252da9a-4dbf-4006-b1fc-d1ff856e58b0?feedback_type=incorrect_sources) | [Verbose](https://app.dosu.dev/response-feedback/8252da9a-4dbf-4006-b1fc-d1ff856e58b0?feedback_type=too_verbose) | [Hallucination](https://app.dosu.dev/response-feedback/8252da9a-4dbf-4006-b1fc-d1ff856e58b0?feedback_type=hallucination) | [Report \ud83d\udc1b](https://app.dosu.dev/response-feedback/8252da9a-4dbf-4006-b1fc-d1ff856e58b0?feedback_type=bug_report) | [Other](https://app.dosu.dev/response-feedback/8252da9a-4dbf-4006-b1fc-d1ff856e58b0?feedback_type=other)</sup>&nbsp;&nbsp;[![Join Discord](https://img.shields.io/badge/join-5865F2?logo=discord&logoColor=white&label...",
+      "body": "Hello,\r\n\r\nI am trying to understand the workflows in the project. Both stable and latest streams are almost identical:\r\n\r\n- Latest: https://github.com/ublue-os/bluefin/blob/main/.github/workflows/build-image-latest-main.yml\r\n- Stable: https://github.com/ublue-os/bluefin/blob/main/.github/workflows/build-image-stable.yml\r\n\r\nThe main difference seems to be the `stream_name: stable` vs `stream_name: latest` declarations when invoking `uses: ./.github/workflows/generate-release.yml` which makes sense.\r\n\r\nOne thing I don't understand though, is how stable produces all flavors. In latest there is an explicit declaration in `image_flavors: '[\"main\", \"nvidia\", \"nvidia-open\"]'` which is missing from stable. So how does building stable images iterate over all 3 flavors? Is the list of flavors maybe somewhere else that is common (meaning the declaration in latest is superfluous)? I can't seem to spot spot where that is...\r\n",
+      "created_at": "2025-07-06T16:13:55Z"
+    },
+    {
+      "title": "How do I install btop?",
+      "url": "https://github.com/ublue-os/bluefin/discussions/2248",
+      "category": "Dosu Help Section",
+      "upvotes": 1,
+      "answered": true,
+      "answer_body": "btop is available via\r\n\r\n```\r\nbrew install btop\r\n```\r\n\r\n```\r\n\u276f btop\r\nbash: command not found: btop\r\n\r\n~ \r\n\u276f brew install btop\r\n==> Downloading https://formulae.brew.sh/api/formula.jws.json\r\n==> Downloading https://ghcr.io/v2/homebrew/core/btop/manifests/1.4.4\r\n######################################################################### 100.0%\r\n==> Fetching btop\r\n==> Downloading https://ghcr.io/v2/homebrew/core/btop/blobs/sha256:b3043f3fabe0b\r\n######################################################################### 100.0%\r\n==> Pouring btop--1.4.4.x86_64_linux.bottle.tar.gz\r\n==> Downloading https://formulae.brew.sh/api/cask.jws.json\r\n\ud83c\udf7a  /home/linuxbrew/.linuxbrew/Cellar/btop/1.4.4: 47 files, 1.8MB\r\n==> Running `brew cleanup btop`...\r\nDisable this behaviour by setting HOMEBREW_NO_INSTALL_CLEANUP.\r\nHide these hints with HOMEBREW_NO_ENV_HINTS (see `man brew`).\r\n```\r\n",
+      "body": "I want it.",
+      "created_at": "2025-03-15T05:33:17Z"
+    },
+    {
+      "title": "How do I pin my current image to a specific date?",
+      "url": "https://github.com/ublue-os/bluefin/discussions/2253",
+      "category": "Dosu Help Section",
+      "upvotes": 1,
+      "answered": true,
+      "answer_body": "<!-- Answer -->\nTo pin your current image to a specific date, you can use the following command:\n\n```bash\nsudo bootc switch ghcr.io/ublue-os/bluefin:stable-20241027 --enforce-container-sigpolicy\n```\n\nThis command switches to the image tagged with the specific date `20241027`. If you are using an NVIDIA machine, make sure to include `-nvidia` in the image name:\n\n```bash\nsudo bootc switch ghcr.io/ublue-os/bluefin-nvidia:stable --enforce-container-sigpolicy\n```\n\nAdditionally, you can use the `ublue-rebase-helper` script to assist with rebasing to a specific date. This script allows you to list available tags and choose a specific date to rebase to, providing a user-friendly way to manage image versions <sup>[[1]](https://docs.projectbluefin.io/administration)</sup><sup>[[2]](https://github.com/ublue-os/packages/blob/main/packages/ublue-rebase-helper/src/ublue-rebase-helper)</sup>.\n\nFor more details, you can refer to the official documentation at [https://docs.projectbluefin.io](https://docs.projectbluefin.io).\n\n\n<!-- Dosu Comment Footer -->\n*To continue talking to [Dosu](https://dosu.dev), mention @dosu.*\n\n---\n<sup>Help Dosu learn! Give it feedback: [Great Response](https://app.dosu.dev/response-feedback/1bf4935c-a61c-4b10-98bf-48e4e19dfc5d?feedback_type=great_response) | [Irrelevant Answer](https://app.dosu.dev/response-feedback/1bf4935c-a61c-4b10-98bf-48e4e19dfc5d?feedback_type=irrelevant_answer) | [Incorrect Sources](https://app.dosu.dev/response-feedback/1bf4935c-a61c-4b10-98bf-48e4e19dfc5d?feedback_type=incorrect_sources) | [Too Verbose](https://app.dosu.dev/response-feedback/1bf4935c-a61c-4b10-98bf-48e4e19dfc5d?feedback_type=too_verbose) | [Hallucination](https://app.dosu.dev/response-feedback/1bf4935c-a61c-4b10-98bf-48e4e19dfc5d?feedback_type=hallucination) | [Bug Report](https://app.dosu.dev/response-feedback/1bf4935c-a61c-4b10-98bf-48e4e19dfc5d?feedback_type=bug_report) | [Other](https://app.dosu.dev/response-feedback/1bf4935c-a61c-4b10-98bf-48e4e19dfc5d?feedb...",
+      "body": "I read that I could do that but never tried. How would I do it? @dosu",
+      "created_at": "2025-03-16T04:19:46Z"
+    },
+    {
+      "title": "How do I get the list of runtimes for each flatpak?",
+      "url": "https://github.com/ublue-os/bluefin/discussions/2287",
+      "category": "Dosu Help Section",
+      "upvotes": 1,
+      "answered": true,
+      "answer_body": "<!-- Answer -->\nI wasn't able to find a specific command to list runtimes for each Flatpak application directly. However, you can use the following command to list all installed Flatpak applications along with their associated runtimes:\n\n```bash\nflatpak list --app --columns=application,runtime\n```\n\nThis command will display a list of applications and their corresponding runtimes.\n\nFor more detailed information on Flatpak, you can refer to the official documentation at [Flatpak Documentation](https://docs.flatpak.org/en/latest/index.html).\n\n\n<!-- Dosu Comment Footer -->\n*To continue talking to [Dosu](https://dosu.dev), mention @dosu.*\n\n---\n<sup>Help Dosu learn! Give it feedback: [Great Response](https://app.dosu.dev/response-feedback/028e8326-f411-4daa-a24f-c1ed90e3714a?feedback_type=great_response) | [Irrelevant Answer](https://app.dosu.dev/response-feedback/028e8326-f411-4daa-a24f-c1ed90e3714a?feedback_type=irrelevant_answer) | [Incorrect Sources](https://app.dosu.dev/response-feedback/028e8326-f411-4daa-a24f-c1ed90e3714a?feedback_type=incorrect_sources) | [Too Verbose](https://app.dosu.dev/response-feedback/028e8326-f411-4daa-a24f-c1ed90e3714a?feedback_type=too_verbose) | [Hallucination](https://app.dosu.dev/response-feedback/028e8326-f411-4daa-a24f-c1ed90e3714a?feedback_type=hallucination) | [Bug Report](https://app.dosu.dev/response-feedback/028e8326-f411-4daa-a24f-c1ed90e3714a?feedback_type=bug_report) | [Other](https://app.dosu.dev/response-feedback/028e8326-f411-4daa-a24f-c1ed90e3714a?feedback_type=other)</sup>\n",
+      "body": "I need to find out what applications ship what runtimes. Give me CLI examples. ",
+      "created_at": "2025-03-26T02:07:43Z"
+    },
+    {
+      "title": "How do I swap out wpa-supplicant with iwd?",
+      "url": "https://github.com/ublue-os/bluefin/discussions/2825",
+      "category": "Dosu Help Section",
+      "upvotes": 1,
+      "answered": true,
+      "answer_body": "<!-- Answer -->\nTo switch from wpa-supplicant to iwd on Bluefin, use standard systemd commands: disable the wpa_supplicant service and enable the iwd service. For example:\n\n```sh\nsudo systemctl disable --now wpa_supplicant\nsudo systemctl enable --now iwd\n```\n\nIf you're using NetworkManager, it will automatically use iwd if wpa_supplicant is not running and iwd is available. There are no Bluefin-specific steps or automation for this process\u2014just follow conventional Linux practice. You can confirm iwd is included in Bluefin's package list [here](https://github.com/ublue-os/bluefin/blob/21e50c7fe971deeb39569362772f864dab0263e8/packages.json).\n\nTip: Use `tldr systemctl` for a quick guide on managing services.\n\nFor more on Bluefin, see the [official documentation](https://docs.projectbluefin.io) (note: there are currently no iwd-specific instructions).\n\n\n<!-- Dosu Comment Footer -->\n*To reply, just mention [@dosu](https://go.dosu.dev/dosubot).*\n\n---\n<sup>How did I do? [Good](https://app.dosu.dev/response-feedback/331d3978-b7ef-40e6-81dd-af84d28fd6b2?feedback_type=great_response) | [Irrelevant](https://app.dosu.dev/response-feedback/331d3978-b7ef-40e6-81dd-af84d28fd6b2?feedback_type=irrelevant_answer) | [Incorrect](https://app.dosu.dev/response-feedback/331d3978-b7ef-40e6-81dd-af84d28fd6b2?feedback_type=incorrect_sources) | [Verbose](https://app.dosu.dev/response-feedback/331d3978-b7ef-40e6-81dd-af84d28fd6b2?feedback_type=too_verbose) | [Hallucination](https://app.dosu.dev/response-feedback/331d3978-b7ef-40e6-81dd-af84d28fd6b2?feedback_type=hallucination) | [Report \ud83d\udc1b](https://app.dosu.dev/response-feedback/331d3978-b7ef-40e6-81dd-af84d28fd6b2?feedback_type=bug_report) | [Other](https://app.dosu.dev/response-feedback/331d3978-b7ef-40e6-81dd-af84d28fd6b2?feedback_type=other)</sup>&nbsp;&nbsp;[![Chat with Dosu](https://dosu.dev/dosu-chat-badge.svg)](https://app.dosu.dev/e3630b91-3a35-46b9-a8d3-b0c1b3ef6331/ask?utm_source=github)&nbsp;[![Join Discord](https://img.shields.io/b...",
+      "body": "Now that iwd is included in Bluefin how do I switch to it?",
+      "created_at": "2025-07-24T01:25:23Z"
+    },
+    {
+      "title": "Noticed this repeated tailscale error in journalctl",
+      "url": "https://github.com/ublue-os/bluefin/discussions/2859",
+      "category": "Dosu Help Section",
+      "upvotes": 1,
+      "answered": true,
+      "answer_body": "Disable the tail scale extension then.",
+      "body": "I'm on gts-41.20250727\r\n\r\n```\r\nJul 28 11:37:49 beast gnome-shell[5774]: JS ERROR: TypeError: p.NetworkProfile is undefined\r\n                                         update_profiles@file:///usr/share/gnome-shell/extensions/tailscale@joaophi.github.com/extension.js:267:70\r\n                                         _init/<@file:///usr/share/gnome-shell/extensions/tailscale@joaophi.github.com/extension.js:270:69\r\n                                         _listen@file:///usr/share/gnome-shell/extensions/tailscale@joaophi.github.com/tailscale.js:325:16\r\n                                         async*_init@file:///usr/share/gnome-shell/extensions/tailscale@joaophi.github.com/tailscale.js:128:12\r\n                                         Tailscale@file:///usr/share/gnome-shell/extensions/tailscale@joaophi.github.com/tailscale.js:113:3\r\n                                         enable@file:///usr/share/gnome-shell/extensions/tailscale@joaophi.github.com/extension.js:281:23\r\n                                         _callExtensionEnable@resource:///org/gnome/shell/ui/extensionSystem.js:264:38\r\n                                         loadExtension@resource:///org/gnome/shell/ui/extensionSystem.js:476:32\r\n                                         async*_loadExtensions@resource:///org/gnome/shell/ui/extensionSystem.js:784:24\r\n                                         async*_enableAllExtensions@resource:///org/gnome/shell/ui/extensionSystem.js:790:48\r\n                                         _sessionUpdated@resource:///org/gnome/shell/ui/extensionSystem.js:825:20\r\n                                         async*init@resource:///org/gnome/shell/ui/extensionSystem.js:74:14\r\n                                         _initializeUI@resource:///org/gnome/shell/ui/main.js:301:22\r\n                                         start@resource:///org/gnome/shell/ui/main.js:173:11\r\n                                         @resource:///org/gnome/shell/ui/init.js:12:47\r\n                                    ...",
+      "created_at": "2025-07-28T15:42:39Z"
+    },
+    {
+      "title": "Lutris-GNOME 46 Runtime No Longer Supported",
+      "url": "https://github.com/ublue-os/bluefin/discussions/2920",
+      "category": "Dosu Help Section",
+      "upvotes": 1,
+      "answered": true,
+      "answer_body": "You didn't do anything wrong, it means that Lutris needs to be updated in flathub to use the new GNOME runtime. https://github.com/flathub/net.lutris.Lutris/pull/484",
+      "body": "I ran `ujust install-gaming-flatpaks` last night, which completed successfully. Today I ran the System Update utility and noticed the following message (see below). Did I make an error of some kind?\r\n\r\nSystem Update returned:\r\n```\r\nInfo: runtime org. gnome.Platform branch 46 is end-of-life, with reason:\r\nThe GNOME 46 runtime is no longer supported as of April 17, 2025. Please ask\r\nyour application developer to migrate to a supported platform.\r\nInfo: applications using this runtime:\r\nnet. lutris. Lutris\r\nInfo: runtime org. gnome.Platform. Compat.1386 branch 46 is end-of-life, with reas on:\r\nThe GNOME 46 runtime is no longer supported as of April 17, 2025. Please ask\r\nyour application developer to migrate to a supported platform.\r\nInfo: applications using this extension:\r\nnet.lutris.Lutris\r\n```\r\n\r\nMy bootc status for reference:\r\n```\r\nStaged image: ghcr.io/ublue-os/bluefin-dx:stable\r\n        Digest: sha256:a79a473c3eb9066b4dfa1a09803d4fe5db830d8d8b13eb32bdd7abbf4f708f3d (amd64)\r\n       Version: 42.20250803.2 (2025-08-03T06:07:48Z)\r\n\r\nBooted image: ghcr.io/ublue-os/bluefin-dx:stable\r\n        Digest: sha256:e4e38b82437f201ef3556c675993750f6ab265238199c3fbabe26faab6e24eff (amd64)\r\n       Version: 42.20250727.2 (2025-07-27T19:44:22Z)\r\n\r\nRollback image: ghcr.io/ublue-os/bluefin:stable\r\n          Digest: sha256:4e0883e9507efa13edd9e1ebffe271a0f9c3c05fc6b85cd5d51bf537c4727ee7 (amd64)\r\n         Version: 42.20250727.2 (2025-07-27T19:40:16Z)\r\n```",
+      "created_at": "2025-08-03T13:30:53Z"
+    },
+    {
+      "title": "Is there a way to make Flameshot fully functional?",
+      "url": "https://github.com/ublue-os/bluefin/discussions/2984",
+      "category": "Dosu Help Section",
+      "upvotes": 1,
+      "answered": true,
+      "answer_body": "Looks like an upstream bug. Follow along here: https://github.com/flameshot-org/flameshot/issues/4116#issuecomment-3172263040",
+      "body": "Currently, I have it installed in a Fedora distrobox and exported. Most things work, screenshots, I can type annotations, but copy to clipboard does not work, and when saving to a file, I have to accept the default filename. \r\nI tried layering, but it could not capture the screen. \r\nI was going to compile from source, but fell into dependency hell. \r\n@dosu (or hopefully a human), any suggestions?\r\n\r\n<details>\r\n\udb84\udee9 \uea9f bluefin-dx-nvidia-open:gts \ud83d\udd10\r\n\udb82\udcdb \uea9f Bluefin (Version: gts-41.20250810 / FROM Fe)\r\n\uf17c \uea9f Linux 6.14.11-200.fc41.x86_64\r\n\udb80\udd50 \uea9f 16 hours, 14 mins\r\n\udb81\udd20 \uea9f Forged on May 24 2025\r\n\r\n\udb83\udee0 \uea9f 13th Gen Intel(R) Core(TM) i9-13900K (32) @z\r\n\udb80\udf5b \uea9f NVIDIA RTX A4500\r\n\udb82\uddd1 \uea9f 45.33 GiB / 125.47 GiB (36%)\r\n\uf0a0 \uea9f 6.29 TiB / 12.73 TiB (49%) - btrfs\r\n\uf0a0 \uea9f 38.52 GiB / 1.82 TiB (2%) - btrfs [Read-onl]\r\n\uf0a0 \uea9f 1009.66 GiB / 1.82 TiB (54%) - btrfs\r\n\uf0a0 \uea9f 3.36 TiB / 3.64 TiB (92%) - btrfs\r\n\uf0a0 \uea9f 15.23 TiB / 35.70 TiB (43%) - zfs\r\n\udb80\udf79 \uea9f 2560x2880 @ 60 Hz in 28\" [External]\r\n\udb80\udf79 \uea9f 3840x2160 @ 60 Hz in 27\" [External]\r\n\udb80\udf79 \uea9f 2560x2880 @ 60 Hz in 28\" [External] *\r\n\udb81\uddba \uea9f stream-controller-os-plugin\r\n\r\n\udb81\udd6e \uea9f GNOME 47.5\r\n\uf488 \uea9f Mutter (Wayland)\r\n\uf489 \uea9f bash 5.2.32\r\n\ue795 \uea9f /dev/pts/4\r\n\udb80\udfd6 \uea9f 2553 (rpm), 93 (flatpak), 296 (brew)\r\n\r\n                          \r\n </details>",
+      "created_at": "2025-08-12T12:31:47Z"
+    },
+    {
+      "title": "How to rebase from `bluefin:stable` to `bluefin:gts` after `gts` is on Fedora 42?",
+      "url": "https://github.com/ublue-os/bluefin/discussions/3089",
+      "category": "Dosu Help Section",
+      "upvotes": 1,
+      "answered": true,
+      "answer_body": "<!-- Answer -->\nTo rebase from `bluefin:stable` to `bluefin:gts` after GTS is on Fedora 42, use the following steps:\n\n1. Get your image name:\n   ```sh\n   IMAGE_NAME=$(jq -r '.[\"image-name\"]' < /usr/share/ublue-os/image-info.json)\n   ```\n2. Rebase to the GTS stream:\n   ```sh\n   sudo bootc switch --enforce-container-sigpolicy ghcr.io/ublue-os/$IMAGE_NAME:gts\n   ```\n   To rebase to a specific GTS release (for example, a dated tag):\n   ```sh\n   sudo bootc switch --enforce-container-sigpolicy ghcr.io/ublue-os/$IMAGE_NAME:gts-20250803\n   ```\n   [Reference](https://docs.projectbluefin.io/changelogs/bluefin-gts-20250803#how-to-rebase)\n\n**Caveats & Solutions:**\n- Package changes: Some packages may be replaced with Flatpaks or Homebrew installs in Fedora 42. After rebasing, run:\n  ```sh\n  ujust install-system-flatpaks\n  ```\n  This will ensure your applications are updated or replaced as needed. Review the [Fedora 42 package changes](https://universal-blue.discourse.group/t/upcoming-changes-to-bluefin-packages-for-the-f42-release/7711/1) for details.\n- Customizations: If you have custom configurations or installed packages, check the [changelogs](https://docs.projectbluefin.io/changelogs/tags/gts) for any breaking changes or removals.\n\n**Tracking Fedora Versions for Each Tag:**\n- The `stable` tag always tracks the current Fedora release, while `gts` tracks the previous stable Fedora version. You can confirm which Fedora version each tag is on by checking the [Bluefin release notes](https://github.com/ublue-os/bluefin/releases), the [official documentation](https://docs.projectbluefin.io/administration), or the [Universal Blue discourse group](https://universal-blue.discourse.group/) for announcements and changelogs.\n\nFor more details and the latest instructions, always refer to the [official Bluefin documentation](https://docs.projectbluefin.io).  \nTip: Use `tldr bootc` for a quick summary of bootc commands.\n\n\n<!-- Dosu Comment Footer -->\n*To reply, just mention [@dosu](https:...",
+      "body": "Give detailed directions for users who want to drop back to gts once it is on Fedora 42. Describe any possible caveats or problems and their solutions. Also describe how users can remain up to date on which fedora versions each tagged image is on.",
+      "created_at": "2025-08-29T08:27:52Z"
+    },
+    {
+      "title": "Using GPG-Smartcards and YubiKey on bluefin",
+      "url": "https://github.com/ublue-os/bluefin/discussions/3093",
+      "category": "Dosu Help Section",
+      "upvotes": 1,
+      "answered": true,
+      "answer_body": "<!-- Answer -->\nSmartcard support on Bluefin is mostly handled by upstream defaults\u2014there are no custom system-level tweaks for legacy devices like the Crypto Stick. If gpg works with your YubiKey but not the Crypto Stick, it's likely a compatibility issue with the drivers or middleware, not a Bluefin-specific block. \n\nA few things that have helped other users: try restarting the `pcscd` service after plugging in your token, and consider removing the `opensc` package if it's present, as it can interfere with smartcard detection ([details here](https://universal-blue.discourse.group/t/gpg-smartcard-support-with-usb-security-keys/397/9)). Also, check for warnings about outdated `gpg-agent` or `scdaemon` versions\u2014restarting them with `gpgconf --kill all` can sometimes help ([see this thread](https://universal-blue.discourse.group/t/gpg-smartcard-support-with-usb-security-keys/397)).\n\nFor the `ssh-add -K` error, make sure your PKCS#11 provider is correctly configured and that you're using the system's built-in smartcard tools, not Homebrew versions, to avoid service conflicts ([more info](https://github.com/ublue-os/bluefin/issues/2229)).\n\nFor more details, check the [official Bluefin documentation](https://docs.projectbluefin.io).\n\n**tldr tip:**  \nTo restart all GPG-related services, run:  \n```sh\ngpgconf --kill all\nsudo systemctl restart pcscd\n```\n\n\n<!-- Dosu Comment Footer -->\n*To reply, just mention [@dosu](https://go.dosu.dev/dosubot).*\n\n---\n<sup>How did I do? [Good](https://app.dosu.dev/response-feedback/4e3adcbf-aff5-43e0-bb60-6607050218a5?feedback_type=great_response) | [Irrelevant](https://app.dosu.dev/response-feedback/4e3adcbf-aff5-43e0-bb60-6607050218a5?feedback_type=irrelevant_answer) | [Incorrect](https://app.dosu.dev/response-feedback/4e3adcbf-aff5-43e0-bb60-6607050218a5?feedback_type=incorrect_sources) | [Verbose](https://app.dosu.dev/response-feedback/4e3adcbf-aff5-43e0-bb60-6607050218a5?feedback_type=too_verbose) | [Hallucination](https://app.dosu.dev/r...",
+      "body": "I'm trying to settle in into my new bluefind installation and want to set up my hardware security tokens. I wanted to import my keys with `ssh-add -K` which asks for my PIN and gives the following error message:\r\n```\r\nProvider \"internal\" returned failure -1\r\nUnable to load resident keys: invalid format\r\n```\r\nI installed the homebrew packets gnupg-pkcs11-scd and pkcs11-tools since the base system seems to lack the support for these basic tools but it doesn't help and the error message doesn't help either. What am I missing? Is there yet another package manger?",
+      "created_at": "2025-08-29T11:29:49Z"
+    },
+    {
+      "title": "How to discern installation in UEFI boot",
+      "url": "https://github.com/ublue-os/bluefin/discussions/2822",
+      "category": "Dosu Help Section",
+      "upvotes": 0,
+      "answered": true,
+      "answer_body": "<!-- Answer -->\nAll Universal Blue OSes (Aurora, Bluefin, Bazzite) use the default 'fedora' UEFI boot entry name, so if you install them on separate SSDs, your UEFI boot menu will show multiple entries labeled 'fedora'\u2014they won't be automatically distinguishable by name ([source](https://github.com/ublue-os/bluefin/blob/21e50c7fe971deeb39569362772f864dab0263e8/iso_files/configure_iso_anaconda.sh)). \n\nTo make them easier to tell apart, you can manually rename the boot entries after installation using efibootmgr. For example:\n```sh\nsudo efibootmgr -b 0001 -L \"Bluefin\"\n```\nReplace `0001` with the actual boot entry number for the OS you want to rename (find these with `efibootmgr -v`).\n\ntldr tip:  \n`tldr efibootmgr` gives you quick usage examples for this tool.\n\nFor more on system management, check out the [official Bluefin docs](https://docs.projectbluefin.io).\n\n\n<!-- Dosu Comment Footer -->\n*To reply, just mention [@dosu](https://go.dosu.dev/dosubot).*\n\n---\n<sup>How did I do? [Good](https://app.dosu.dev/response-feedback/fef933a4-5079-402c-889f-6e41ea6ea5e2?feedback_type=great_response) | [Irrelevant](https://app.dosu.dev/response-feedback/fef933a4-5079-402c-889f-6e41ea6ea5e2?feedback_type=irrelevant_answer) | [Incorrect](https://app.dosu.dev/response-feedback/fef933a4-5079-402c-889f-6e41ea6ea5e2?feedback_type=incorrect_sources) | [Verbose](https://app.dosu.dev/response-feedback/fef933a4-5079-402c-889f-6e41ea6ea5e2?feedback_type=too_verbose) | [Hallucination](https://app.dosu.dev/response-feedback/fef933a4-5079-402c-889f-6e41ea6ea5e2?feedback_type=hallucination) | [Report \ud83d\udc1b](https://app.dosu.dev/response-feedback/fef933a4-5079-402c-889f-6e41ea6ea5e2?feedback_type=bug_report) | [Other](https://app.dosu.dev/response-feedback/fef933a4-5079-402c-889f-6e41ea6ea5e2?feedback_type=other)</sup>&nbsp;&nbsp;[![Chat with Dosu](https://dosu.dev/dosu-chat-badge.svg)](https://app.dosu.dev/e3630b91-3a35-46b9-a8d3-b0c1b3ef6331/ask?utm_source=github)&nbsp;[![Join Discord](https://img.s...",
+      "body": "Lets say I have 3 internal ssds and install aurora, bluefin and bazzite on theese.\r\nWill they be all named \"fedora\" in UEFI or will they be discernable?",
+      "created_at": "2025-07-23T20:47:49Z"
+    },
+    {
+      "title": "Cannot mount Google Drive in Nautilus",
+      "url": "https://github.com/ublue-os/bluefin/discussions/2964",
+      "category": "Dosu Help Section",
+      "upvotes": 0,
+      "answered": true,
+      "answer_body": "I fixed by removing Google authentication in Gnome Settings and reauthorizing it. Also installed gnome-online-accounts in bbrew,  but not sure if that was required. bbrew indicated package was not installed. ",
+      "body": "When I try to access Google Drive from Nautilus, I get a dialogue screen saying Permission Denied. I've successfully added the Google account through Settings>Online Accounts. Firefox opened and after checking the boxes to add Google Drive access the screen appears to complete.  I can access Google drive through the web browser without issue. Microsoft OneDrive mounts without issue.\r\n\r\nI think the Permission Denied must be referring to a file in the OS, perhaps a mount point? Not finding any discussion of this issue in Nautilus, Gnome or Fedora. I tried using RClone to mount the Google Drive and did so successfully, however it was a \"bad\" mount in that some Drive files did not function properly. This is a known issue in RClone. https://rclone.org/drive/#limitations-of-google-docs. I see other Fedora users getting a mount in Nautilus. Thanks for your ideas on resolving this.",
+      "created_at": "2025-08-09T14:54:45Z"
+    }
+  ]
+}

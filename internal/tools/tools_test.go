@@ -341,3 +341,73 @@ func TestGetHardwareReport_AMDGPUNoIssues(t *testing.T) {
 		t.Error("expected 'system' field in hardware report")
 	}
 }
+
+func TestSearchDiscussions_Tool(t *testing.T) {
+	mock := cli.NewMockExecutor()
+	s := newTestServer(t, mock, t.TempDir())
+
+	// Empty query returns all results up to limit
+	result := callTool(t, s, "search_discussions", map[string]any{
+		"query": "",
+		"limit": 3,
+	})
+	if result.IsError {
+		t.Fatalf("search_discussions returned error: %s", textOf(t, result))
+	}
+
+	text := textOf(t, result)
+	var out map[string]any
+	if err := json.Unmarshal([]byte(text), &out); err != nil {
+		t.Fatalf("result not valid JSON: %v\nraw: %s", err, text)
+	}
+
+	if out["corpus_date"] == nil || out["corpus_date"] == "" {
+		t.Error("expected non-empty corpus_date in response")
+	}
+	if out["count"] == nil {
+		t.Error("expected count field in response")
+	}
+	results, ok := out["results"].([]any)
+	if !ok {
+		t.Fatalf("expected results array, got %T", out["results"])
+	}
+	if len(results) > 3 {
+		t.Errorf("expected at most 3 results, got %d", len(results))
+	}
+
+	// Verify result shape if any results were returned
+	if len(results) > 0 {
+		first, ok := results[0].(map[string]any)
+		if !ok {
+			t.Fatalf("expected object in results, got %T", results[0])
+		}
+		if first["title"] == nil || first["title"] == "" {
+			t.Error("expected non-empty title in discussion result")
+		}
+		if first["url"] == nil || first["url"] == "" {
+			t.Error("expected non-empty url in discussion result")
+		}
+	}
+}
+
+func TestSearchDiscussions_NoMatch(t *testing.T) {
+	mock := cli.NewMockExecutor()
+	s := newTestServer(t, mock, t.TempDir())
+
+	result := callTool(t, s, "search_discussions", map[string]any{
+		"query": "xyzzy_nonexistent_garbage_term_99999",
+	})
+	if result.IsError {
+		t.Fatalf("search_discussions returned error: %s", textOf(t, result))
+	}
+
+	text := textOf(t, result)
+	var out map[string]any
+	if err := json.Unmarshal([]byte(text), &out); err != nil {
+		t.Fatalf("result not valid JSON: %v\nraw: %s", err, text)
+	}
+	count, _ := out["count"].(float64)
+	if int(count) != 0 {
+		t.Errorf("expected 0 results for garbage query, got %v", count)
+	}
+}

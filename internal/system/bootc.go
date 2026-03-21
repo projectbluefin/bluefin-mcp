@@ -110,17 +110,27 @@ func parseRpmOstreeJSON(data []byte) (*SystemStatus, error) {
 }
 
 // DetectVariant extracts the Bluefin variant from an OCI image reference.
-// Variants: base, dx, nvidia, aurora, aurora-dx
+// Compound variants (e.g. dx+nvidia) are matched most-specific-first so that
+// "bluefin-dx-nvidia-open" returns "dx-nvidia" rather than stopping at "dx".
+// Variants: base, dx, nvidia, dx-nvidia, aurora, aurora-dx, aurora-nvidia, aurora-dx-nvidia
 func DetectVariant(imageRef string) string {
 	lower := strings.ToLower(imageRef)
 	switch {
+	// Compound aurora variants — most specific first
+	case strings.Contains(lower, "aurora-dx") && strings.Contains(lower, "nvidia"):
+		return "aurora-dx-nvidia"
 	case strings.Contains(lower, "aurora-dx"):
 		return "aurora-dx"
+	case strings.Contains(lower, "aurora") && strings.Contains(lower, "nvidia"):
+		return "aurora-nvidia"
 	case strings.Contains(lower, "aurora"):
 		return "aurora"
+	// Compound bluefin variants — most specific first
+	case strings.Contains(lower, "bluefin-dx") && strings.Contains(lower, "nvidia"):
+		return "dx-nvidia"
 	case strings.Contains(lower, "bluefin-dx"):
 		return "dx"
-	case strings.Contains(lower, "bluefin-nvidia"):
+	case strings.Contains(lower, "nvidia"):
 		return "nvidia"
 	default:
 		return "base"

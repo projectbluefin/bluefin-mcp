@@ -264,7 +264,7 @@ func assessVariantCompat(variant string, devices []PCIDevice) VariantCompat {
 	}
 	if vc.NvidiaDetected {
 		switch variant {
-		case "nvidia", "aurora-nvidia":
+		case "nvidia", "aurora-nvidia", "dx-nvidia", "aurora-dx-nvidia":
 			vc.VariantMatch = true
 		default:
 			vc.VariantMatch = false

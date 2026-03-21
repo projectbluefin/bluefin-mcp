@@ -6,6 +6,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"sort"
 	"sync"
 
 	"github.com/projectbluefin/bluefin-mcp/internal/seed"
@@ -95,7 +96,7 @@ func (ks *KnowledgeStore) StoreUnitDoc(name string, doc UnitDoc) error {
 	return nil
 }
 
-// ListUnitDocs returns all documented units.
+// ListUnitDocs returns all documented units sorted by name for deterministic output.
 func (ks *KnowledgeStore) ListUnitDocs() ([]UnitDoc, error) {
 	ks.mu.Lock()
 	defer ks.mu.Unlock()
@@ -103,6 +104,7 @@ func (ks *KnowledgeStore) ListUnitDocs() ([]UnitDoc, error) {
 	for _, d := range ks.data.Units {
 		docs = append(docs, d)
 	}
+	sort.Slice(docs, func(i, j int) bool { return docs[i].Name < docs[j].Name })
 	return docs, nil
 }
 

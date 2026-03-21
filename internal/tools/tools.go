@@ -11,7 +11,7 @@ import (
 	"github.com/projectbluefin/bluefin-mcp/internal/system"
 )
 
-// Register adds all 11 MCP tool handlers to the server.
+// Register adds all 12 MCP tool handlers to the server.
 func Register(s *server.MCPServer, runner cli.CommandRunner, store *system.KnowledgeStore) {
 	s.AddTool(mcp.NewTool("get_system_status",
 		mcp.WithDescription("Get atomic OCI image state: booted image, digest, staged update, variant, rollback availability"),
@@ -139,6 +139,27 @@ func Register(s *server.MCPServer, runner cli.CommandRunner, store *system.Knowl
 			return mcp.NewToolResultError(err.Error()), nil
 		}
 		return jsonResult(report)
+	})
+
+	s.AddTool(mcp.NewTool("search_discussions",
+		mcp.WithDescription("Search community Q&A from ublue-os/bluefin GitHub Discussions. "+
+			"Corpus is embedded at build time (corpus_date in response). "+
+			"Use for: known issues, community workarounds, feature questions. "+
+			"Word-AND search across title, body, and accepted answers."),
+		mcp.WithString("query", mcp.Required(), mcp.Description("Search terms (space-separated, all must match)")),
+		mcp.WithNumber("limit", mcp.Description("Max results to return (default 5, max 20)")),
+	), func(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+		query := req.GetString("query", "")
+		limit := req.GetInt("limit", 5)
+		results, corpusDate, err := system.SearchDiscussions(query, limit)
+		if err != nil {
+			return mcp.NewToolResultError(err.Error()), nil
+		}
+		return jsonResult(map[string]any{
+			"results":     results,
+			"corpus_date": corpusDate,
+			"count":       len(results),
+		})
 	})
 }
 
