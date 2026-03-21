@@ -40,6 +40,10 @@ UNIT_PATHS = {
         "system_files/shared/usr/lib/systemd/user",
         "system_files/bluefin/usr/lib/systemd/system",
     ],
+    "bluefin": [
+        "system_files/shared/usr/lib/systemd/system",
+        "system_files/dx/usr/lib/systemd/system",
+    ],
     "bluefin-lts": [
         "system_files/shared/usr/lib/systemd/system",
     ],
