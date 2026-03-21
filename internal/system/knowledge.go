@@ -43,10 +43,11 @@ func NewKnowledgeStore(dir string) (*KnowledgeStore, error) {
 
 	// Load seed data
 	var seedData store
-	if err := json.Unmarshal(seed.Units, &seedData); err == nil {
-		for k, v := range seedData.Units {
-			ks.data.Units[k] = v
-		}
+	if err := json.Unmarshal(seed.Units, &seedData); err != nil {
+		return nil, fmt.Errorf("corrupt embedded seed data: %w", err)
+	}
+	for k, v := range seedData.Units {
+		ks.data.Units[k] = v
 	}
 
 	// Load existing store — user additions override seed
@@ -80,8 +81,18 @@ func (ks *KnowledgeStore) StoreUnitDoc(name string, doc UnitDoc) error {
 	}
 	ks.mu.Lock()
 	defer ks.mu.Unlock()
+	old, hadOld := ks.data.Units[name]
 	ks.data.Units[name] = doc
-	return ks.writeLocked()
+	if err := ks.writeLocked(); err != nil {
+		// Rollback: restore previous in-memory state to keep map and disk consistent
+		if hadOld {
+			ks.data.Units[name] = old
+		} else {
+			delete(ks.data.Units, name)
+		}
+		return err
+	}
+	return nil
 }
 
 // ListUnitDocs returns all documented units.

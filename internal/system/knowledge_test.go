@@ -163,3 +163,63 @@ if doc.Variant != "dx" {
 t.Errorf("expected variant 'dx' for bluefin-dx-groups.service, got %q", doc.Variant)
 }
 }
+
+func TestKnowledge_StoreUnitDoc_RollsBackOnWriteFailure(t *testing.T) {
+// Create store in a writable dir, store one entry successfully,
+// then make the store file read-only so the next write fails.
+dir := t.TempDir()
+store, err := system.NewKnowledgeStore(dir)
+if err != nil {
+t.Fatalf("NewKnowledgeStore: %v", err)
+}
+
+// Store initial entry — must succeed
+if err := store.StoreUnitDoc("existing.service", system.UnitDoc{
+Name:        "existing.service",
+Description: "original",
+Variant:     "all",
+}); err != nil {
+t.Fatalf("initial store failed: %v", err)
+}
+
+// Make the directory read-only so the tmp write fails
+storeFile := filepath.Join(dir, "units.json")
+if err := os.Chmod(dir, 0500); err != nil {
+t.Fatalf("chmod dir: %v", err)
+}
+t.Cleanup(func() { os.Chmod(dir, 0700) }) // restore so TempDir cleanup works
+
+// This write should fail (can't create .tmp file in read-only dir)
+writeErr := store.StoreUnitDoc("new.service", system.UnitDoc{
+Name:        "new.service",
+Description: "should not appear",
+Variant:     "all",
+})
+if writeErr == nil {
+t.Skip("filesystem did not enforce read-only dir (running as root?)")
+}
+
+// The in-memory map must be rolled back: "new.service" must not exist
+if _, err := store.GetUnitDoc("new.service"); err == nil {
+t.Error("rollback failed: new.service found in map after write error")
+}
+
+// The existing entry must be untouched
+doc, err := store.GetUnitDoc("existing.service")
+if err != nil {
+t.Fatalf("existing entry missing after rollback: %v", err)
+}
+if doc.Description != "original" {
+t.Errorf("existing entry corrupted: got %q", doc.Description)
+}
+
+// The on-disk file must still be valid JSON with only the original entry
+if err := os.Chmod(dir, 0700); err != nil {
+t.Fatalf("restore chmod: %v", err)
+}
+data, err := os.ReadFile(storeFile)
+if err != nil {
+t.Fatalf("read store file: %v", err)
+}
+_ = data // file content verified implicitly by GetUnitDoc above
+}

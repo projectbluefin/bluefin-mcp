@@ -21,15 +21,10 @@ func (r *RealExecutor) Run(ctx context.Context, name string, args []string) ([]b
 
 	cmd := exec.CommandContext(ctx, path, args...)
 	cmd.SysProcAttr = &syscall.SysProcAttr{Setpgid: true}
+	cmd.WaitDelay = 5 * time.Second // allow 5s for graceful exit after context cancel
 
 	out, err := cmd.Output()
 	if err != nil {
-		// On context cancellation, send SIGTERM then SIGKILL to process group
-		if ctx.Err() != nil && cmd.Process != nil {
-			syscall.Kill(-cmd.Process.Pid, syscall.SIGTERM)
-			time.Sleep(3 * time.Second)
-			syscall.Kill(-cmd.Process.Pid, syscall.SIGKILL)
-		}
 		return nil, err
 	}
 	return out, nil
