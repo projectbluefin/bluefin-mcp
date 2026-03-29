@@ -25,6 +25,11 @@ Agents MUST NEVER open pull requests to repositories outside @castrojo's or proj
 
 This rule was established after an agent automatically opened ublue-os/homebrew-tap#308 and had to close it immediately. No exceptions, no escalations, no "just this once."
 
+## Skills
+
+cat ~/src/skills/workflow/SKILL.md         # git push confirmation, CI watch, upstream PR rules
+cat ~/src/skills/bluefin-mcp/SKILL.md      # bluefin-mcp architecture and tool constraints
+
 ---
 
 ## ⚠️ Design Law — Read Before Changing Anything
