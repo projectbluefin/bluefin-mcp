@@ -15,7 +15,7 @@
     "ublue-user-setup.service": {
       "name": "ublue-user-setup.service",
       "variant": "all",
-      "description": "Configure system for current user Source: projectbluefin/common@4170fe6"
+      "description": "Configures the user environment at login: extends PATH for Homebrew (/home/linuxbrew/.linuxbrew/bin), sets up shell integration, and applies user-scoped systemd presets.\n\nNon-interactive SSH sessions (VS Code Remote, JetBrains Gateway) may not source profile.d scripts, so brew, docker, and Homebrew tools can appear missing even when installed. The fix is to ensure the remote shell sources /etc/profile.d/brew.sh or to add the Homebrew bin directory to PATH in ~/.bashrc or ~/.zshrc explicitly.\n\nRelated: get_brew_packages (confirm packages exist), get_system_status (verify booted deployment), list_recipes (check for SSH setup recipes)"
     },
     "dconf-update.service": {
       "name": "dconf-update.service",
