@@ -5,6 +5,18 @@
 Semantic AI context layer for Bluefin — 11 read-only MCP tools, Go ports-and-adapters architecture.
 Live binary: `~/.local/bin/bluefin-mcp` | Branch: `main`
 
+## PR Comment Policy
+
+**One comment per PR event, max.** Combine all findings into a single comment. Never post a follow-up comment for a new observation — edit the existing one instead.
+
+**Never duplicate GitHub UI state.** Do not post approval counts, merge queue status, or CI pass/fail summaries — GitHub already surfaces these natively in the PR timeline.
+
+**Test reports: minimal.** Report what ran, pass/fail, and blockers only. No diff summaries. No tables unless comparing ≥3 divergent approaches that require a human decision.
+
+**@ mentions in context only.** Only ping someone if asking them to do something specific. Always inside the combined comment — never as a standalone comment.
+
+**When in doubt, don't post.** If the only thing to report is "tests pass", post nothing.
+
 ## Skills
 
 ```bash
