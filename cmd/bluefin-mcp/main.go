@@ -12,7 +12,10 @@ import (
 	"github.com/projectbluefin/bluefin-mcp/internal/tools"
 )
 
-var version = "dev"
+var (
+	version   = "dev"
+	buildDate = "unknown" // injected at build time via -ldflags "-X main.buildDate=YYYY-MM-DD"
+)
 
 func main() {
 	// All logging must go to stderr — stdout is reserved for the JSON-RPC
@@ -39,6 +42,7 @@ func main() {
 
 	runner := cli.NewRealExecutor()
 	s := server.NewMCPServer("bluefin-mcp", version)
+	tools.BuildDate = buildDate
 	tools.Register(s, runner, store)
 
 	if err := server.ServeStdio(s); err != nil {
