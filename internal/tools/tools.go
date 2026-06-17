@@ -11,6 +11,9 @@ import (
 	"github.com/projectbluefin/bluefin-mcp/internal/system"
 )
 
+// BuildDate is set from main via ldflags so AI clients can report corpus freshness.
+var BuildDate = "unknown"
+
 // Register adds all 11 MCP tool handlers to the server.
 func Register(s *server.MCPServer, runner cli.CommandRunner, store *system.KnowledgeStore) {
 	s.AddTool(mcp.NewTool("get_system_status",
@@ -158,6 +161,7 @@ func Register(s *server.MCPServer, runner cli.CommandRunner, store *system.Knowl
 		return jsonResult(map[string]any{
 			"results":     results,
 			"corpus_date": corpusDate,
+			"build_date":  BuildDate,
 			"count":       len(results),
 		})
 	})

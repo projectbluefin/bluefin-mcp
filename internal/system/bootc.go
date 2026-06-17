@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"strings"
 
 	"github.com/projectbluefin/bluefin-mcp/internal/cli"
@@ -69,7 +70,7 @@ func GetSystemStatus(ctx context.Context, runner cli.CommandRunner) (*SystemStat
 func parseBootcJSON(data []byte) (*SystemStatus, error) {
 	var s bootcStatusJSON
 	if err := json.Unmarshal(data, &s); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("bootc status returned unparseable JSON (is bootc up to date?): %w", err)
 	}
 	st := &SystemStatus{Source: "bootc"}
 	if s.Status.Booted != nil {
@@ -87,7 +88,7 @@ func parseBootcJSON(data []byte) (*SystemStatus, error) {
 func parseRpmOstreeJSON(data []byte) (*SystemStatus, error) {
 	var r rpmOstreeJSON
 	if err := json.Unmarshal(data, &r); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("rpm-ostree status returned unparseable JSON (is rpm-ostree up to date?): %w", err)
 	}
 	st := &SystemStatus{Source: "rpm-ostree"}
 	for _, d := range r.Deployments {

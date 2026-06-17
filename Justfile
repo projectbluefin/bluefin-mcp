@@ -1,7 +1,7 @@
 default: build
 
 build:
-    go build -o bin/bluefin-mcp ./cmd/bluefin-mcp
+    go build -ldflags "-X main.buildDate=$(date -u +%Y-%m-%d)" -o bin/bluefin-mcp ./cmd/bluefin-mcp
 
 install: build
     cp bin/bluefin-mcp ~/.local/bin/bluefin-mcp
