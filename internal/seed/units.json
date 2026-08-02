@@ -1,56 +1,76 @@
 {
   "version": "1",
-  "source_sha": "4170fe6ee81bfbe80f40adac718e8c056d59a320",
+  "source_sha": "56944ddddfe55811428f3287f5e3533f3e1c05e1",
   "units": {
+    "flatpak-appstream-refresh.service": {
+      "name": "flatpak-appstream-refresh.service",
+      "variant": "all",
+      "description": "Refresh Flatpak remote metadata Source: projectbluefin/common@56944dd"
+    },
     "flatpak-preinstall.service": {
       "name": "flatpak-preinstall.service",
       "variant": "all",
-      "description": "Preinstall Flatpaks Source: projectbluefin/common@4170fe6"
+      "description": "Preinstall Flatpaks Source: projectbluefin/common@56944dd"
+    },
+    "rechunker-group-fix.service": {
+      "name": "rechunker-group-fix.service",
+      "variant": "all",
+      "description": "Fix groups for Legacy rechunker Source: projectbluefin/common@56944dd"
     },
     "ublue-system-setup.service": {
       "name": "ublue-system-setup.service",
       "variant": "all",
-      "description": "Configure system Source: projectbluefin/common@4170fe6"
+      "description": "Configure system Source: projectbluefin/common@56944dd"
+    },
+    "uupd-on-ac.service": {
+      "name": "uupd-on-ac.service",
+      "variant": "all",
+      "description": "Trigger system updates on AC power connect Source: projectbluefin/common@56944dd"
+    },
+    "brew-preinstall.service": {
+      "name": "brew-preinstall.service",
+      "variant": "all",
+      "description": "Preinstall OS-managed Homebrew packages Source: projectbluefin/common@56944dd"
     },
     "ublue-user-setup.service": {
       "name": "ublue-user-setup.service",
       "variant": "all",
-      "description": "Configures the user environment at login: extends PATH for Homebrew (/home/linuxbrew/.linuxbrew/bin), sets up shell integration, and applies user-scoped systemd presets.\n\nNon-interactive SSH sessions (VS Code Remote, JetBrains Gateway) may not source profile.d scripts, so brew, docker, and Homebrew tools can appear missing even when installed. The fix is to ensure the remote shell sources /etc/profile.d/brew.sh or to add the Homebrew bin directory to PATH in ~/.bashrc or ~/.zshrc explicitly.\n\nRelated: get_brew_packages (confirm packages exist), get_system_status (verify booted deployment), list_recipes (check for SSH setup recipes)"
+      "description": "Configure system for current user Source: projectbluefin/common@56944dd"
     },
     "dconf-update.service": {
       "name": "dconf-update.service",
       "variant": "all",
-      "description": "Update the dconf database onboot Source: projectbluefin/common@4170fe6"
+      "description": "Update the dconf database onboot Source: projectbluefin/common@56944dd"
     },
     "bazaar.service": {
       "name": "bazaar.service",
       "variant": "all",
-      "description": "Bazaar background service Source: projectbluefin/common@4170fe6"
+      "description": "Bazaar background service Source: projectbluefin/common@56944dd"
+    },
+    "bluefin-dynamic-wallpaper.service": {
+      "name": "bluefin-dynamic-wallpaper.service",
+      "variant": "all",
+      "description": "Bluefin Dynamic Wallpaper Source: projectbluefin/common@56944dd"
     },
     "flatpak-nuke-fedora.service": {
       "name": "flatpak-nuke-fedora.service",
       "variant": "all",
-      "description": "Remove Fedora flatpak repositories Source: ublue-os/bluefin@7d0fd2a"
+      "description": "Remove Fedora flatpak repositories Source: ublue-os/bluefin@5831508"
     },
     "bluefin-dx-groups.service": {
       "name": "bluefin-dx-groups.service",
       "variant": "dx",
-      "description": "Add wheel members to docker,and incus-admin groups Source: ublue-os/bluefin@7d0fd2a"
+      "description": "Add wheel members to docker,and incus-admin groups Source: ublue-os/bluefin@5831508"
     },
     "incus-workaround.service": {
       "name": "incus-workaround.service",
       "variant": "dx",
-      "description": "Workaround swtpm not having the correct label Source: ublue-os/bluefin@7d0fd2a"
+      "description": "Workaround incus not having the correct label Source: ublue-os/bluefin@5831508"
     },
     "libvirt-workaround.service": {
       "name": "libvirt-workaround.service",
       "variant": "dx",
-      "description": "Workaround to relabel libvirt files and directories Source: ublue-os/bluefin@7d0fd2a"
-    },
-    "swtpm-workaround.service": {
-      "name": "swtpm-workaround.service",
-      "variant": "dx",
-      "description": "Workaround swtpm not having the correct label Source: ublue-os/bluefin@7d0fd2a"
+      "description": "Workaround to relabel libvirt files and directories Source: ublue-os/bluefin@5831508"
     }
   }
 }

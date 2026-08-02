@@ -1,32 +1,38 @@
 Available recipes:
+    BONEDIGGER_VERSION                       # bonedigger version v0.2.0
     alias
-    bbrew                                    # Install applications from curated Brewfiles (includes full-desktop.Brewfile with GNOME Circle apps)
+    bazaar-preview                           # Usage: ujust bazaar-preview /path/to/common
     benchmark                                # Run a one minute system benchmark
     bios                                     # Boot into this device's BIOS/UEFI screen
     bios-info                                # Show BIOS info
-    bluefin-apps                             # For additional applications, use: ujust bbrew
-    bluefin-cli                              # Configure Bluefin-CLI Terminal Experience with Brew
+    bluefin-apps                             # For additional applications, run: bctl --screen developer
+    bluefin-cli
     changelogs                               # Show the changelog
     check-idle-power-draw                    # Measure Idle Power Draw
     check-local-overrides                    # Check for local overrides
+    check-sb-key                             # Check Secure Boot status and key enrollment
     clean-system
-    cncf
+    cncf                                     # Install CNCF tools from curated Brewfile | run: bctl --screen developer
     device-info                              # Gather device info to a pastebin
-    devmode                                  # alias for toggle-devmode
-    dx-group                                 # Configure docker,incus-admin,libvirt, container manager, serial permissions
+    devmode                                  # alias for toggle-devmode — opens the Developer panel in bluefinctl when available
     enroll-secure-boot-key                   # Enroll Nvidia driver & KMOD signing key for secure boot - Enter password "universalblue" if prompted
+    export
+    install-asus                             # Install ASUS laptop tools (asusctl daemon + ROG Control Center) | https://gitlab.com/asus-linux/asusctl
     install-jetbrains-toolbox                # Install JetBrains Toolbox | https://www.jetbrains.com/toolbox-app/
     install-opentabletdriver                 # Install OpenTabletDriver, an open source, cross-platform, user-mode tablet driver
-    install-system-flatpaks                  # Install system flatpaks for rebasers
+    install-system-flatpaks                  # Install system flatpaks
     jetbrains-toolbox                        # alias for install-jetbrains-toolbox
     logs-last-boot                           # Show all messages from last boot
     logs-this-boot                           # Show all messages from this boot
     powerwash                                # Factory reset this device (experimental)
-    rebase-helper                            # Rebase assistant
+    report                                   # Collect a previewed, privacy-respecting report and create an issue directly with gh.
+    setup-vms                                # Set up the VM stack: virt-manager flatpak + QEMU extension (UEFI, TPM, USB passthrough)
     shell
-    toggle-devmode                           # Toggle between Bluefin and the Developer Experience
-    toggle-tpm2                              # TPM2 auto-unlock toggle
+    toggle-devmode                           # Set up the Developer Experience
+    toggle-testing                           # Toggle between the stable and testing image channels
+    toggle-tpm2                              # Toggle LUKS auto-unlock via TPM2
     toggle-updates                           # Turn automatic updates on or off
-    toggle-user-motd                         # Toggle display of the user-motd in terminal
+    toggle-user-motd                         # ~/.config/no-show-user-motd will need to run this once to re-disable.
+    toggle-vms                               # Toggle the VM stack on or off
     uid
     update                                   # Update system, flatpaks and homebrew packages all at once

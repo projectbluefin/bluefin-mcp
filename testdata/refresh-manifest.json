@@ -1,18 +1,8 @@
 {
-  "generated_at": "2026-03-20T00:44:24Z",
+  "generated_at": "2026-08-02T00:51:01Z",
   "sources": {
-    "projectbluefin/common": "4170fe6ee81bfbe80f40adac718e8c056d59a320",
-    "ublue-os/bluefin": "7d0fd2a57bda5e3ac9fab5d22d94463e279e51b0",
-    "ublue-os/bluefin-lts": "28a7701add776cc6daa872ccbe5b554ff861df85"
-  },
-  "hardware_representative": {
-    "note": "Files below are representative hardware command output — NOT auto-generated from GitHub source repos. Do NOT include in refresh-testdata.sh auto-refresh. They are crafted from real hardware to test the get_hardware_report tool.",
-    "files": [
-      "lspci-nnk-nvidia-broadcom.txt",
-      "lspci-nnk-amd-intel.txt",
-      "lspci-nnk-intel-igpu.txt",
-      "cmdline-livecd.txt",
-      "cmdline-installed.txt"
-    ]
+    "projectbluefin/common": "56944ddddfe55811428f3287f5e3533f3e1c05e1",
+    "ublue-os/bluefin": "5831508b26dfa9d08d52dbdffeb83344c709d2d4",
+    "ublue-os/bluefin-lts": "4d9d6b60fc98321599d619362ef2e84e95c0cb8b"
   }
 }

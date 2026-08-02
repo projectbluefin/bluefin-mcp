@@ -1,3 +1,4 @@
+be.alexandervanhee.gradia	1.0.0
 com.github.PintaProject.Pinta	1.0.0
 com.github.tchx84.Flatseal	1.0.0
 com.mattjakeman.ExtensionManager	1.0.0
@@ -24,7 +25,7 @@ org.gnome.Papers	1.0.0
 org.gnome.Showtime	1.0.0
 org.gnome.SimpleScan	1.0.0
 org.gnome.Snapshot	1.0.0
-org.gnome.SoundRecorder	1.0.0
+org.gnome.Decibels	1.0.0
 org.gnome.TextEditor	1.0.0
 org.gnome.Weather	1.0.0
 org.gnome.baobab	1.0.0
@@ -32,6 +33,6 @@ org.gnome.clocks	1.0.0
 org.gnome.font-viewer	1.0.0
 org.gtk.Gtk3theme.adw-gtk3	1.0.0
 org.gtk.Gtk3theme.adw-gtk3-dark	1.0.0
-org.mozilla.Thunderbird	1.0.0
+org.mozilla.thunderbird	1.0.0
 org.mozilla.firefox	1.0.0
 page.tesk.Refine	1.0.0
