@@ -1,76 +1,76 @@
 {
   "version": "1",
-  "source_sha": "56944ddddfe55811428f3287f5e3533f3e1c05e1",
+  "source_sha": "b6f5c370cca19398fbbbe43a0182dca6783a80cb",
   "units": {
     "flatpak-appstream-refresh.service": {
       "name": "flatpak-appstream-refresh.service",
       "variant": "all",
-      "description": "Refresh Flatpak remote metadata Source: projectbluefin/common@56944dd"
+      "description": "Refresh Flatpak remote metadata Source: projectbluefin/common@b6f5c37"
     },
     "flatpak-preinstall.service": {
       "name": "flatpak-preinstall.service",
       "variant": "all",
-      "description": "Preinstall Flatpaks Source: projectbluefin/common@56944dd"
+      "description": "Preinstall Flatpaks Source: projectbluefin/common@b6f5c37"
     },
     "rechunker-group-fix.service": {
       "name": "rechunker-group-fix.service",
       "variant": "all",
-      "description": "Fix groups for Legacy rechunker Source: projectbluefin/common@56944dd"
+      "description": "Fix groups for Legacy rechunker Source: projectbluefin/common@b6f5c37"
     },
     "ublue-system-setup.service": {
       "name": "ublue-system-setup.service",
       "variant": "all",
-      "description": "Configure system Source: projectbluefin/common@56944dd"
+      "description": "Configure system Source: projectbluefin/common@b6f5c37"
     },
     "uupd-on-ac.service": {
       "name": "uupd-on-ac.service",
       "variant": "all",
-      "description": "Trigger system updates on AC power connect Source: projectbluefin/common@56944dd"
+      "description": "Trigger system updates on AC power connect Source: projectbluefin/common@b6f5c37"
     },
     "brew-preinstall.service": {
       "name": "brew-preinstall.service",
       "variant": "all",
-      "description": "Preinstall OS-managed Homebrew packages Source: projectbluefin/common@56944dd"
+      "description": "Preinstall OS-managed Homebrew packages Source: projectbluefin/common@b6f5c37"
     },
     "ublue-user-setup.service": {
       "name": "ublue-user-setup.service",
       "variant": "all",
-      "description": "Configure system for current user Source: projectbluefin/common@56944dd"
+      "description": "Configure system for current user Source: projectbluefin/common@b6f5c37"
     },
     "dconf-update.service": {
       "name": "dconf-update.service",
       "variant": "all",
-      "description": "Update the dconf database onboot Source: projectbluefin/common@56944dd"
+      "description": "Update the dconf database onboot Source: projectbluefin/common@b6f5c37"
     },
     "bazaar.service": {
       "name": "bazaar.service",
       "variant": "all",
-      "description": "Bazaar background service Source: projectbluefin/common@56944dd"
+      "description": "Bazaar background service Source: projectbluefin/common@b6f5c37"
     },
     "bluefin-dynamic-wallpaper.service": {
       "name": "bluefin-dynamic-wallpaper.service",
       "variant": "all",
-      "description": "Bluefin Dynamic Wallpaper Source: projectbluefin/common@56944dd"
+      "description": "Bluefin Dynamic Wallpaper Source: projectbluefin/common@b6f5c37"
     },
     "flatpak-nuke-fedora.service": {
       "name": "flatpak-nuke-fedora.service",
       "variant": "all",
-      "description": "Remove Fedora flatpak repositories Source: ublue-os/bluefin@5831508"
+      "description": "Remove Fedora flatpak repositories Source: ublue-os/bluefin@2c633dd"
     },
     "bluefin-dx-groups.service": {
       "name": "bluefin-dx-groups.service",
       "variant": "dx",
-      "description": "Add wheel members to docker,and incus-admin groups Source: ublue-os/bluefin@5831508"
+      "description": "Add wheel members to docker,and incus-admin groups Source: ublue-os/bluefin@2c633dd"
     },
     "incus-workaround.service": {
       "name": "incus-workaround.service",
       "variant": "dx",
-      "description": "Workaround incus not having the correct label Source: ublue-os/bluefin@5831508"
+      "description": "Workaround incus not having the correct label Source: ublue-os/bluefin@2c633dd"
     },
     "libvirt-workaround.service": {
       "name": "libvirt-workaround.service",
       "variant": "dx",
-      "description": "Workaround to relabel libvirt files and directories Source: ublue-os/bluefin@5831508"
+      "description": "Workaround to relabel libvirt files and directories Source: ublue-os/bluefin@2c633dd"
     }
   }
 }

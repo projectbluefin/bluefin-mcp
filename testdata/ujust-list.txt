@@ -32,7 +32,7 @@ Available recipes:
     toggle-testing                           # Toggle between the stable and testing image channels
     toggle-tpm2                              # Toggle LUKS auto-unlock via TPM2
     toggle-updates                           # Turn automatic updates on or off
-    toggle-user-motd                         # ~/.config/no-show-user-motd will need to run this once to re-disable.
+    toggle-user-motd                         # is a compatibility shim for users with muscle memory for the old name.
     toggle-vms                               # Toggle the VM stack on or off
     uid
     update                                   # Update system, flatpaks and homebrew packages all at once

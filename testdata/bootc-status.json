@@ -6,7 +6,7 @@
           "image": "ghcr.io/ublue-os/bluefin:stable",
           "transport": "registry"
         },
-        "imageDigest": "sha256:e464882112198eb2949043cf8d9ed423360900bab260fdf061ba025a5c3b8554"
+        "imageDigest": "sha256:dfd06ac186ca5fad4cbc4d80c21b30b77975f1f8ac2d7bd9924b775b9c75a603"
       },
       "incompatible": false,
       "pinned": false
@@ -18,7 +18,7 @@
           "image": "ghcr.io/ublue-os/bluefin:stable",
           "transport": "registry"
         },
-        "imageDigest": "sha256:0c5afb63cc636a3c0cc118f8e4be940926facff660598f166fb1fd0ae88a614d"
+        "imageDigest": "sha256:4d98e14ade71fdc8d7fbdf9b2e752e2dab345bc31e591a96621d22129b7f5ba0"
       }
     }
   }
