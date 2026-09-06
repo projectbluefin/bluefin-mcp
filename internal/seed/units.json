@@ -1,56 +1,56 @@
 {
   "version": "1",
-  "source_sha": "6b1aa3b2360a1be8360159f69cd2c26945476ca5",
+  "source_sha": "e90fb974ff48c6bb1a54271bb201962857123234",
   "units": {
     "flatpak-appstream-refresh.service": {
       "name": "flatpak-appstream-refresh.service",
       "variant": "all",
-      "description": "Refresh Flatpak remote metadata Source: projectbluefin/common@6b1aa3b"
+      "description": "Refresh Flatpak remote metadata Source: projectbluefin/common@e90fb97"
     },
     "flatpak-preinstall.service": {
       "name": "flatpak-preinstall.service",
       "variant": "all",
-      "description": "Preinstall Flatpaks Source: projectbluefin/common@6b1aa3b"
+      "description": "Preinstall Flatpaks Source: projectbluefin/common@e90fb97"
     },
     "rechunker-group-fix.service": {
       "name": "rechunker-group-fix.service",
       "variant": "all",
-      "description": "Fix groups for Legacy rechunker Source: projectbluefin/common@6b1aa3b"
+      "description": "Fix groups for Legacy rechunker Source: projectbluefin/common@e90fb97"
     },
     "ublue-system-setup.service": {
       "name": "ublue-system-setup.service",
       "variant": "all",
-      "description": "Configure system Source: projectbluefin/common@6b1aa3b"
+      "description": "Configure system Source: projectbluefin/common@e90fb97"
     },
     "uupd-on-ac.service": {
       "name": "uupd-on-ac.service",
       "variant": "all",
-      "description": "Trigger system updates on AC power connect Source: projectbluefin/common@6b1aa3b"
+      "description": "Trigger system updates on AC power connect Source: projectbluefin/common@e90fb97"
     },
     "brew-preinstall.service": {
       "name": "brew-preinstall.service",
       "variant": "all",
-      "description": "Preinstall OS-managed Homebrew packages Source: projectbluefin/common@6b1aa3b"
+      "description": "Preinstall OS-managed Homebrew packages Source: projectbluefin/common@e90fb97"
     },
     "ublue-user-setup.service": {
       "name": "ublue-user-setup.service",
       "variant": "all",
-      "description": "Configure system for current user Source: projectbluefin/common@6b1aa3b"
+      "description": "Configure system for current user Source: projectbluefin/common@e90fb97"
     },
     "dconf-update.service": {
       "name": "dconf-update.service",
       "variant": "all",
-      "description": "Update the dconf database onboot Source: projectbluefin/common@6b1aa3b"
+      "description": "Update the dconf database onboot Source: projectbluefin/common@e90fb97"
     },
     "bazaar.service": {
       "name": "bazaar.service",
       "variant": "all",
-      "description": "Bazaar background service Source: projectbluefin/common@6b1aa3b"
+      "description": "Bazaar background service Source: projectbluefin/common@e90fb97"
     },
     "bluefin-dynamic-wallpaper.service": {
       "name": "bluefin-dynamic-wallpaper.service",
       "variant": "all",
-      "description": "Bluefin Dynamic Wallpaper Source: projectbluefin/common@6b1aa3b"
+      "description": "Bluefin Dynamic Wallpaper Source: projectbluefin/common@e90fb97"
     },
     "flatpak-nuke-fedora.service": {
       "name": "flatpak-nuke-fedora.service",

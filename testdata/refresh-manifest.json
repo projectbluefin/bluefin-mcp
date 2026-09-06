@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-30T00:52:44Z",
+  "generated_at": "2026-09-06T00:54:06Z",
   "sources": {
-    "projectbluefin/common": "6b1aa3b2360a1be8360159f69cd2c26945476ca5",
+    "projectbluefin/common": "e90fb974ff48c6bb1a54271bb201962857123234",
     "ublue-os/bluefin": "e038626d7db5975808405690613ec2ecba40a9be",
-    "ublue-os/bluefin-lts": "3f2460fd070e4e0490c79d24df062dfc5ce3bf77"
+    "ublue-os/bluefin-lts": "b2017cf50d6170aaa4f1cdb29e7f961994f57195"
   }
 }
